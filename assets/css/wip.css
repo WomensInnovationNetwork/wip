@@ -664,6 +664,67 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 }
 
 /* ==========================================================================
+   8b. BACK TO TOP
+   Appears once the reader is a screen or so down. It is an <a href="#top">,
+   so it still works with JavaScript off — JS only controls when it shows and
+   moves focus, which a plain anchor cannot do reliably.
+   ========================================================================== */
+
+.to-top {
+  position: fixed;
+  right: max(var(--s-5), env(safe-area-inset-right));
+  bottom: max(var(--s-5), env(safe-area-inset-bottom));
+  z-index: 40;
+
+  /* 48px square: comfortably over the 44px minimum touch target. */
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+
+  background: var(--surface);
+  color: var(--heading);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow: var(--sh-2);
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: opacity .22s var(--ease), transform .22s var(--ease),
+              background .2s var(--ease), border-color .2s var(--ease);
+}
+.to-top svg { width: 20px; height: 20px; }
+
+.to-top:hover {
+  color: #fff;
+  background: var(--ribbon-diag);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+.to-top:focus-visible { outline: 3px solid var(--grad-violet); outline-offset: 3px; }
+
+/* Without JS the class below is never added, so the link simply stays put
+   and works as an anchor. With JS we hide it until it is useful. */
+.has-js .to-top {
+  opacity: 0;
+  transform: translateY(10px) scale(.9);
+  pointer-events: none;
+}
+.has-js .to-top.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .to-top, .has-js .to-top { transition: opacity .15s linear; transform: none; }
+  .to-top:hover { transform: none; }
+}
+
+/* Give the target of the jump a focus ring we do not want to see. */
+[tabindex="-1"]:focus { outline: none; }
+
+@media print { .to-top { display: none; } }
+
+/* ==========================================================================
    9. UTILITIES
    ========================================================================== */
 

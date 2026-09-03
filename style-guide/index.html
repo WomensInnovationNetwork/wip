@@ -51,10 +51,10 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="masthead">
+<header class="masthead" id="top">
   <div class="wrap-wide">
     <div class="masthead-top">
-      <a class="lockup" href="../../">
+      <a class="lockup" href="../">
         <img class="lockup-img" src="../assets/img/wip-wordmark-reverse.png" alt="Women in Power" width="1200" height="607">
       </a>
       <div class="masthead-right">
@@ -69,7 +69,7 @@
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us &mdash; and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>1.2</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>1.3</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -499,6 +499,28 @@
 &lt;/div&gt;</div>
     <p class="small muted" style="margin-top:var(--s-3)">To add a journey: drop another <code>.je-journey</code> with its own <code>data-tier</code> and <code>data-role</code> into <code>.je-source</code>, and add the matching option to the segmented control. No JavaScript changes needed.</p>
 
+    <h3 style="margin-top:var(--s-5)">Back to top</h3>
+    <p class="small muted">On by default for long pages. It is already on this page &mdash; scroll down and it appears at the bottom right.</p>
+    <div class="callout" style="margin-top:var(--s-3)">
+      <p class="callout-title">Why it is built the way it is</p>
+      <ul class="small" style="margin-top:var(--s-2)">
+        <li><strong>It is an <code>&lt;a href="#top"&gt;</code>, not a <code>&lt;button&gt;</code>.</strong> With JavaScript off it still works as an ordinary anchor. JS only decides <em>when</em> it shows and moves focus &mdash; neither of which a bare anchor does well.</li>
+        <li><strong>It appears late.</strong> Not until roughly one screenful down (<code>max(400px, 90vh)</code>), so it never covers content on a short page or sits there uselessly at the top.</li>
+        <li><strong>48&times;48px</strong>, comfortably over the 44px minimum touch target, and inset with <code>env(safe-area-inset-*)</code> so it clears the home indicator on phones.</li>
+        <li><strong>It moves focus, not just the viewport.</strong> Scrolling alone strands a keyboard or screen-reader user&rsquo;s focus where they were, so the next Tab drops them back down the page. On activation it focuses <code>#top</code>, adding <code>tabindex="-1"</code> only for the duration so the header never joins the tab order.</li>
+        <li><strong>Reduced motion respected.</strong> Smooth scroll becomes an instant jump, and the fade-in loses its transform.</li>
+        <li><strong>Cheap.</strong> A passive scroll listener coalesced with <code>requestAnimationFrame</code>, so at most one check runs per frame.</li>
+        <li><strong>Hidden in print.</strong></li>
+      </ul>
+    </div>
+    <div class="code">&lt;header class=<span class="t">"masthead"</span> id=<span class="t">"top"</span>&gt;   <span style="color:#8aa">&lt;!-- the landing target --&gt;</span>
+
+&lt;a class=<span class="t">"to-top"</span> href=<span class="t">"#top"</span> title=<span class="t">"Back to top"</span>&gt;
+  &lt;span class=<span class="t">"visually-hidden"</span>&gt;Back to top&lt;/span&gt;
+  &lt;svg ...&gt;&lt;/svg&gt;   <span style="color:#8aa">&lt;!-- aria-hidden, the label above names it --&gt;</span>
+&lt;/a&gt;</div>
+    <p class="small muted" style="margin-top:var(--s-3)">Place the anchor just before the <code>wip.js</code> script tag, and put <code>id="top"</code> on the masthead. Nothing else is needed &mdash; <code>wip.js</code> picks it up.</p>
+
     <h3 style="margin-top:var(--s-5)">Table</h3>
     <p class="small muted">Always wrap a table in <code>.table-scroll</code> so wide calendars scroll inside their own box instead of breaking the page on a phone.</p>
     <div class="table-scroll">
@@ -557,6 +579,7 @@
       <table>
         <thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead>
         <tbody>
+          <tr><td>1.3</td><td>3 Sep 2026</td><td>Back-to-top component added. Site restructured: <code>/wip/</code> dropped from every URL.</td></tr>
           <tr><td>1.2</td><td>3 Sep 2026</td><td>Real Women in Power wordmark wired into every masthead, in black and reversed variants. Style guide unlinked from member pages.</td></tr>
           <tr><td>1.1</td><td>3 Sep 2026</td><td>Added light/dark theming (semantic <code>--heading</code>, <code>--accent</code>, <code>--sticky-bg</code> tokens plus a full dark palette), the theme toggle, and the journey explorer component.</td></tr>
           <tr><td>1.0</td><td>3 Sep 2026</td><td>First version. Tokens sampled from the WIN logo and the WiP wordmark; voice derived from the WiP LinkedIn presence and leadership direction.</td></tr>
@@ -578,11 +601,16 @@
     <nav aria-label="Footer">
       <a href="../mentoring/">Mentoring</a>
       <a href="../mentoring/2026-cohort2/">Cohort 2 &mdash; Autumn 2026</a>
-      <a href="../../">Mentor-Ask Prompt Pack</a>
+      <a href="../">Mentor-Ask Prompt Pack</a>
       <a href="https://www.linkedin.com/company/women-in-power-platform">Women in Power on LinkedIn</a>
     </nav>
   </div>
 </footer>
+<a class="to-top" href="#top" title="Back to top">
+  <span class="visually-hidden">Back to top</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</a>
+
 <script src="../assets/js/wip.js" defer></script>
 </body>
 </html>
