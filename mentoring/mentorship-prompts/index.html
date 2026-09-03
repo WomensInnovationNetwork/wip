@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mentor-Ask Prompt Pack — Women in Power</title>
+<meta name="description" content="Five copy-and-paste AI prompts for asking someone to mentor you, tightening the message, preparing for a coffee chat and following up.">
+<meta name="theme-color" content="#042559">
+<script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/wip.css">
+<style>
+  /* Page-specific. Promote into wip.css only if a second page needs it. */
+  .prompt {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-md);
+    padding: var(--s-4); font-size: 0.9375rem; line-height: 1.6; color: var(--ink);
+    white-space: pre-wrap; max-width: none;
+  }
+  .prompt .b {
+    color: var(--accent); font-weight: 600;
+    background: var(--joint-wash); border-radius: 4px; padding: 0 .25em;
+  }
+  .copy {
+    margin-top: var(--s-3); display: inline-flex; align-items: center; gap: .5em;
+    cursor: pointer; background: var(--win-navy); color: #fff; border: 1px solid transparent;
+    border-radius: var(--r-pill); padding: .6em 1.2em;
+    font-family: var(--font-display); font-size: var(--t-sm); font-weight: 600;
+    transition: background .2s var(--ease), transform .18s var(--ease);
+  }
+  .copy:hover { background: var(--win-navy-soft); transform: translateY(-1px); }
+  .copy.done { background: var(--ok); }
+  :root[data-theme="dark"] .copy { background: #1d4fa8; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .copy { background: #1d4fa8; } }
+  @media (prefers-reduced-motion: reduce) { .copy:hover { transform: none; } }
+
+  .ba { display: grid; gap: var(--s-3); }
+  @media (min-width: 640px) { .ba { grid-template-columns: 1fr 1fr; } }
+  .ba .box { border-radius: var(--r-md); padding: var(--s-4); font-size: 0.9375rem; line-height: 1.55; }
+  .ba .before { background: var(--danger-wash); border: 1px solid var(--danger-line); }
+  .ba .after  { background: var(--ok-wash);     border: 1px solid var(--ok-line); }
+  .ba .tag {
+    font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: var(--s-2);
+  }
+  .ba .before .tag { color: var(--danger); }
+  .ba .after  .tag { color: var(--ok); }
+  .card .num {
+    font-family: var(--font-display); font-weight: 800; color: var(--accent); margin-right: .4em;
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead" id="top">
+  <div class="wrap">
+    <div class="masthead-top">
+      <a class="lockup" href="../../">
+        <img class="lockup-img" src="../../assets/img/wip-wordmark-reverse.png" alt="Women in Power" width="1200" height="607">
+      </a>
+      <div class="masthead-right">
+        <nav class="masthead-nav" aria-label="Main">
+          <a href="../">Mentoring</a>
+          <a href="../2026-cohort2/">Cohort 2</a>
+          <a href="./" aria-current="page">Prompt Pack</a>
+        </nav>
+        <button type="button" class="theme-toggle" data-theme-toggle>Theme</button>
+      </div>
+    </div>
+    <p class="kicker">Mentoring &middot; Toolkit</p>
+    <h1>The Mentor-Ask Prompt Pack</h1>
+    <p class="standfirst">Copy a prompt, swap the <strong>[brackets]</strong>, paste it into Copilot or any AI. Keep the warmth &mdash; lose the over-explaining.</p>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+  <div class="callout" style="margin-top:var(--s-6)">
+    <p>We over-articulate to prove ourselves. A good prompt helps you <strong>land the message with less</strong> &mdash; one clear ask, in half the words. Here are five to start with.</p>
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Make the ask</p>
+      <h2>Getting the conversation started</h2>
+    </div>
+
+    <div class="card">
+      <h3><span class="num">1</span>Ask someone at your company</h3>
+      <p class="small muted">For a colleague or leader you admire and want to learn from</p>
+      <div class="prompt" id="p1">You're my writing assistant. Help me write a warm, confident message (4 sentences max) to <span class="b">[name]</span>, a <span class="b">[role]</span> at my company I genuinely admire. I'd like them to mentor me on <span class="b">[skill or area]</span>. Say specifically why I'm asking them, make one clear ask for a recurring 30-minute chat, and cut any over-apologizing — no "sorry to bother you," no "if it's not too much trouble."</div>
+      <button class="copy" type="button" data-copy="p1">Copy prompt</button>
+    </div>
+
+    <div class="card" style="margin-top:var(--s-4)">
+      <h3><span class="num">2</span>Ask someone on LinkedIn</h3>
+      <p class="small muted">For someone who doesn&rsquo;t know you yet</p>
+      <div class="prompt" id="p2">Help me write a short LinkedIn message (3–4 sentences) to <span class="b">[name]</span>, who doesn't know me. I admire their work on <span class="b">[topic]</span>. I want to ask for a 15-minute virtual coffee — not a job, just to learn how they think about <span class="b">[topic]</span>. Make it genuine, specific, low-pressure, and easy to say yes to. No flattery overload.</div>
+      <button class="copy" type="button" data-copy="p2">Copy prompt</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Land it with less</p>
+      <h2>When the draft is too long</h2>
+    </div>
+    <div class="card">
+      <h3><span class="num">3</span>Tighten a message I already wrote</h3>
+      <p class="small muted">When your draft feels too long or too apologetic</p>
+      <div class="prompt" id="p3">Here's a message I drafted. Keep my warmth and my point, but cut it to about half the length and remove the hedging — words like "just," "maybe," "sorry," "I was wondering if." End with one clear ask. Here's my draft: <span class="b">[paste your message]</span></div>
+      <button class="copy" type="button" data-copy="p3">Copy prompt</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Show up prepared</p>
+      <h2>Before and after the conversation</h2>
+    </div>
+
+    <div class="card">
+      <h3><span class="num">4</span>Prep for a 15-minute coffee</h3>
+      <p class="small muted">So you walk in ready and leave with a next step</p>
+      <div class="prompt" id="p4">I have a 15-minute virtual coffee with <span class="b">[name]</span>, who is a <span class="b">[role]</span>. Help me prepare: 3 thoughtful questions to ask them, 1 thing I could offer or follow up on, and a natural way to close with "based on our conversation, who else should I get to know?" Keep it conversational, not scripted.</div>
+      <button class="copy" type="button" data-copy="p4">Copy prompt</button>
+    </div>
+
+    <div class="card" style="margin-top:var(--s-4)">
+      <h3><span class="num">5</span>Follow up and say thank you</h3>
+      <p class="small muted">The part most people skip &mdash; and it&rsquo;s how you stay memorable</p>
+      <div class="prompt" id="p5">Write a brief thank-you note (3 sentences) to <span class="b">[name]</span> after our <span class="b">[15-minute coffee / mentoring chat]</span>. Mention one specific thing I took away, confirm the next step if we agreed on one, and keep it warm and genuine.</div>
+      <button class="copy" type="button" data-copy="p5">Copy prompt</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">See the difference</p>
+      <h2>Same warmth, half the words</h2>
+    </div>
+    <div class="ba">
+      <div class="box before">
+        <span class="tag">Before</span>
+        &ldquo;So sorry to bother you &mdash; I know you&rsquo;re incredibly busy. I was just wondering if maybe you might have a little time to chat and give me some advice? Totally fine if not!&rdquo;
+      </div>
+      <div class="box after">
+        <span class="tag">After</span>
+        &ldquo;I really admire how you lead the architecture reviews. I&rsquo;m growing in that area and would value your guidance. Could we set a recurring 30-minute chat once a month?&rdquo;
+      </div>
+    </div>
+    <p class="lead center" style="margin-top:var(--s-6)">Same warmth. Half the words. One clear ask.</p>
+    <p class="row center" style="justify-content:center; margin-top:var(--s-4)">
+      <a class="btn btn-accent" href="../2026-cohort2/">See the current cohort &rarr;</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/company/women-in-power-platform">Join us on LinkedIn</a>
+    </p>
+    <p class="small muted center" style="margin-top:var(--s-4)">Originally made for Women in Power at EPPC 2026, Copenhagen.</p>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-row">
+    <div>
+      <img class="win-logo" src="../../assets/img/win-logo.png" alt="WIN — Women's Innovation Network">
+      <p class="tagline">When women innovate, the future follows.</p>
+      <p class="small" style="margin-top:var(--s-2)">Women in Power is a programme of the Women&rsquo;s Innovation Network.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="../../">Women in Power</a>
+      <a href="../">Mentoring</a>
+      <a href="../2026-cohort2/">Cohort 2 &mdash; Autumn 2026</a>
+      <a href="./">Mentor-Ask Prompt Pack</a>
+      <a href="https://www.linkedin.com/company/women-in-power-platform">Women in Power on LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="to-top" href="#top" title="Back to top">
+  <span class="visually-hidden">Back to top</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</a>
+
+<script src="../../assets/js/wip.js" defer></script>
+<script>
+// Copy-to-clipboard for the prompt blocks. Kept on this page because no
+// other page needs it.
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('.copy');
+  if (!btn) return;
+  var el = document.getElementById(btn.getAttribute('data-copy'));
+  if (!el) return;
+  var text = el.innerText.replace(/\s+/g, ' ').trim();
+
+  function done() {
+    var old = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('done');
+    setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1600);
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, fallback);
+  } else {
+    fallback();
+  }
+
+  // execCommand path for insecure contexts and older browsers.
+  function fallback() {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:absolute;left:-9999px;';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (err) { /* nothing to do */ }
+    document.body.removeChild(ta);
+  }
+});
+</script>
+</body>
+</html>
