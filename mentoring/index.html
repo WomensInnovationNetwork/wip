@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mentoring — Women in Power</title>
-<meta name="description" content="Women in Power mentoring: a two-tier programme of group mentoring and 1:1 mentoring for women in the Microsoft Power Platform community.">
+<meta name="description" content="Women in Power mentoring: five cohorts completed, two tiers running in parallel — group mentoring and 1:1 — for women in the Microsoft Power Platform community.">
 <meta name="theme-color" content="#042559">
-<!-- Apply the reader's stored theme before first paint, so there is no flash. -->
 <script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/wip.css">
 <style>
+  /* Page-specific. Promote into wip.css only if a second page needs it. */
   .tier-grid { display: grid; gap: var(--s-4); }
   @media (min-width: 820px) { .tier-grid { grid-template-columns: 1fr 1fr; } }
   .tier-card > ul { padding-left: 1.1rem; }
@@ -26,6 +26,22 @@
     padding: .5em 1.1em; box-shadow: var(--sh-1);
   }
   .arrowline .arw { color: var(--accent); font-size: 1.1rem; }
+
+  /* Testimonial cards — see the note in the markup before using these. */
+  .quotes { display: grid; gap: var(--s-4); }
+  @media (min-width: 780px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+  .quote { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+           padding: var(--s-5); box-shadow: var(--sh-1); position: relative; }
+  .quote::before {
+    content: "\201C"; font-family: Georgia, serif; font-size: 3.5rem; line-height: 1;
+    color: var(--accent); opacity: .35; position: absolute; top: 8px; right: 16px;
+  }
+  .quote blockquote { font-size: 0.9375rem; color: var(--ink-2); margin: 0; }
+  .quote figcaption {
+    margin-top: var(--s-3); padding-top: var(--s-3); border-top: 1px solid var(--line-soft);
+    font-family: var(--font-display); font-size: var(--t-sm); font-weight: 600; color: var(--heading);
+  }
+  .quote figcaption span { display: block; font-weight: 400; color: var(--ink-3); font-size: var(--t-xs); }
 </style>
 </head>
 <body>
@@ -39,9 +55,10 @@
       </a>
       <div class="masthead-right">
         <nav class="masthead-nav" aria-label="Main">
-        <a href="./" aria-current="page">Mentoring</a>
-        <a href="2026-cohort2/">Cohort 2</a>
-      </nav>
+          <a href="./" aria-current="page">Mentoring</a>
+          <a href="2026-cohort2/">Cohort 2</a>
+          <a href="mentorship-prompts/">Prompt Pack</a>
+        </nav>
         <button type="button" class="theme-toggle" data-theme-toggle>Theme</button>
       </div>
     </div>
@@ -70,8 +87,66 @@
       <div class="stat"><div class="stat-num">12</div><div class="stat-label">weeks per cohort</div></div>
       <div class="stat"><div class="stat-num">2</div><div class="stat-label">tiers, running together</div></div>
       <div class="stat"><div class="stat-num">~1 hr</div><div class="stat-label">per week, either tier</div></div>
-      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">always, for everyone</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">volunteer-led</div></div>
     </div>
+  </section>
+
+  <!-- ============================ TRACK RECORD ======================= -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">What we&rsquo;ve done so far</p>
+      <h2>Five cohorts in</h2>
+    </div>
+    <p class="lead">We have been running mentoring since 2024. Five cohorts have finished, every one of them staffed entirely by volunteers who did it around a full-time job.</p>
+    <p>Each cohort has changed shape based on what the last one told us. That is the part we are proudest of &mdash; not that we got it right first time, but that the feedback form actually changes the programme.</p>
+
+    <h3 style="margin-top:var(--s-6)">Four things five cohorts taught us</h3>
+    <div class="grid grid-2" style="margin-top:var(--s-4)">
+      <div class="card">
+        <h4>Tell people what they signed up for</h4>
+        <p class="small muted">The loudest complaint we ever got was that people did not know what the sessions would cover. Now every group session topic is published a week ahead, and rooms are labelled foundational or advanced.</p>
+      </div>
+      <div class="card">
+        <h4>Small rooms beat big calls</h4>
+        <p class="small muted">The breakout rooms were consistently the most valued part of group mentoring, and the long plenary sections the least. So the framing got shorter and the breakouts got longer.</p>
+      </div>
+      <div class="card">
+        <h4>Seniority is not the same as being new</h4>
+        <p class="small muted">Plenty of women arrive with twenty years of experience but no history with this programme. Tiers are now about your history with us, not your CV, and topics are levelled rather than aimed at beginners.</p>
+      </div>
+      <div class="card">
+        <h4>Everyone has to speak, once</h4>
+        <p class="small muted">The same handful of women were doing most of the talking. From this cohort, every 1:1 mentee presents at least once before graduating &mdash; five minutes counts, and you rehearse it with your mentor first.</p>
+      </div>
+    </div>
+
+    <!--
+      ============================ TESTIMONIALS ============================
+      DELIBERATELY EMPTY. Do not write quotes to fill this in — attributed
+      testimonials must be real and used with the speaker's permission.
+
+      Drew has cohort feedback-form quotes and Geetha coordinates the
+      LinkedIn testimonial posts; those are the source. Once you have three
+      you can attribute, uncomment the block below and replace the contents.
+      Ask the speaker before publishing their name.
+
+    <h3 style="margin-top:var(--s-6)">In their words</h3>
+    <div class="quotes" style="margin-top:var(--s-4)">
+      <figure class="quote">
+        <blockquote>REAL QUOTE HERE.</blockquote>
+        <figcaption>Name<span>Tier 1 mentee, Cohort 5</span></figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>REAL QUOTE HERE.</blockquote>
+        <figcaption>Name<span>1:1 mentor, Cohort 5</span></figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>REAL QUOTE HERE.</blockquote>
+        <figcaption>Name<span>Tier 1 graduate, now a mentor</span></figcaption>
+      </figure>
+    </div>
+      ======================================================================
+    -->
   </section>
 
   <!-- ============================== TIERS ============================ -->
@@ -96,7 +171,7 @@
           <li>Mentors host rooms on what they know best</li>
           <li>Coffee chats with any mentor on the list, any time</li>
         </ul>
-        <p class="small muted">Graduates who opt in move into Tier 1:1 mentoring in the following cohort.</p>
+        <p class="small muted">Graduates who opt in move into 1:1 mentoring in the following cohort.</p>
       </div>
 
       <div class="card card-t2 tier-card">
@@ -138,15 +213,16 @@
     <div class="grid grid-3">
       <div class="card">
         <h4>Skilling Series</h4>
-        <p class="small muted">Free monthly community sessions on Power Apps, Power Automate, Power BI, Dataverse, AI Builder and Copilot. Open to everyone, shared in every cohort email.</p>
+        <p class="small muted">Monthly community sessions on Power Apps, Power Automate, Power BI, Dataverse, AI Builder and Copilot. Open to everyone, shared in every cohort email.</p>
       </div>
       <div class="card">
         <h4>Joint presentations</h4>
         <p class="small muted">Short sessions where mentees and mentor&ndash;mentee pairs present to both tiers. This is where the speaking-up habit gets built.</p>
       </div>
       <div class="card">
-        <h4>Community &amp; events</h4>
-        <p class="small muted">WiP shows up at Community Summit, PPCC, Ignite and ESPC. If you are going, there are people to find.</p>
+        <h4>The Prompt Pack</h4>
+        <p class="small muted">Five copy-and-paste prompts for asking someone to mentor you, tightening the message and following up afterwards.</p>
+        <p><a class="btn btn-ghost" href="mentorship-prompts/">Open the Prompt Pack &rarr;</a></p>
       </div>
     </div>
   </section>
@@ -222,8 +298,8 @@
       <p>We alternate group session times across zones so that everyone can make at least half the cohort live, and 1:1 pairs are matched with time zone in mind. Sessions that can be recorded, are.</p>
     </details>
     <details class="faq">
-      <summary>What does it cost?</summary>
-      <p>Nothing. It never has.</p>
+      <summary>Is there a fee?</summary>
+      <p>No. Women in Power mentoring is run entirely by volunteers &mdash; every mentor, host and organiser does this on their own time, around a full-time job. Nobody is paid and nobody is charged. What it costs you is the hour a week.</p>
     </details>
   </section>
 
@@ -238,13 +314,15 @@
       <p class="small" style="margin-top:var(--s-2)">Women in Power is a programme of the Women&rsquo;s Innovation Network.</p>
     </div>
     <nav aria-label="Footer">
+      <a href="../">Women in Power</a>
       <a href="./">Mentoring</a>
       <a href="2026-cohort2/">Cohort 2 &mdash; Autumn 2026</a>
-      <a href="../">Mentor-Ask Prompt Pack</a>
+      <a href="mentorship-prompts/">Mentor-Ask Prompt Pack</a>
       <a href="https://www.linkedin.com/company/women-in-power-platform">Women in Power on LinkedIn</a>
     </nav>
   </div>
 </footer>
+
 <a class="to-top" href="#top" title="Back to top">
   <span class="visually-hidden">Back to top</span>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>

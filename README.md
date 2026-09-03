@@ -4,16 +4,21 @@ Static pages for the [Women in Power](https://www.linkedin.com/company/women-in-
 community, a programme of the **Women's Innovation Network (WIN)**.
 
 Published with GitHub Pages from `main` at
-**https://womensinnovationnetwork.github.io/mentorship/**
+**https://womensinnovationnetwork.github.io/wip/**
 
 ## Pages
 
 | Path | Live URL | What it is |
 |---|---|---|
-| `index.html` | [`/`](https://womensinnovationnetwork.github.io/mentorship/) | Mentor-Ask Prompt Pack (EPPC 2026) |
-| `style-guide/` | [`/style-guide/`](https://womensinnovationnetwork.github.io/mentorship/style-guide/) | Living style guide — tokens, voice, components. **Maintainers only; not linked from member pages.** |
-| `mentoring/` | [`/mentoring/`](https://womensinnovationnetwork.github.io/mentorship/mentoring/) | What WiP mentoring is, and the two tiers |
-| `mentoring/2026-cohort2/` | [`/mentoring/2026-cohort2/`](https://womensinnovationnetwork.github.io/mentorship/mentoring/2026-cohort2/) | Cohort 2, Autumn 2026 — calendar and journeys |
+| `index.html` | [`/`](https://womensinnovationnetwork.github.io/wip/) | Women in Power overview — who we are, what we do |
+| `mentoring/` | [`/mentoring/`](https://womensinnovationnetwork.github.io/wip/mentoring/) | What mentoring is, five cohorts of track record, the two tiers |
+| `mentoring/2026-cohort2/` | [`/mentoring/2026-cohort2/`](https://womensinnovationnetwork.github.io/wip/mentoring/2026-cohort2/) | Cohort 2, Autumn 2026 — journeys, calendar, certificates |
+| `mentoring/mentorship-prompts/` | [`/mentoring/mentorship-prompts/`](https://womensinnovationnetwork.github.io/wip/mentoring/mentorship-prompts/) | Mentor-Ask Prompt Pack (originally EPPC 2026) |
+| `style-guide/` | [`/style-guide/`](https://womensinnovationnetwork.github.io/wip/style-guide/) | Living style guide. **Maintainers only; not linked from member pages.** |
+
+The member journey is deliberately ordered: **overview → mentoring → the current
+cohort**, each one narrowing from "who are these people" to "what do I do on
+Monday".
 
 ## How this is built
 
@@ -26,8 +31,10 @@ file, commit, and GitHub Pages publishes it.
 │   ├── js/wip.js          ← theme control + the journey explorer
 │   └── img/               ← logos (see img/README.md for what's still needed)
 ├── style-guide/           ← documents and previews everything in wip.css
+├── index.html             ← Women in Power overview (site root)
 └── mentoring/
-    └── 2026-cohort2/
+    ├── 2026-cohort2/
+    └── mentorship-prompts/
 ```
 
 ### Light and dark
@@ -73,7 +80,7 @@ Before merging, check: 320px width, 200% browser zoom, keyboard tab order,
 
 ## Audiences
 
-`mentoring/**` is **member-facing** — mentors and mentees. `style-guide/`
+`index.html` and `mentoring/**` are **member-facing** — mentors and mentees. `style-guide/`
 is **maintainers only**: it is `noindex`ed and must stay unlinked from every
 member page. Don't add it to a member masthead or footer.
 
@@ -84,3 +91,11 @@ the URL — it holds design and voice guidance, nothing sensitive.
 
 Committee staffing, participant counts, coverage gaps, unconfirmed decisions
 and anything said in a leadership channel stay off them.
+
+## Testimonials
+
+The "In their words" block on `mentoring/index.html` is **commented out and
+empty on purpose**. Attributed quotes must be real and used with the speaker's
+permission — never write filler to fill the space. Cohort feedback forms and
+the LinkedIn testimonial posts are the source. Uncomment the block once you
+have three you can attribute, and ask each speaker before publishing her name.
