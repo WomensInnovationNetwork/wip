@@ -293,6 +293,14 @@ main { padding-bottom: var(--s-8); }
 .masthead-right { display: flex; align-items: center; gap: var(--s-5); flex-wrap: wrap; }
 
 .lockup { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; }
+
+/* The real wordmark. Mastheads are dark, so they carry the reversed (white)
+   file; the black original is for light grounds. Intrinsic width/height are
+   on the <img> so the row does not shift while the image loads. */
+.lockup-img { width: 168px; height: auto; flex: none; }
+@media (max-width: 520px) { .lockup-img { width: 132px; } }
+
+/* Legacy CSS-only lockup, kept for any page that has no image to hand. */
 .lockup-mark {
   width: 38px; height: 38px; border-radius: 10px; background: var(--ribbon-diag);
   display: grid; place-items: center; flex: none;
@@ -339,12 +347,14 @@ main { padding-bottom: var(--s-8); }
 }
 .site-footer .foot-row { display: flex; justify-content: space-between; gap: var(--s-5); flex-wrap: wrap; align-items: flex-start; }
 .site-footer img.win-logo { width: 132px; margin-bottom: var(--s-3); border-radius: 6px; }
-/* The WIN mark is navy-on-white; give it a plate so it survives dark mode. */
+/* Dark-ink marks (the navy WIN logo, the black wordmark) need a white plate
+   to survive dark mode. Never apply it inside .logo-plate.dark — that plate
+   holds the REVERSED white marks, which would vanish on white. */
 :root[data-theme="dark"] .site-footer img.win-logo,
-:root[data-theme="dark"] .logo-plate img { background: #fff; padding: 6px 10px; }
+:root[data-theme="dark"] .logo-plate:not(.dark) img { background: #fff; padding: 6px 10px; border-radius: 4px; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .site-footer img.win-logo,
-  :root:not([data-theme="light"]) .logo-plate img { background: #fff; padding: 6px 10px; }
+  :root:not([data-theme="light"]) .logo-plate:not(.dark) img { background: #fff; padding: 6px 10px; border-radius: 4px; }
 }
 .site-footer nav { display: flex; flex-direction: column; gap: var(--s-2); }
 .site-footer .tagline { font-family: var(--font-display); font-weight: 600; color: var(--heading); }
