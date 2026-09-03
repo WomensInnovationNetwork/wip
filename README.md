@@ -16,9 +16,43 @@ Published with GitHub Pages from `main` at
 | `mentoring/mentorship-prompts/` | [`/mentoring/mentorship-prompts/`](https://womensinnovationnetwork.github.io/wip/mentoring/mentorship-prompts/) | Mentor-Ask Prompt Pack (originally EPPC 2026) |
 | `style-guide/` | [`/style-guide/`](https://womensinnovationnetwork.github.io/wip/style-guide/) | Living style guide. **Maintainers only; not linked from member pages.** |
 
-The member journey is deliberately ordered: **overview → mentoring → the current
-cohort**, each one narrowing from "who are these people" to "what do I do on
-Monday".
+## Information architecture
+
+Three pillars at the top level. Everything else lives inside one of them.
+
+```
+/                              Women in Power — overview
+├── /mentoring/                pillar 1
+│     ├── 2026-cohort2/
+│     └── mentorship-prompts/
+├── /skilling/                 pillar 2 — not built yet
+└── /networking/               pillar 3 — not built yet
+```
+
+Two levels of navigation carry this:
+
+- **Primary (masthead)** — only ever the three pillars. Identical on every
+  page, and it does not grow when a pillar gains a page.
+- **Secondary (`.subnav`)** — appears on pages *inside* a pillar and lists
+  that pillar's pages, labelled with the pillar name.
+
+Cohort 2 and the Prompt Pack are Mentoring pages, so they belong in the
+sub-nav, not the masthead. That is what keeps the top level readable once
+Skilling and Networking arrive.
+
+Pillars without pages render as `.nav-soon` spans, not links — a nav item
+that 404s is worse than one that admits it is not ready.
+
+### Adding the Skilling pillar
+
+1. Create `skilling/index.html` from any existing page.
+2. In **every** page's masthead, swap the `<span class="nav-soon">Skilling…`
+   for a real link at the right relative depth.
+3. If Skilling gains a second page, add a `.subnav` with its label set to
+   "Skilling".
+4. Update the pillar card on the overview page and the table above.
+
+Section 02 of the style guide has the same rules with examples.
 
 ## How this is built
 

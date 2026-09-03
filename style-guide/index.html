@@ -59,17 +59,19 @@
       </a>
       <div class="masthead-right">
         <nav class="masthead-nav" aria-label="Main">
-        <a href="../mentoring/">Mentoring</a>
-        <a href="../mentoring/2026-cohort2/">Cohort 2</a>
-        <a href="./" aria-current="page">Style guide</a>
-      </nav>
+          <a href="../">Home</a>
+          <a href="../mentoring/">Mentoring</a>
+          <a href="../mentoring/2026-cohort2/">Cohort 2</a>
+          <a href="../mentoring/mentorship-prompts/">Prompt Pack</a>
+          <a href="./" aria-current="page">Style guide</a>
+        </nav>
         <button type="button" class="theme-toggle" data-theme-toggle>Theme</button>
       </div>
     </div>
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us &mdash; and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>1.3</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>1.4</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -77,6 +79,7 @@
   <div class="wrap-wide">
     <ul>
       <li><a href="#foundations">Foundations</a></li>
+      <li><a href="#ia">Architecture</a></li>
       <li><a href="#voice">Voice</a></li>
       <li><a href="#logos">Logos</a></li>
       <li><a href="#colour">Colour</a></li>
@@ -135,10 +138,55 @@
     </ol>
   </section>
 
+  <!-- ================================ IA ============================= -->
+  <section class="section" id="ia">
+    <div class="section-head">
+      <p class="eyebrow">02</p>
+      <h2>Information architecture</h2>
+    </div>
+    <p class="lead">Three pillars at the top level. Everything else lives inside one of them. Nothing sits at the root except the overview.</p>
+
+    <div class="code">/                              Women in Power &mdash; overview
+&#9500;&#9472;&#9472; /mentoring/                <span class="t">pillar 1</span>
+&#9474;     &#9500;&#9472;&#9472; 2026-cohort2/
+&#9474;     &#9492;&#9472;&#9472; mentorship-prompts/
+&#9500;&#9472;&#9472; /skilling/                 <span class="t">pillar 2 &mdash; not built yet</span>
+&#9492;&#9472;&#9472; /networking/               <span class="t">pillar 3 &mdash; not built yet</span></div>
+
+    <h3 style="margin-top:var(--s-6)">Two levels of navigation</h3>
+    <div class="grid grid-2" style="margin-top:var(--s-4)">
+      <div class="card">
+        <h4>Primary &mdash; the masthead</h4>
+        <p class="small muted">Only ever the three pillars: <strong>Mentoring, Skilling, Networking</strong>. Identical on every page. It does not grow when a pillar gains a page.</p>
+      </div>
+      <div class="card">
+        <h4>Secondary &mdash; the sub-nav</h4>
+        <p class="small muted">Appears on pages <em>inside</em> a pillar, listing that pillar&rsquo;s pages. Labelled with the pillar name so a reader always knows which section they are in.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:var(--s-6)">Rules</h3>
+    <ul class="rule-list">
+      <li><strong>A new page belongs to a pillar.</strong> If it does not fit under Mentoring, Skilling or Networking, that is a sign it needs its own pillar &mdash; or that it should not be a page.</li>
+      <li><strong>The primary nav stays three items.</strong> Cohort 2 and the Prompt Pack are Mentoring pages, so they belong in the sub-nav, not the masthead. That is what keeps the top level readable as Skilling and Networking arrive.</li>
+      <li><strong>Pillars without pages say so.</strong> A <code>.nav-soon</code> span, not a link. A nav item that 404s is worse than one that admits it is not ready.</li>
+      <li><strong>The logo goes home</strong> &mdash; to the overview, never to a section page.</li>
+      <li><strong>The sub-nav is never sticky.</strong> The cohort page already has a sticky in-page jump bar; two stacked sticky strips eat a phone screen.</li>
+    </ul>
+
+    <h3 style="margin-top:var(--s-6)">Adding the Skilling pillar</h3>
+    <ol class="steps">
+      <li>Create <code>skilling/index.html</code> from any existing page as a starting point.</li>
+      <li>In <strong>every</strong> page&rsquo;s masthead, swap <code>&lt;span class="nav-soon"&gt;Skilling &lt;em&gt;soon&lt;/em&gt;&lt;/span&gt;</code> for a real link at the right relative depth.</li>
+      <li>If Skilling gains a second page, add a sub-nav to it with <code>subnav-label</code> set to &ldquo;Skilling&rdquo;.</li>
+      <li>Update the pillar card on the overview page, and the table in the README.</li>
+    </ol>
+  </section>
+
   <!-- ============================== VOICE ============================ -->
   <section class="section" id="voice">
     <div class="section-head">
-      <p class="eyebrow">02</p>
+      <p class="eyebrow">03</p>
       <h2>Voice and tone</h2>
     </div>
     <p class="lead">Warm, direct, a little bit fired up. We are peers talking to peers &mdash; not an HR portal, and not a hype account.</p>
@@ -179,7 +227,7 @@
   <!-- ============================== LOGOS ============================ -->
   <section class="section" id="logos">
     <div class="section-head">
-      <p class="eyebrow">03</p>
+      <p class="eyebrow">04</p>
       <h2>Logos</h2>
     </div>
     <p>Two marks, one hierarchy. <strong>Women in Power</strong> leads on programme pages; <strong>WIN</strong> signs off in the footer as the parent organisation.</p>
@@ -220,7 +268,7 @@
   <!-- ============================== COLOUR =========================== -->
   <section class="section" id="colour">
     <div class="section-head">
-      <p class="eyebrow">04</p>
+      <p class="eyebrow">05</p>
       <h2>Colour</h2>
     </div>
     <p class="lead">Navy carries the structure. The ribbon gradient carries the energy. Everything else is a supporting role.</p>
@@ -271,7 +319,7 @@
   <!-- ============================== THEMES =========================== -->
   <section class="section" id="themes">
     <div class="section-head">
-      <p class="eyebrow">05</p>
+      <p class="eyebrow">06</p>
       <h2>Light and dark</h2>
     </div>
     <p class="lead">Every page ships in both. Readers get whatever their device asks for, and can override it from the toggle in the masthead.</p>
@@ -321,7 +369,7 @@
   <!-- =============================== TYPE ============================ -->
   <section class="section" id="type">
     <div class="section-head">
-      <p class="eyebrow">06</p>
+      <p class="eyebrow">07</p>
       <h2>Type</h2>
     </div>
     <p><strong>Poppins</strong> for display &mdash; it matches the geometry of the WIN wordmark. <strong>Inter</strong> for body. Both fall back to Segoe UI and the system stack, so a page still reads correctly if webfonts fail.</p>
@@ -347,7 +395,7 @@
   <!-- =============================== SPACE =========================== -->
   <section class="section" id="space">
     <div class="section-head">
-      <p class="eyebrow">07</p>
+      <p class="eyebrow">08</p>
       <h2>Space, radius, elevation</h2>
     </div>
     <p>A 4px base scale. Use the tokens; do not invent one-off values.</p>
@@ -371,7 +419,7 @@
   <!-- ============================ COMPONENTS ========================= -->
   <section class="section" id="components">
     <div class="section-head">
-      <p class="eyebrow">08</p>
+      <p class="eyebrow">09</p>
       <h2>Components</h2>
     </div>
     <p class="lead">Everything below is already in <code>wip.css</code>. Copy the markup, do not restyle it.</p>
@@ -467,6 +515,31 @@
       <p>Nothing breaks. Certificates have an attendance threshold rather than a perfect-attendance requirement.</p>
     </details>
 
+    <h3 style="margin-top:var(--s-5)">Sub-navigation</h3>
+    <p class="small muted">Sits directly under the masthead on any page inside a pillar. See <a href="#ia">Information architecture</a> for when to use it.</p>
+    <div class="demo" style="padding:0">
+      <nav class="subnav" aria-label="Example section" style="border-radius:var(--r-md)">
+        <div class="wrap" style="padding-inline:var(--s-4)">
+          <span class="subnav-label">Mentoring</span>
+          <ul>
+            <li><a href="#components">Overview</a></li>
+            <li><a href="#components" aria-current="page">Cohort 2</a></li>
+            <li><a href="#components">Prompt Pack</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="code">&lt;nav class=<span class="t">"subnav"</span> aria-label=<span class="t">"Mentoring section"</span>&gt;
+  &lt;div class=<span class="t">"wrap"</span>&gt;
+    &lt;span class=<span class="t">"subnav-label"</span>&gt;Mentoring&lt;/span&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=<span class="t">"./"</span> aria-current=<span class="t">"page"</span>&gt;Overview&lt;/a&gt;&lt;/li&gt;
+      ...
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</div>
+    <p class="small muted" style="margin-top:var(--s-3)">Use <code>wrap-wide</code> instead of <code>wrap</code> on pages whose main content is wide, so the sub-nav lines up with the columns beneath it.</p>
+
     <h3 style="margin-top:var(--s-5)">Journey explorer</h3>
     <p class="small muted">The interactive walkthrough on the cohort page: a reader picks a tier and a role, then steps through the milestones. Live example: <a href="../mentoring/2026-cohort2/#journey">Cohort 2 &rarr; Your journey</a>.</p>
     <div class="callout" style="margin-top:var(--s-3)">
@@ -537,7 +610,7 @@
   <!-- =========================== ACCESSIBILITY ======================= -->
   <section class="section" id="a11y">
     <div class="section-head">
-      <p class="eyebrow">09</p>
+      <p class="eyebrow">10</p>
       <h2>Accessibility</h2>
     </div>
     <p>Non-negotiable. A member page nobody can read is a page that failed.</p>
@@ -555,7 +628,7 @@
   <!-- ============================== EVOLVE =========================== -->
   <section class="section" id="evolve">
     <div class="section-head">
-      <p class="eyebrow">10</p>
+      <p class="eyebrow">11</p>
       <h2>How to evolve this</h2>
     </div>
     <p class="lead">This guide is meant to change. Here is how to change it without it falling apart.</p>
@@ -579,6 +652,7 @@
       <table>
         <thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead>
         <tbody>
+          <tr><td>1.4</td><td>3 Sep 2026</td><td>Information architecture section added: three pillars, two nav levels. Sub-nav component. Site root is now the Women in Power overview.</td></tr>
           <tr><td>1.3</td><td>3 Sep 2026</td><td>Back-to-top component added. Site restructured: <code>/wip/</code> dropped from every URL.</td></tr>
           <tr><td>1.2</td><td>3 Sep 2026</td><td>Real Women in Power wordmark wired into every masthead, in black and reversed variants. Style guide unlinked from member pages.</td></tr>
           <tr><td>1.1</td><td>3 Sep 2026</td><td>Added light/dark theming (semantic <code>--heading</code>, <code>--accent</code>, <code>--sticky-bg</code> tokens plus a full dark palette), the theme toggle, and the journey explorer component.</td></tr>

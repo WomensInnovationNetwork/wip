@@ -317,6 +317,18 @@ main { padding-bottom: var(--s-8); }
 }
 .masthead-nav a:hover, .masthead-nav a[aria-current="page"] { color: #fff; border-bottom-color: var(--grad-magenta); }
 
+/* A pillar that exists in the structure but has no page yet. Deliberately
+   not a link — a nav item that 404s is worse than one that says "soon". */
+.masthead-nav .nav-soon {
+  color: rgba(255,255,255,.42); display: inline-flex; align-items: baseline; gap: .45em;
+  padding-bottom: 3px; border-bottom: 2px solid transparent; cursor: default;
+}
+.masthead-nav .nav-soon em {
+  font-style: normal; font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.38);
+  border: 1px solid rgba(255,255,255,.22); border-radius: var(--r-pill); padding: .15em .5em;
+}
+
 /* Theme toggle — three states: light / dark / follow the system. */
 .theme-toggle {
   display: inline-flex; align-items: center; gap: .45em;
@@ -358,6 +370,34 @@ main { padding-bottom: var(--s-8); }
 }
 .site-footer nav { display: flex; flex-direction: column; gap: var(--s-2); }
 .site-footer .tagline { font-family: var(--font-display); font-weight: 600; color: var(--heading); }
+
+/* --- Section sub-navigation ---------------------------------------------
+   Sits directly under the masthead on pages inside a pillar. Deliberately
+   NOT sticky: the cohort page already has a sticky in-page .jump bar, and
+   two stacked sticky strips eat a phone screen.
+   ------------------------------------------------------------------------ */
+.subnav { background: var(--surface); border-bottom: 1px solid var(--line); }
+.subnav > div { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; padding-block: var(--s-3); }
+.subnav-label {
+  font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+  padding-right: var(--s-4); border-right: 1px solid var(--line);
+}
+.subnav ul { display: flex; gap: var(--s-4); list-style: none; margin: 0; padding: 0; flex-wrap: wrap; max-width: none; }
+.subnav li { margin: 0; }
+.subnav a {
+  font-family: var(--font-display); font-size: var(--t-sm); font-weight: 500;
+  color: var(--ink-2); text-decoration: none;
+  padding: .2em 0; border-bottom: 2px solid transparent;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.subnav a:hover { color: var(--accent); }
+.subnav a[aria-current="page"] { color: var(--heading); font-weight: 600; border-bottom-color: var(--accent); }
+@media (max-width: 560px) {
+  .subnav-label { border-right: 0; padding-right: 0; width: 100%; }
+  .subnav > div { gap: var(--s-2); }
+}
+@media print { .subnav { display: none; } }
 
 /* ==========================================================================
    6. TYPOGRAPHY
