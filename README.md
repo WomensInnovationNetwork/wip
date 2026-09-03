@@ -11,7 +11,7 @@ Published with GitHub Pages from `main` at
 | Path | Live URL | What it is |
 |---|---|---|
 | `index.html` | [`/`](https://womensinnovationnetwork.github.io/mentorship-prompts/) | Mentor-Ask Prompt Pack (EPPC 2026) |
-| `wip/style-guide/` | [`/wip/style-guide/`](https://womensinnovationnetwork.github.io/mentorship-prompts/wip/style-guide/) | Living style guide — tokens, voice, components |
+| `wip/style-guide/` | [`/wip/style-guide/`](https://womensinnovationnetwork.github.io/mentorship-prompts/wip/style-guide/) | Living style guide — tokens, voice, components. **Maintainers only; not linked from member pages.** |
 | `wip/mentoring/` | [`/wip/mentoring/`](https://womensinnovationnetwork.github.io/mentorship-prompts/wip/mentoring/) | What WiP mentoring is, and the two tiers |
 | `wip/mentoring/2026-cohort2/` | [`/wip/mentoring/2026-cohort2/`](https://womensinnovationnetwork.github.io/mentorship-prompts/wip/mentoring/2026-cohort2/) | Cohort 2, Autumn 2026 — calendar and journeys |
 
@@ -72,7 +72,16 @@ Then open `http://localhost:8000/wip/mentoring/2026-cohort2/`.
 Before merging, check: 320px width, 200% browser zoom, keyboard tab order,
 **both light and dark**, and print preview (people print the cohort calendar).
 
-## What never goes on these pages
+## Audiences
 
-They are member-facing. Committee staffing, participant counts, coverage gaps,
-unconfirmed decisions and anything said in a leadership channel stay off them.
+`wip/mentoring/**` is **member-facing** — mentors and mentees. `wip/style-guide/`
+is **maintainers only**: it is `noindex`ed and must stay unlinked from every
+member page. Don't add it to a member masthead or footer.
+
+It is still served by Pages, so treat it as publicly reachable by anyone with
+the URL — it holds design and voice guidance, nothing sensitive.
+
+## What never goes on member pages
+
+Committee staffing, participant counts, coverage gaps, unconfirmed decisions
+and anything said in a leadership channel stay off them.
