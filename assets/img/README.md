@@ -37,7 +37,7 @@ There is still a CSS-only fallback lockup in `wip.css` (`.lockup-mark` + `.locku
 
 ## Rules
 
-- Never re-colour, stretch, rotate or shadow either mark.
+- Never re-color, stretch, rotate or shadow either mark.
 - The WiP wordmark is the **black text lockup only**. The silhouette is not used in page furniture.
 - On dark grounds use the reversed file. Never place the navy WIN mark on navy.
 - The ribbon always runs cyan → violet → magenta, left to right.

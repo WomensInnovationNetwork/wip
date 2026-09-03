@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Women in Power — shared page behaviour
+   Women in Power — shared page behavior
 
    Two things live here:
      1. Theme control  — light / dark / follow the system, remembered.
@@ -50,8 +50,8 @@
 
   function paintButton(btn, mode) {
     btn.innerHTML = ICONS[mode] + '<span>' + LABEL[mode] + '</span>';
-    btn.setAttribute('aria-label', 'Colour theme: ' + LABEL[mode] + '. Activate to change.');
-    btn.title = 'Colour theme: ' + LABEL[mode];
+    btn.setAttribute('aria-label', 'Color theme: ' + LABEL[mode] + '. Activate to change.');
+    btn.title = 'Color theme: ' + LABEL[mode];
   }
 
   function initTheme() {
@@ -195,7 +195,7 @@
       }
     }
 
-    /* --- Keyboard: standard tablist behaviour -------------------------- */
+    /* --- Keyboard: standard tablist behavior -------------------------- */
     rail.addEventListener('keydown', function (e) {
       var n = current().steps.length;
       var k = e.key;
