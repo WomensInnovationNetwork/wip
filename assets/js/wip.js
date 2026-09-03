@@ -258,10 +258,74 @@
     paint();
   }
 
+  /* ======================================================================
+     3. BACK TO TOP
+
+     Visibility is driven by a passive scroll listener coalesced with
+     requestAnimationFrame, so at most one check runs per frame.
+
+     On activation we scroll to the top AND move focus there. Scrolling alone
+     leaves a keyboard or screen-reader user's focus stranded where they were,
+     so the next Tab would drop them back down the page.
+     ====================================================================== */
+
+  function initToTop() {
+    var btn = document.querySelector('.to-top');
+    if (!btn) return;
+
+    var target = document.getElementById('top') || document.body;
+    var shown = false;
+    var ticking = false;
+
+    function evaluate() {
+      ticking = false;
+      // Show once the reader is roughly a screenful down, so it never
+      // covers content on a short page or at the top of a long one.
+      var trigger = Math.max(400, window.innerHeight * 0.9);
+      var should = (window.pageYOffset || document.documentElement.scrollTop) > trigger;
+      if (should !== shown) {
+        shown = should;
+        btn.classList.toggle('is-visible', shown);
+      }
+    }
+
+    function onScroll() {
+      // Coalesce to one check per frame rather than one per scroll event.
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(evaluate);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    evaluate();
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var reduce = window.matchMedia &&
+                   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+
+      // Scrolling alone strands a keyboard or screen-reader user's focus
+      // where they were, so move focus to the top too. tabindex is added
+      // only for the duration of the focus, never joining the tab order.
+      if (!target.hasAttribute('tabindex')) {
+        target.setAttribute('tabindex', '-1');
+        target.addEventListener('blur', function once() {
+          target.removeAttribute('tabindex');
+          target.removeEventListener('blur', once);
+        });
+      }
+      target.focus({ preventScroll: true });
+    });
+  }
+
   /* ====================================================================== */
 
   function init() {
     initTheme();
+    initToTop();
     Array.prototype.forEach.call(
       document.querySelectorAll('.journey-explorer'),
       initExplorer
