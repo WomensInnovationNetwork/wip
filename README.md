@@ -1,7 +1,7 @@
 # Women in Power — member pages
 
 Static pages for the [Women in Power](https://www.linkedin.com/company/women-in-power-platform)
-community, a programme of the **Women's Innovation Network (WIN)**.
+community, a program of the **Women's Innovation Network (WIN)**.
 
 Published with GitHub Pages from `main` at
 **https://womensinnovationnetwork.github.io/wip/**
@@ -76,7 +76,7 @@ file, commit, and GitHub Pages publishes it.
 Every page ships in both, following the reader's device by default with a
 toggle in the masthead to override. Colours are defined once on bare `:root`
 and only *redefined* for dark — in a `prefers-color-scheme` block and again
-under `[data-theme="dark"]` so the toggle wins either way. Never give a colour
+under `[data-theme="dark"]` so the toggle wins either way. Never give a color
 its only definition inside a media query. Section 05 of the style guide has
 the full rule and the list of which tokens are themed.
 
@@ -92,7 +92,7 @@ full. To add a journey, add a `.je-journey` block; no JavaScript changes.
 
 ### Making a change
 
-1. **Colour, type, spacing, radius** live as CSS custom properties in `:root`
+1. **Color, type, spacing, radius** live as CSS custom properties in `:root`
    at the top of `assets/css/wip.css`. Change the token, not the page.
    If you're about to type a hex value into a page, add a token instead.
 2. **Page-specific CSS** stays in that page's `<style>` block. Promote it into

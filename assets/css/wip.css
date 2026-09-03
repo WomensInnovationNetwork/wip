@@ -18,10 +18,10 @@
   10. Print
 
    THEMING RULE
-   Every colour has its base value on bare :root. Dark mode only *redefines*
+   Every color has its base value on bare :root. Dark mode only *redefines*
    tokens, in two places: a prefers-color-scheme block guarded against an
    explicit light choice, and a [data-theme="dark"] block so the toggle wins.
-   Never give a colour its only definition inside a media query.
+   Never give a color its only definition inside a media query.
    ========================================================================== */
 
 /* ==========================================================================
@@ -29,7 +29,7 @@
    ========================================================================== */
 
 :root {
-  /* --- Brand: WIN (parent organisation) — fixed, never themed ---------- */
+  /* --- Brand: WIN (parent organization) — fixed, never themed ---------- */
   --win-navy:        #042559;
   --win-navy-deep:   #02132e;
   --win-navy-soft:   #16407f;
@@ -50,7 +50,7 @@
   /* --- Themed: accent used for eyebrows, markers, link hover ----------- */
   --accent:          #d91c81;
 
-  /* --- Themed: tier colours -------------------------------------------- */
+  /* --- Themed: tier colors -------------------------------------------- */
   --tier1:           #7a2e8e;   /* Group mentoring */
   --tier1-wash:      #f6effa;
   --tier1-line:      #e3d0ec;
