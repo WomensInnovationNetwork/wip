@@ -55,11 +55,7 @@
   <div class="wrap-wide">
     <div class="masthead-top">
       <a class="lockup" href="../../">
-        <span class="lockup-mark" aria-hidden="true">WiP</span>
-        <span class="lockup-text">
-          <span class="lockup-name">Women in Power</span>
-          <span class="lockup-sub">Women&rsquo;s Innovation Network</span>
-        </span>
+        <img class="lockup-img" src="../assets/img/wip-wordmark-reverse.png" alt="Women in Power" width="1200" height="607">
       </a>
       <div class="masthead-right">
         <nav class="masthead-nav" aria-label="Main">
@@ -73,7 +69,7 @@
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us &mdash; and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>1.1</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>1.2</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -199,21 +195,17 @@
       <div class="card">
         <h4>Women in Power &mdash; wordmark</h4>
         <div class="logo-plate" style="margin-top:var(--s-3)">
-          <span class="lockup" style="transform:scale(1.35)">
-            <span class="lockup-mark" aria-hidden="true">WiP</span>
-            <span class="lockup-text">
-              <span class="lockup-name" style="color:var(--win-navy)">Women in Power</span>
-              <span class="lockup-sub" style="color:var(--ink-3)">Women&rsquo;s Innovation Network</span>
-            </span>
-          </span>
+          <img src="../assets/img/wip-wordmark.png" alt="Women in Power" style="width:210px">
         </div>
-        <p class="small muted">Shown here as the CSS fallback lockup. The real WiP wordmark is the <strong>black script-and-block text only</strong> &mdash; the silhouette is not used in page furniture.</p>
+        <div class="logo-plate dark" style="margin-top:var(--s-3)">
+          <img src="../assets/img/wip-wordmark-reverse.png" alt="Women in Power, reversed" style="width:210px">
+        </div>
+        <p class="small muted">Black text lockup only &mdash; the silhouette is not used in page furniture. Use the reversed file on dark grounds; every masthead carries that one.</p>
       </div>
-    </div>
 
     <div class="callout callout-note" style="margin-top: var(--s-4)">
-      <p class="callout-title">Asset slot &mdash; to replace</p>
-      <p class="small">Drop <code>wip-wordmark.svg</code> (or a transparent PNG) into <code>/wip/assets/img/</code>, then swap <code>.lockup-mark</code> + <code>.lockup-text</code> for a single <code>&lt;img&gt;</code> in each page&rsquo;s masthead. Until then the CSS lockup stands in and stays on-brand.</p>
+      <p class="callout-title">Still raster, not vector</p>
+      <p class="small">Both wordmark files are PNGs rebuilt from a supplied JPEG &mdash; the background was keyed out and a white variant generated. They are sharp at the sizes used here, but the script lettering will soften if scaled much larger. <strong>Replace with an SVG master when one turns up.</strong></p>
     </div>
 
     <h3 style="margin-top: var(--s-6)">Rules</h3>
@@ -555,8 +547,8 @@
 
     <h3 style="margin-top:var(--s-6)">Open items</h3>
     <ul class="rule-list">
-      <li>Official <strong>WiP wordmark</strong> file (black text lockup) to replace the CSS fallback.</li>
-      <li>Reversed <strong>WIN mark</strong> for dark grounds, plus an SVG version of both.</li>
+      <li><strong>SVG masters</strong> for both wordmarks &mdash; the current files are raster, rebuilt from a JPEG.</li>
+      <li>Reversed <strong>WIN mark</strong> for dark grounds.</li>
       <li>A social/OG card template so shared links look like us.</li>
     </ul>
 
@@ -565,6 +557,7 @@
       <table>
         <thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead>
         <tbody>
+          <tr><td>1.2</td><td>3 Sep 2026</td><td>Real Women in Power wordmark wired into every masthead, in black and reversed variants. Style guide unlinked from member pages.</td></tr>
           <tr><td>1.1</td><td>3 Sep 2026</td><td>Added light/dark theming (semantic <code>--heading</code>, <code>--accent</code>, <code>--sticky-bg</code> tokens plus a full dark palette), the theme toggle, and the journey explorer component.</td></tr>
           <tr><td>1.0</td><td>3 Sep 2026</td><td>First version. Tokens sampled from the WIN logo and the WiP wordmark; voice derived from the WiP LinkedIn presence and leadership direction.</td></tr>
         </tbody>
