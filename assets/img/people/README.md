@@ -20,7 +20,7 @@ looking for:
 | Geetha Sivasailam | `geetha-sivasailam.jpg` |
 | Delia Zuniga | `delia-zuniga.jpg` |
 | Suparna Banerjee | `suparna-banerjee.jpg` |
-| Sally Nguyen | `sally-nguyen.jpg` |
+| Hanh Nguyen | `hanh-nguyen.jpg` |
 
 Adding someone new? Put `data-photo="her-name.jpg"` on her `.person-avatar` in
 `about/index.html` and drop the file here.
