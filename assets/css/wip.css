@@ -765,6 +765,122 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 @media print { .to-top { display: none; } }
 
 /* ==========================================================================
+   8c. PEOPLE
+   Two components, because two very different problems.
+
+   .person  — leadership. A handful of people, each worth a photo, a role and
+              a sentence. Hand-written in the page. Scales to ~15 before it
+              starts to feel like a wall.
+   .roster  — the community roll. Hundreds to a thousand names, rendered from
+              assets/data/people.json with search and filters. Never write
+              these by hand, and never give them cards: a thousand cards is
+              unreadable and unscrollable.
+   ========================================================================== */
+
+/* --- Leadership --------------------------------------------------------- */
+.people { display: grid; gap: var(--s-4); }
+@media (min-width: 660px)  { .people { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .people { grid-template-columns: repeat(3, 1fr); } }
+
+.person {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--s-5); box-shadow: var(--sh-1);
+  display: flex; flex-direction: column; gap: var(--s-3);
+}
+.person-avatar {
+  width: 72px; height: 72px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; overflow: hidden;
+  background: var(--ribbon-diag); color: #fff;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; letter-spacing: .02em;
+}
+img.person-avatar { object-fit: cover; }
+
+/* A photo, once one exists, fills the avatar and covers the initials. Until
+   then the initials stand on their own — see initPeoplePhotos() in wip.js,
+   which only inserts the <img> after it has loaded, so there is never a
+   broken image or a layout shift. */
+.person-avatar { position: relative; }
+.person-avatar > img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; border-radius: 50%;
+}
+
+/* A leader who sits alone in her group (the founder) would otherwise be a
+   lone narrow card in a three-column grid. Span the row and go horizontal. */
+.person-feature { grid-column: 1 / -1; }
+@media (min-width: 660px) {
+  .person-feature {
+    display: grid; grid-template-columns: auto 1fr; column-gap: var(--s-5); align-items: start;
+  }
+  .person-feature .person-avatar { width: 92px; height: 92px; font-size: 1.6rem; grid-row: 1 / span 3; }
+  .person-feature .person-bio,
+  .person-feature .person-links { grid-column: 2; }
+  .person-feature .person-links { margin-top: var(--s-3); padding-top: 0; }
+}
+.person-name { font-family: var(--font-display); font-size: var(--t-lg); font-weight: 700; color: var(--heading); }
+.person-role {
+  font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 2px;
+}
+.person-bio { font-size: 0.9375rem; color: var(--ink-2); }
+.person-links { display: flex; gap: var(--s-3); font-size: var(--t-sm); margin-top: auto; padding-top: var(--s-2); }
+
+/* --- Community roll ----------------------------------------------------- */
+.roster-controls {
+  display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center;
+  padding: var(--s-4); background: var(--surface-2);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+}
+.input {
+  flex: 1 1 220px; min-width: 0;
+  font-family: var(--font-body); font-size: var(--t-base);
+  color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r-pill);
+  padding: .6em 1.1em;
+}
+.input::placeholder { color: var(--ink-3); }
+.input:focus-visible { outline: 3px solid var(--grad-violet); outline-offset: 1px; }
+
+.roster-filters { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+.chip {
+  appearance: none; cursor: pointer;
+  font-family: var(--font-display); font-size: var(--t-sm); font-weight: 600;
+  color: var(--ink-2); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r-pill); padding: .45em 1em;
+  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.chip:hover { color: var(--heading); border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--win-navy); color: #fff; border-color: transparent; }
+:root[data-theme="dark"] .chip[aria-pressed="true"] { background: #1d4fa8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .chip[aria-pressed="true"] { background: #1d4fa8; }
+}
+
+.roster-count { width: 100%; font-size: var(--t-sm); color: var(--ink-3); margin: 0; }
+
+/* Dense multi-column list. At 1,000 names this stays scannable where a grid
+   of cards would not. Column count follows the viewport. */
+.roster {
+  list-style: none; padding: 0; margin-top: var(--s-4); max-width: none;
+  display: grid; gap: 0 var(--s-5);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.roster > li {
+  margin: 0; padding: .5em 0; border-bottom: 1px solid var(--line-soft);
+  font-size: 0.9375rem; line-height: 1.35;
+}
+.roster .r-name { color: var(--ink); }
+.roster .r-meta { display: block; font-size: var(--t-xs); color: var(--ink-3); margin-top: 1px; }
+.roster mark { background: var(--joint-wash); color: var(--accent); border-radius: 3px; padding: 0 .15em; }
+
+.roster-empty {
+  padding: var(--s-6); text-align: center; color: var(--ink-3);
+  border: 1px dashed var(--line); border-radius: var(--r-md); margin-top: var(--s-4);
+}
+
+@media print { .roster-controls { display: none; } }
+
+/* ==========================================================================
    9. UTILITIES
    ========================================================================== */
 

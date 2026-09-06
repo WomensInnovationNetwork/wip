@@ -14,6 +14,7 @@ Published with GitHub Pages from `main` at
 | `mentoring/` | [`/mentoring/`](https://womensinnovationnetwork.github.io/wip/mentoring/) | What mentoring is, five cohorts of track record, the two tiers |
 | `mentoring/2026-cohort2/` | [`/mentoring/2026-cohort2/`](https://womensinnovationnetwork.github.io/wip/mentoring/2026-cohort2/) | Cohort 2, Autumn 2026 — journeys, calendar, certificates |
 | `mentoring/mentorship-prompts/` | [`/mentoring/mentorship-prompts/`](https://womensinnovationnetwork.github.io/wip/mentoring/mentorship-prompts/) | Mentor-Ask Prompt Pack (originally EPPC 2026) |
+| `about/` | [`/about/`](https://womensinnovationnetwork.github.io/wip/about/) | Leadership, and the community roll |
 | `style-guide/` | [`/style-guide/`](https://womensinnovationnetwork.github.io/wip/style-guide/) | Living style guide. **Maintainers only; not linked from member pages.** |
 
 ## Information architecture
@@ -26,7 +27,8 @@ Three pillars at the top level. Everything else lives inside one of them.
 │     ├── 2026-cohort2/
 │     └── mentorship-prompts/
 ├── /skilling/                 pillar 2 — not built yet
-└── /networking/               pillar 3 — not built yet
+├── /networking/               pillar 3 — not built yet
+└── /about/                    site-level, not a pillar
 ```
 
 Two levels of navigation carry this:
@@ -62,7 +64,8 @@ file, commit, and GitHub Pages publishes it.
 ```
 ├── assets/
 │   ├── css/wip.css        ← design tokens + components. Single source of truth.
-│   ├── js/wip.js          ← theme control + the journey explorer
+│   ├── js/wip.js          ← theme, back-to-top, journey explorer, roster
+│   ├── data/people.json   ← the community roll. Names live ONLY here.
 │   └── img/               ← logos (see img/README.md for what's still needed)
 ├── style-guide/           ← documents and previews everything in wip.css
 ├── index.html             ← Women in Power overview (site root)
@@ -133,3 +136,30 @@ empty on purpose**. Attributed quotes must be real and used with the speaker's
 permission — never write filler to fill the space. Cohort feedback forms and
 the LinkedIn testimonial posts are the source. Uncomment the block once you
 have three you can attribute, and ask each speaker before publishing her name.
+
+## People, and consent
+
+`/about/` has two very different lists.
+
+**Leadership** is hand-written in `about/index.html` — roughly 15 people is the
+ceiling before a grid of cards becomes a wall; group them by area past that.
+Photos are drop-in: `data-photo="first-last.jpg"` on the avatar plus a file in
+`assets/img/people/`. `wip.js` preloads and only inserts the image once it has
+loaded, so a missing photo falls back to initials rather than a broken image.
+See `assets/img/people/README.md`.
+
+**The community roll** is data — `assets/data/people.json`, rendered with search
+and role filters, tested at 1,000 names. Never write those names into HTML.
+
+Two rules that are not negotiable:
+
+1. **Nobody is listed without agreeing to it.** Being named and having your
+   photo published are separate permissions. Ask for both. The final feedback
+   form is the natural place.
+2. **Never take a photo from LinkedIn or conference photography.** The
+   photographer holds the copyright, and LinkedIn's terms prohibit it. Use the
+   image the person gives you.
+
+Leadership roles on the page came from the Feb 2026 planning assignments, which
+the source document notes have **not** been re-confirmed for FY27. Validate
+before treating the page as authoritative.
