@@ -72,7 +72,7 @@
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us &mdash; and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>1.6</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>1.7</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -159,7 +159,7 @@
     <div class="grid grid-2" style="margin-top:var(--s-4)">
       <div class="card">
         <h4>Primary &mdash; the masthead</h4>
-        <p class="small muted">The three pillars &mdash; <strong>Mentoring, Skilling, Networking</strong> &mdash; plus <strong>About</strong>, which is a site-level page rather than a pillar and so sits last. Identical on every page, and it does not grow when a pillar gains a page.</p>
+        <p class="small muted"><strong>Pages you can open come first</strong> &mdash; Mentoring, then About. Pillars with no page yet sit after them, quiet and unlinked. Identical on every page, and it does not grow when a pillar gains a page: Skilling simply turns from a placeholder into a link, in place.</p>
       </div>
       <div class="card">
         <h4>Secondary &mdash; the sub-nav</h4>
@@ -171,7 +171,7 @@
     <ul class="rule-list">
       <li><strong>A new page belongs to a pillar.</strong> If it does not fit under Mentoring, Skilling or Networking, that is a sign it needs its own pillar &mdash; or that it should not be a page.</li>
       <li><strong>The primary nav stays three items.</strong> Cohort 2 and the Prompt Pack are Mentoring pages, so they belong in the sub-nav, not the masthead. That is what keeps the top level readable as Skilling and Networking arrive.</li>
-      <li><strong>Pillars without pages say so.</strong> A <code>.nav-soon</code> span, not a link. A nav item that 404s is worse than one that admits it is not ready.</li>
+      <li><strong>Pillars without pages say so, quietly, and last.</strong> A <code>.nav-soon</code> span, not a link &mdash; a nav item that 404s is worse than one that admits it is not ready. But a placeholder must never outrank a page someone can actually open, so real links lead and the badge styling stays understated. Two greyed items sitting between live links is how a nav starts reading as mostly broken.</li>
       <li><strong>The logo goes home</strong> &mdash; to the overview, never to a section page.</li>
       <li><strong>The sub-nav is never sticky.</strong> The cohort page already has a sticky in-page jump bar; two stacked sticky strips eat a phone screen.</li>
     </ul>
@@ -675,6 +675,7 @@
       <table>
         <thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead>
         <tbody>
+          <tr><td>1.7</td><td>5 Sep 2026</td><td>Nav ordered so live pages lead and placeholders follow, with quieter "soon" styling. Heading and no-JS fixes on the cohort page.</td></tr>
           <tr><td>1.6</td><td>5 Sep 2026</td><td>About us page added, with the .person and .roster components. Roster is data-driven and tested at 1,000 names. Drop-in leadership photos.</td></tr>
           <tr><td>1.5</td><td>3 Sep 2026</td><td>Whole site converted from British to US English, matching the published WiP voice. Spelling added to the house-style table.</td></tr>
           <tr><td>1.4</td><td>3 Sep 2026</td><td>Information architecture section added: three pillars, two nav levels. Sub-nav component. Site root is now the Women in Power overview.</td></tr>
