@@ -565,8 +565,18 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 
 .journey-explorer { margin-top: var(--s-5); }
 
+/* Without JS the controls and stage are an inert empty widget, so hide them
+   and let .je-source carry the content instead. The .has-js class is added
+   by wip.js, so the default state here is the no-JS state. */
+.je-controls, .je-stage, .je-toggle-all { display: none; }
+.has-js .je-controls { display: flex; }
+.has-js .je-stage { display: block; }
+.has-js .je-toggle-all { display: block; }
+
 /* --- Segmented controls ------------------------------------------------ */
-.je-controls { display: flex; gap: var(--s-5) var(--s-6); flex-wrap: wrap; align-items: flex-end; }
+/* display comes from .has-js above — a later display:flex here would
+   override the no-JS hiding rule. */
+.je-controls { gap: var(--s-5) var(--s-6); flex-wrap: wrap; align-items: flex-end; }
 .je-group { display: flex; flex-direction: column; gap: var(--s-2); }
 .je-legend { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
 .seg {
