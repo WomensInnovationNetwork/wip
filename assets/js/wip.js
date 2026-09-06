@@ -125,6 +125,7 @@
     var tier = root.getAttribute('data-tier') || '1';
     var role = root.getAttribute('data-role') || 'mentee';
     var index = 0;
+    var firstPaint = true;
 
     function current() { return journeys[tier + '-' + role] || { steps: [], total: '' }; }
 
@@ -178,11 +179,23 @@
       panel.setAttribute('data-anim', 'in');
       window.setTimeout(function () { panel.removeAttribute('data-anim'); }, 350);
 
-      // Keep the active dot in view without yanking the page around.
+      // Keep the active dot in view by scrolling THE RAIL, never the page.
+      // scrollIntoView({block:'nearest'}) looks harmless but scrolls the
+      // nearest scrollable ancestor in both axes — on load, with the rail
+      // below the fold, that drags the whole page down to it. Setting
+      // rail.scrollLeft cannot move the page. Skipped on first paint so
+      // arriving at the page never moves anything at all.
       var active = rail.querySelector('.je-step[aria-selected="true"]');
-      if (active && active.scrollIntoView) {
-        active.scrollIntoView({ block: 'nearest', inline: 'center' });
+      if (active && !firstPaint) {
+        var target = active.offsetLeft - (rail.clientWidth - active.offsetWidth) / 2;
+        target = Math.max(0, Math.min(target, rail.scrollWidth - rail.clientWidth));
+        // Assigning scrollLeft rather than scrollTo({behavior}): .je-rail
+        // already carries scroll-behavior:smooth in CSS, so this animates
+        // where that is supported and jumps where it is not, instead of
+        // silently doing nothing.
+        rail.scrollLeft = target;
       }
+      firstPaint = false;
     }
 
     function go(i, focusDot) {
@@ -225,6 +238,7 @@
         root.setAttribute('data-role', role);
         index = 0;
         buildRail();
+        rail.scrollLeft = 0;
         paint();
       }
       Array.prototype.forEach.call(btns, function (b) {

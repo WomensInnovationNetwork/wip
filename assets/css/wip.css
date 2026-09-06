@@ -618,8 +618,13 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 .je-railwrap { position: relative; border-bottom: 1px solid var(--line); background: var(--surface-2); }
 .je-rail {
   display: flex; gap: 0; margin: 0; padding: var(--s-4) var(--s-4) var(--s-3);
-  overflow-x: auto; scroll-behavior: smooth; max-width: none;
+  overflow-x: auto; max-width: none;
   scrollbar-width: thin;
+  /* No scroll-behavior:smooth here. The rail is nudged by assigning
+     scrollLeft, and a smooth behavior that a browser declines to animate
+     leaves the assignment silently doing nothing. A short instant nudge on
+     a horizontal strip is fine; a step dot that never comes into view is
+     not. */
 }
 .je-rail::-webkit-scrollbar { height: 6px; }
 .je-rail::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
