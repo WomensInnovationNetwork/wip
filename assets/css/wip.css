@@ -318,15 +318,17 @@ main { padding-bottom: var(--s-8); }
 .masthead-nav a:hover, .masthead-nav a[aria-current="page"] { color: #fff; border-bottom-color: var(--grad-magenta); }
 
 /* A pillar that exists in the structure but has no page yet. Deliberately
-   not a link — a nav item that 404s is worse than one that says "soon". */
+   not a link — a nav item that 404s is worse than one that says "soon" —
+   and deliberately quiet. These sit AFTER the real links: a placeholder
+   should never outrank a page someone can actually open, and a bordered
+   badge on a dark ground pulls more attention than the live items do. */
 .masthead-nav .nav-soon {
-  color: rgba(255,255,255,.42); display: inline-flex; align-items: baseline; gap: .45em;
+  color: rgba(255,255,255,.34); display: inline-flex; align-items: baseline; gap: .4em;
   padding-bottom: 3px; border-bottom: 2px solid transparent; cursor: default;
 }
 .masthead-nav .nav-soon em {
-  font-style: normal; font-size: 10px; font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(255,255,255,.38);
-  border: 1px solid rgba(255,255,255,.22); border-radius: var(--r-pill); padding: .15em .5em;
+  font-style: normal; font-size: 9.5px; font-weight: 600; letter-spacing: .11em;
+  text-transform: uppercase; color: rgba(255,255,255,.28);
 }
 
 /* Theme toggle — three states: light / dark / follow the system. */

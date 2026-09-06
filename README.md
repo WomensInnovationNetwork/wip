@@ -33,8 +33,9 @@ Three pillars at the top level. Everything else lives inside one of them.
 
 Two levels of navigation carry this:
 
-- **Primary (masthead)** — only ever the three pillars. Identical on every
-  page, and it does not grow when a pillar gains a page.
+- **Primary (masthead)** — pages you can open first (Mentoring, About), then
+  pillars with no page yet, quiet and unlinked. It does not grow when a pillar
+  gains a page: Skilling turns from placeholder into link, in place.
 - **Secondary (`.subnav`)** — appears on pages *inside* a pillar and lists
   that pillar's pages, labelled with the pillar name.
 
@@ -42,8 +43,10 @@ Cohort 2 and the Prompt Pack are Mentoring pages, so they belong in the
 sub-nav, not the masthead. That is what keeps the top level readable once
 Skilling and Networking arrive.
 
-Pillars without pages render as `.nav-soon` spans, not links — a nav item
-that 404s is worse than one that admits it is not ready.
+Pillars without pages render as `.nav-soon` spans, not links — a nav item that
+404s is worse than one that admits it is not ready. They sit *after* the real
+links and stay visually quiet: a placeholder must never outrank a page someone
+can actually open.
 
 ### Adding the Skilling pillar
 
