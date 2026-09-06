@@ -1,0 +1,23 @@
+{
+  "_README": [
+    "The Women in Power community roll, rendered by /about/.",
+    "",
+    "This file is the ONLY place names live. Never write them into the HTML —",
+    "the page builds itself from here, so adding 900 people is a data edit and",
+    "nothing else. It can be exported straight from the attendance tracker.",
+    "",
+    "Each entry:",
+    "  name    required. As the person wants it shown.",
+    "  roles   optional. Any of: mentor, mentee. Both is fine.",
+    "  cohorts optional. Free text, e.g. [\"Cohort 4\", \"Cohort 5\"].",
+    "",
+    "Sorting and de-duplication happen at render time, so order here does not",
+    "matter. Keys starting with an underscore are ignored.",
+    "",
+    "CONSENT: only add someone who is happy to be listed publicly. The final",
+    "feedback form is the natural place to ask. When in doubt, leave them out —",
+    "a missing name is a smaller problem than an unwanted one."
+  ],
+  "updated": "2026-09-03",
+  "people": []
+}

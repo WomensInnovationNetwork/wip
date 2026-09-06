@@ -321,11 +321,161 @@
     });
   }
 
+  /* ======================================================================
+     4. COMMUNITY ROSTER
+
+     Renders assets/data/people.json into a searchable list. Built for the
+     thousand-name case, not the ten-name case:
+
+       * Names live in JSON, never in the markup. Adding people is a data
+         edit — it can be exported straight from the attendance tracker.
+       * The list is built once into a DocumentFragment. Filtering then only
+         toggles the `hidden` attribute, so typing never re-renders the DOM.
+       * Search is debounced and matches on a pre-lowercased key, so we are
+         not calling toLowerCase() a thousand times per keystroke.
+       * The count is in an aria-live region, because for a screen reader
+         "847 of 1,024" is the only signal that filtering did anything.
+     ====================================================================== */
+
+  function initRoster(root) {
+    var list    = root.querySelector('.roster');
+    var input   = root.querySelector('.roster-q');
+    var count   = root.querySelector('.roster-count');
+    var chips   = root.querySelectorAll('.chip[data-filter]');
+    var empty   = root.querySelector('.roster-empty');
+    var src     = root.getAttribute('data-src');
+    if (!list || !src) return;
+
+    var items = [];        // { el, key, roles }
+    var filter = 'all';
+    var query = '';
+    var timer = null;
+
+    function nf(n) { return n.toLocaleString('en-US'); }
+
+    function apply() {
+      var shown = 0;
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        var ok = (filter === 'all' || it.roles.indexOf(filter) > -1) &&
+                 (query === '' || it.key.indexOf(query) > -1);
+        if (ok) { shown++; if (it.el.hidden) it.el.hidden = false; }
+        else if (!it.el.hidden) { it.el.hidden = true; }
+      }
+      if (count) {
+        count.textContent = (shown === items.length)
+          ? nf(items.length) + (items.length === 1 ? ' person' : ' people')
+          : 'Showing ' + nf(shown) + ' of ' + nf(items.length);
+      }
+      if (empty) empty.hidden = shown !== 0 || items.length === 0;
+    }
+
+    function build(people) {
+      var frag = document.createDocumentFragment();
+      people.forEach(function (p) {
+        var li = document.createElement('li');
+        var name = document.createElement('span');
+        name.className = 'r-name';
+        name.textContent = p.name;
+        li.appendChild(name);
+
+        var bits = [];
+        if (p.roles && p.roles.length) {
+          bits.push(p.roles.map(function (r) {
+            return r.charAt(0).toUpperCase() + r.slice(1);
+          }).join(' & '));
+        }
+        if (p.cohorts && p.cohorts.length) bits.push(p.cohorts.join(', '));
+        if (bits.length) {
+          var meta = document.createElement('span');
+          meta.className = 'r-meta';
+          meta.textContent = bits.join(' · ');
+          li.appendChild(meta);
+        }
+
+        frag.appendChild(li);
+        items.push({ el: li, key: p.name.toLowerCase(), roles: p.roles || [] });
+      });
+      list.appendChild(frag);
+      apply();
+    }
+
+    if (input) {
+      input.addEventListener('input', function () {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(function () {
+          query = input.value.trim().toLowerCase();
+          apply();
+        }, 120);
+      });
+    }
+
+    Array.prototype.forEach.call(chips, function (chip) {
+      chip.addEventListener('click', function () {
+        filter = chip.getAttribute('data-filter');
+        Array.prototype.forEach.call(chips, function (c) {
+          c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+        });
+        apply();
+      });
+    });
+
+    fetch(src)
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var people = (data && data.people) || [];
+        people.sort(function (a, b) { return a.name.localeCompare(b.name, 'en'); });
+        build(people);
+      })
+      .catch(function () {
+        if (count) count.textContent = 'The list could not be loaded just now.';
+        if (empty) empty.hidden = true;
+      });
+  }
+
+  /* ======================================================================
+     5. LEADERSHIP PHOTOS
+
+     Each avatar carries data-photo="firstname-lastname.jpg". We preload it
+     and only insert the <img> once it has actually loaded, so a person
+     without a photo yet shows her initials cleanly — no broken image icon,
+     no layout shift, nothing to edit in the HTML when a photo arrives.
+     ====================================================================== */
+
+  function initPeoplePhotos() {
+    var avatars = document.querySelectorAll('.person-avatar[data-photo]');
+    if (!avatars.length) return;
+    var base = document.body.getAttribute('data-photo-base') || '';
+
+    Array.prototype.forEach.call(avatars, function (av) {
+      var file = av.getAttribute('data-photo');
+      if (!file) return;
+      var probe = new Image();
+      probe.onload = function () {
+        var img = document.createElement('img');
+        img.src = base + file;
+        img.alt = '';                 // the name sits right beside it
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        av.appendChild(img);
+      };
+      probe.src = base + file;
+    });
+  }
+
   /* ====================================================================== */
 
   function init() {
     initTheme();
     initToTop();
+    initPeoplePhotos();
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.roster-block'),
+      initRoster
+    );
     Array.prototype.forEach.call(
       document.querySelectorAll('.journey-explorer'),
       initExplorer
