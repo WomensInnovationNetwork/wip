@@ -283,6 +283,35 @@
      so the next Tab would drop them back down the page.
      ====================================================================== */
 
+  /* An unconditional jump to the top.
+
+     window.scrollTo(0, 0) is NOT unconditional: it inherits
+     `html { scroll-behavior: smooth }` from the stylesheet, so it animates —
+     and if that animation does not run, nothing moves at all. `behavior:
+     'auto'` is no better; per spec it means "use the CSS value". Three
+     strategies in order of reliability, each verified before falling
+     through to the next. */
+  function hardJumpToTop() {
+    var root = document.documentElement;
+    function atTop() { return (window.pageYOffset || root.scrollTop || 0) === 0; }
+
+    // behavior:'instant' is the only form that ignores CSS scroll-behavior.
+    // Older engines reject the enum value, hence the try.
+    try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { /* fall through */ }
+    if (atTop()) return;
+
+    // Next: neutralise the stylesheet's smooth for one call.
+    var prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    root.style.scrollBehavior = prev;
+    if (atTop()) return;
+
+    // Last resort, for anything that ignored both of the above.
+    root.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
+  }
+
   function initToTop() {
     var btn = document.querySelector('.to-top');
     if (!btn) return;
@@ -319,11 +348,15 @@
       e.preventDefault();
       var reduce = window.matchMedia &&
                    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      var start = window.pageYOffset || document.documentElement.scrollTop;
 
-      // Scrolling alone strands a keyboard or screen-reader user's focus
-      // where they were, so move focus to the top too. tabindex is added
-      // only for the duration of the focus, never joining the tab order.
+      // Focus BEFORE scrolling, not after. Moving focus cancels an in-flight
+      // smooth scroll, so doing it afterwards starts the animation and then
+      // immediately kills it — the button appears to do nothing at all.
+      // Scrolling without moving focus is not an option either: it strands a
+      // keyboard or screen-reader user where they were, so their next Tab
+      // drops them back down the page. tabindex is added only for the
+      // duration of the focus, so the header never joins the tab order.
       if (!target.hasAttribute('tabindex')) {
         target.setAttribute('tabindex', '-1');
         target.addEventListener('blur', function once() {
@@ -332,6 +365,18 @@
         });
       }
       target.focus({ preventScroll: true });
+
+      if (reduce) hardJumpToTop();
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Guarantee arrival. If nothing has moved shortly after, the smooth
+      // scroll never started — some engines decline it, and a stray handler
+      // can cancel it — so jump. Only fires when the position is completely
+      // unchanged, so it never cuts a real animation short.
+      window.setTimeout(function () {
+        var now = window.pageYOffset || document.documentElement.scrollTop;
+        if (now > 0 && now === start) hardJumpToTop();
+      }, 150);
     });
   }
 
