@@ -41,6 +41,24 @@
   --ribbon:      linear-gradient(90deg,  var(--grad-cyan) 0%, var(--grad-violet) 52%, var(--grad-magenta) 100%);
   --ribbon-diag: linear-gradient(135deg, var(--grad-cyan) 0%, var(--grad-violet) 52%, var(--grad-magenta) 100%);
 
+  /* The ribbon, deepened until WHITE TEXT PASSES AA on every stop.
+     The bright ribbon is decoration and must never sit behind body text:
+     white on --grad-cyan is 2.06:1, which is unreadable. These stops are
+     6.26 / 7.93 / 6.10 against white and still read as the same gradient.
+     Use this any time the ribbon is a background for words. */
+  --ribbon-deep: linear-gradient(90deg, #07688a 0%, #6a2db4 52%, #ae12a7 100%);
+
+  /* The ribbon for gradient TEXT on a page surface, e.g. the big stat
+     numerals. Measured against the surface it actually sits on:
+       light mode, on #fff   — 6.26 / 7.93 / 6.10
+       dark  mode, on #121c31 — 8.26 / 5.62 / 6.74
+     The bright ribbon fails at BOTH ends depending on the mode: its cyan is
+     2.06:1 on white and its violet is 2.81:1 on the dark surface. A number
+     is content, not decoration — it has to be readable. Gradient text on a
+     dark BAND (the masthead kicker, the hero headline) keeps --ribbon;
+     those grounds are dark in both themes. */
+  --ribbon-text: linear-gradient(90deg, #07688a 0%, #6a2db4 52%, #ae12a7 100%);
+
   /* --- Brand: Women in Power accents ----------------------------------- */
   --wip-plum:        #3b0b4e;
   --wip-magenta:     #d91c81;
@@ -123,6 +141,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --accent:      #ff5cb8;
+    --ribbon-text: linear-gradient(90deg, #00c5ed 0%, #b27ce8 52%, #ff6bd6 100%);
 
     --tier1:       #cf95e6;  --tier1-wash: #241a33;  --tier1-line: #3d2b52;
     --tier2:       #6ec6f2;  --tier2-wash: #0f2436;  --tier2-line: #1f3f59;
@@ -158,6 +177,7 @@
 
 :root[data-theme="dark"] {
   --accent:      #ff5cb8;
+    --ribbon-text: linear-gradient(90deg, #00c5ed 0%, #b27ce8 52%, #ff6bd6 100%);
 
   --tier1:       #cf95e6;  --tier1-wash: #241a33;  --tier1-line: #3d2b52;
   --tier2:       #6ec6f2;  --tier2-wash: #0f2436;  --tier2-line: #1f3f59;
@@ -401,6 +421,27 @@ main { padding-bottom: var(--s-8); }
 }
 @media print { .subnav { display: none; } }
 
+/* --- Announcement bar ----------------------------------------------------
+   A time-boxed strip above the masthead, for one thing at a time. It sits
+   OUTSIDE the nav on purpose: an event is not a pillar, and the primary nav
+   stays three pillars plus About no matter what is coming up. Delete the
+   element from each page when the event passes.
+   ------------------------------------------------------------------------ */
+.announce {
+  background: var(--ribbon-deep); color: #fff;
+  font-family: var(--font-display); font-size: var(--t-sm); font-weight: 600;
+}
+.announce a {
+  display: flex; align-items: center; justify-content: center; gap: var(--s-3);
+  flex-wrap: wrap; padding: .7em var(--s-5); color: #fff; text-decoration: none;
+  text-align: center;
+}
+.announce a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.announce .where { font-weight: 400; opacity: .85; }
+.announce .go { font-weight: 700; white-space: nowrap; }
+@media (max-width: 520px) { .announce .where { display: none; } }
+@media print { .announce { display: none; } }
+
 /* ==========================================================================
    6. TYPOGRAPHY
    ========================================================================== */
@@ -423,7 +464,7 @@ li::marker { color: var(--accent); }
 strong, b { font-weight: 600; color: var(--ink); }
 code { font-family: var(--font-mono); font-size: .88em; background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: .1em .35em; }
 
-.grad-text { background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-text { background: var(--ribbon-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
 /* ==========================================================================
    7. COMPONENTS
@@ -475,7 +516,7 @@ code { font-family: var(--font-mono); font-size: .88em; background: var(--surfac
 .callout-note .callout-title { color: var(--warn); }
 
 .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s-4); }
-.stat-num { font-family: var(--font-display); font-size: 1.85rem; font-weight: 800; line-height: 1; background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat-num { font-family: var(--font-display); font-size: 1.85rem; font-weight: 800; line-height: 1; background: var(--ribbon-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: var(--s-2); }
 
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--surface); }

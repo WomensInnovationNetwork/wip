@@ -72,7 +72,7 @@
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us &mdash; and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>1.7</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>1.8</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -285,6 +285,33 @@
       <div class="sw"><div class="sw-chip" style="background:#823dca"></div><div class="sw-meta"><div class="sw-name">Ribbon violet</div><div class="sw-var">--grad-violet<br>#823DCA</div></div></div>
       <div class="sw"><div class="sw-chip" style="background:#d720d0"></div><div class="sw-meta"><div class="sw-name">Ribbon magenta</div><div class="sw-var">--grad-magenta<br>#D720D0</div></div></div>
       <div class="sw"><div class="sw-chip" style="background:linear-gradient(90deg,#00c5ed,#823dca,#d720d0)"></div><div class="sw-meta"><div class="sw-name">The ribbon</div><div class="sw-var">--ribbon</div></div></div>
+    </div>
+
+    <div class="callout" style="margin-top:var(--s-5)">
+      <p class="callout-title">Three ribbons, and when each one is legal</p>
+      <div class="table-scroll" style="margin-top:var(--s-3)">
+        <table>
+          <thead><tr><th>Token</th><th>Use for</th><th>Never</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>--ribbon</code><br><code>--ribbon-diag</code></td>
+              <td>Pure decoration &mdash; rules, borders, icon plates, progress bars &mdash; and gradient text on a <strong>dark band</strong> that is dark in both themes, like a masthead kicker or hero headline.</td>
+              <td>Behind words. Behind body text on a page surface.</td>
+            </tr>
+            <tr>
+              <td><code>--ribbon-deep</code></td>
+              <td>A gradient <strong>background carrying white text</strong>, like the announcement bar. Measured 6.26 / 7.93 / 6.10 against white.</td>
+              <td>Thin decorative rules &mdash; it is muddier than the bright ribbon and wasted there.</td>
+            </tr>
+            <tr>
+              <td><code>--ribbon-text</code></td>
+              <td>Gradient <strong>text on a page surface</strong> &mdash; the big stat numerals. Themed: deep on light, bright on dark.</td>
+              <td>Backgrounds of any kind.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:var(--s-3)"><strong>Why this exists.</strong> The bright ribbon fails contrast at one end or the other depending on the ground it sits on: its cyan is <strong>2.06:1</strong> against white, and its violet is <strong>2.81:1</strong> against the dark surface. Both are unreadable. That is fine for a 3px rule and not fine for a number, because a number is content. If you are about to put the gradient behind or into words, use one of the other two and check it.</p>
     </div>
 
     <h3 style="margin-top: var(--s-5)">Women in Power accents</h3>
@@ -538,6 +565,19 @@
       <p class="small">Under about 15 people, cards with bios. Above that, a roster. The moment you are tempted to write a fifty-first card by hand, the data belongs in JSON instead &mdash; and consent belongs on the feedback form, not in someone&rsquo;s judgement afterwards.</p>
     </div>
 
+    <h3 style="margin-top:var(--s-5)">Announcement bar</h3>
+    <p class="small muted">A time-boxed strip above the masthead, for one thing at a time. Live on every member page for PPCC 2026.</p>
+    <div class="demo" style="padding:0">
+      <div class="announce" style="border-radius:var(--r-md);overflow:hidden">
+        <a href="#components">
+          <span>Women in Power is at PPCC 2026 &mdash; all three days</span>
+          <span class="where">MGM Grand, Las Vegas &middot; 27&ndash;29 October</span>
+          <span class="go">See the program &rarr;</span>
+        </a>
+      </div>
+    </div>
+    <p class="small muted" style="margin-top:var(--s-3)">It sits <strong>outside the nav on purpose</strong>: an event is not a pillar, and the primary nav stays three pillars plus About no matter what is coming up. It uses <code>--ribbon-deep</code>, not <code>--ribbon</code> &mdash; see the colour section. Delete the element from each page once the event has passed.</p>
+
     <h3 style="margin-top:var(--s-5)">Sub-navigation</h3>
     <p class="small muted">Sits directly under the masthead on any page inside a pillar. See <a href="#ia">Information architecture</a> for when to use it.</p>
     <div class="demo" style="padding:0">
@@ -675,6 +715,7 @@
       <table>
         <thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead>
         <tbody>
+          <tr><td>1.8</td><td>8 Sep 2026</td><td>PPCC 2026 event page. Announcement bar component. Two new ribbon tokens after finding the bright ribbon fails contrast behind and inside text &mdash; cyan 2.06:1 on white, violet 2.81:1 on dark.</td></tr>
           <tr><td>1.7</td><td>5 Sep 2026</td><td>Nav ordered so live pages lead and placeholders follow, with quieter "soon" styling. Heading and no-JS fixes on the cohort page.</td></tr>
           <tr><td>1.6</td><td>5 Sep 2026</td><td>About us page added, with the .person and .roster components. Roster is data-driven and tested at 1,000 names. Drop-in leadership photos.</td></tr>
           <tr><td>1.5</td><td>3 Sep 2026</td><td>Whole site converted from British to US English, matching the published WiP voice. Spelling added to the house-style table.</td></tr>
