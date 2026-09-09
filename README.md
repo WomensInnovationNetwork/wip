@@ -14,6 +14,7 @@ Published with GitHub Pages from `main` at
 | `mentoring/` | [`/mentoring/`](https://womensinnovationnetwork.github.io/wip/mentoring/) | What mentoring is, five cohorts of track record, the two tiers |
 | `mentoring/2026-cohort2/` | [`/mentoring/2026-cohort2/`](https://womensinnovationnetwork.github.io/wip/mentoring/2026-cohort2/) | Cohort 2, Autumn 2026 — journeys, calendar, certificates |
 | `mentoring/mentorship-prompts/` | [`/mentoring/mentorship-prompts/`](https://womensinnovationnetwork.github.io/wip/mentoring/mentorship-prompts/) | Mentor-Ask Prompt Pack (originally EPPC 2026) |
+| `ppcc-2026/` | [`/ppcc-2026/`](https://womensinnovationnetwork.github.io/wip/ppcc-2026/) | Women in Power at the Power Platform Community Conference, Oct 2026 |
 | `about/` | [`/about/`](https://womensinnovationnetwork.github.io/wip/about/) | Leadership, and the community roll |
 | `style-guide/` | [`/style-guide/`](https://womensinnovationnetwork.github.io/wip/style-guide/) | Living style guide. **Maintainers only; not linked from member pages.** |
 
@@ -166,3 +167,20 @@ Two rules that are not negotiable:
 Leadership roles on the page came from the Feb 2026 planning assignments, which
 the source document notes have **not** been re-confirmed for FY27. Validate
 before treating the page as authoritative.
+
+## The PPCC 2026 page
+
+`ppcc-2026/` is a time-boxed campaign page, deliberately at the root rather
+than under a pillar: the URL goes on QR codes, slides and LinkedIn posts, so it
+is kept short and stable.
+
+An announcement bar links to it from every member page. **When the event is
+over**, move the page under `networking/` and leave a one-line meta-refresh
+stub at `ppcc-2026/index.html` — the old URL will be on printed material that
+cannot be recalled. Delete the `.announce` block from each page at the same
+time.
+
+The hero photo is a drop-in: put `ppcc-2025-group.jpg` in `assets/img/ppcc/`
+and it appears behind the headline and un-hides the "Last year" section. The
+hero is designed to look finished without it. See that folder's README for
+specs and for the consent rules on publishing photos of people.

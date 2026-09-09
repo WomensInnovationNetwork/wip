@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Women in Power at PPCC 2026 — Las Vegas</title>
+<meta name="description" content="Four Women in Power activations across all three days of the Power Platform Community Conference, 27–29 October 2026 at the MGM Grand, Las Vegas. Open to everyone, including allies.">
+<meta name="theme-color" content="#042559">
+<meta property="og:title" content="Women in Power at PPCC 2026">
+<meta property="og:description" content="A luncheon, a night market meetup, a panel and a roundtable. Three days, four ways in. MGM Grand, Las Vegas, 27–29 October 2026.">
+<meta property="og:type" content="website">
+<script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/wip.css">
+<style>
+  /* ======================================================================
+     PPCC 2026 — page-specific.
+     A marketing page, so it runs hotter than the rest of the site: bigger
+     type, a cinematic hero, more gradient. Same tokens throughout, so it
+     still belongs to the family.
+     ====================================================================== */
+
+  /* --- Hero ------------------------------------------------------------ */
+  .hero {
+    position: relative; overflow: hidden;
+    background: var(--mast-b);
+    color: #fff;
+    padding-block: var(--s-7) var(--s-8);
+    isolation: isolate;
+  }
+  /* Photo layer. Added by JS only once the file loads, so the hero is
+     complete without it — see the note in assets/img/ppcc/README.md. */
+  .hero-photo {
+    position: absolute; inset: 0; z-index: -2;
+    background-size: cover; background-position: center 32%;
+    opacity: 0; transition: opacity .8s var(--ease);
+  }
+  .hero.has-photo .hero-photo { opacity: .62; }
+  /* The scrim is heavy on the left, where the headline sits, and thins out to
+     the right so faces actually come through. A flat 90% scrim over the whole
+     hero is safe and lifeless — you may as well not have a photo. On narrow
+     screens the text spans the full width, so it goes back to flat and dark. */
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(900px 500px at 88% 0%, rgba(215,32,208,.34), transparent 62%),
+      radial-gradient(700px 440px at 2% 6%, rgba(0,197,237,.22), transparent 58%),
+      linear-gradient(100deg,
+        rgba(4,16,38,.95) 0%,
+        rgba(4,16,38,.88) 34%,
+        rgba(4,16,38,.62) 66%,
+        rgba(4,16,38,.40) 100%);
+  }
+  @media (max-width: 900px) {
+    .hero.has-photo .hero-photo { opacity: .38; }
+    .hero::before {
+      background:
+        radial-gradient(600px 380px at 80% 0%, rgba(215,32,208,.30), transparent 60%),
+        linear-gradient(165deg, rgba(4,16,38,.90) 0%, rgba(4,16,38,.95) 70%);
+    }
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 4px;
+    background: var(--ribbon);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .6em;
+    border: 1px solid rgba(255,255,255,.26); border-radius: var(--r-pill);
+    padding: .45em 1.1em; font-family: var(--font-display);
+    font-size: var(--t-xs); font-weight: 700; letter-spacing: .13em;
+    text-transform: uppercase; color: rgba(255,255,255,.9);
+    backdrop-filter: blur(6px); background: rgba(255,255,255,.06);
+  }
+  .hero-badge .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--grad-magenta);
+    box-shadow: 0 0 0 4px rgba(215,32,208,.22);
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 1.4rem + 4.6vw, 5rem);
+    line-height: .98; letter-spacing: -.035em; font-weight: 800;
+    margin-top: var(--s-5); max-width: 16ch; color: #fff;
+  }
+  .hero h1 .grad {
+    background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, .95rem + .4vw, 1.25rem);
+    color: rgba(255,255,255,.82); max-width: 54ch; margin-top: var(--s-5);
+  }
+  .hero-facts {
+    display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6);
+    margin-top: var(--s-6); font-size: var(--t-sm); color: rgba(255,255,255,.72);
+  }
+  .hero-facts strong { color: #fff; font-weight: 600; display: block; font-family: var(--font-display); font-size: var(--t-base); }
+  .hero-cta { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-6); }
+  .hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,.32); }
+  .hero .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.08); color: #fff; }
+
+  /* --- Countdown ------------------------------------------------------- */
+  .countdown { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-6); }
+  .cd-unit {
+    min-width: 78px; text-align: center;
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16);
+    border-radius: var(--r-md); padding: var(--s-3) var(--s-4);
+    backdrop-filter: blur(6px);
+  }
+  .cd-num {
+    font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; line-height: 1;
+    background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-lbl {
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.55); margin-top: 6px; font-weight: 600;
+  }
+
+  /* --- Day programme --------------------------------------------------- */
+  .day { margin-top: var(--s-6); }
+  .day-head { display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; margin-bottom: var(--s-4); }
+  .day-num {
+    font-family: var(--font-display); font-weight: 800; font-size: clamp(2.2rem, 1.6rem + 2vw, 3.4rem);
+    line-height: 1; letter-spacing: -.04em;
+    background: var(--ribbon-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .day-date { font-family: var(--font-display); font-weight: 700; font-size: var(--t-xl); color: var(--heading); }
+  .day-tag {
+    font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+  }
+
+  .slot {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: var(--s-5) var(--s-5) var(--s-5) calc(var(--s-5) + 6px);
+    box-shadow: var(--sh-2); position: relative; overflow: hidden;
+  }
+  .slot + .slot { margin-top: var(--s-4); }
+  .slot::before {
+    content: ""; position: absolute; inset: 0 auto 0 0; width: 6px; background: var(--ribbon-diag);
+  }
+  .slot-when {
+    font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+  }
+  .slot h3 { font-size: var(--t-2xl); margin-top: var(--s-2); letter-spacing: -.02em; }
+  .slot-where { font-size: var(--t-sm); color: var(--ink-3); margin-top: var(--s-2); }
+  .slot-body { margin-top: var(--s-4); color: var(--ink-2); }
+  .slot ul { margin-top: var(--s-3); padding-left: 1.1rem; }
+  .slot li { font-size: 0.9375rem; color: var(--ink-2); }
+  .slot-flag {
+    display: inline-flex; align-items: center; gap: .5em; margin-top: var(--s-4);
+    font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    color: var(--joint); background: var(--joint-wash); border: 1px solid var(--joint-line);
+    border-radius: var(--r-pill); padding: .4em 1em;
+  }
+
+  /* --- Allies band ----------------------------------------------------- */
+  .allies {
+    border-radius: var(--r-xl); padding: var(--s-6);
+    background:
+      radial-gradient(700px 320px at 88% -30%, rgba(0,197,237,.26), transparent 62%),
+      linear-gradient(150deg, var(--mast-a) 0%, var(--mast-b) 100%);
+    color: #fff; position: relative; overflow: hidden; border: 1px solid var(--line);
+  }
+  .allies::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--ribbon); }
+  .allies h2, .allies h3 { color: #fff; }
+  .allies p { color: rgba(255,255,255,.82); }
+  .allies .eyebrow { color: var(--grad-cyan); }
+
+  /* --- Take-aways ------------------------------------------------------ */
+  .takeaways { display: grid; gap: var(--s-4); }
+  @media (min-width: 700px) { .takeaways { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .takeaways { grid-template-columns: repeat(4, 1fr); } }
+  .takeaway { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); }
+  .takeaway .n {
+    font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; line-height: 1;
+    background: var(--ribbon-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .takeaway h4 { margin-top: var(--s-3); }
+  .takeaway p { font-size: 0.9375rem; color: var(--ink-2); margin-top: var(--s-2); }
+
+  /* --- Last year's photo ----------------------------------------------- */
+  .lastyear { border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--sh-3); }
+  .lastyear img { width: 100%; display: block; }
+  .lastyear figcaption {
+    background: var(--surface); padding: var(--s-4) var(--s-5);
+    font-size: var(--t-sm); color: var(--ink-3); border-top: 1px solid var(--line);
+  }
+
+  @media print {
+    .hero { background: #fff; color: #000; padding-block: var(--s-4); }
+    .hero::before, .hero::after, .hero-photo { display: none; }
+    .hero h1, .hero-sub, .hero-facts, .hero-facts strong { color: #000; }
+    .hero h1 .grad { -webkit-text-fill-color: #042559; color: #042559; }
+    .countdown, .hero-cta { display: none; }
+    .slot { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead" id="top" style="padding-block:var(--s-5) var(--s-5)">
+  <div class="wrap-wide">
+    <div class="masthead-top" style="margin-bottom:0">
+      <a class="lockup" href="../">
+        <img class="lockup-img" src="../assets/img/wip-wordmark-reverse.png" alt="Women in Power" width="1200" height="607">
+      </a>
+      <div class="masthead-right">
+        <nav class="masthead-nav" aria-label="Main">
+          <a href="../mentoring/">Mentoring</a>
+          <a href="../about/">About</a>
+          <span class="nav-soon">Skilling <em>soon</em></span>
+          <span class="nav-soon">Networking <em>soon</em></span>
+        </nav>
+        <button type="button" class="theme-toggle" data-theme-toggle>Theme</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================================ HERO ================================ -->
+<section class="hero" id="hero" data-photo="../assets/img/ppcc/ppcc-2025-group.jpg">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="wrap-wide">
+    <p class="hero-badge"><span class="dot" aria-hidden="true"></span> Power Platform Community Conference &middot; #PPCC26</p>
+
+    <h1>Come find <span class="grad">your people</span> in Las&nbsp;Vegas.</h1>
+
+    <p class="hero-sub">Women in Power is at PPCC every single day this year &mdash; a luncheon built entirely around meeting people, a night market walk-in, our headline panel, and a roundtable on the network that actually moves careers. <strong>All of it open to everyone, allies included.</strong></p>
+
+    <div class="hero-facts">
+      <span><strong>27&ndash;29 October 2026</strong>Three days, four activations</span>
+      <span><strong>MGM Grand, Las Vegas</strong>Conference Center</span>
+      <span><strong>Free with your PPCC pass</strong>Add them in the conference app</span>
+    </div>
+
+    <div class="countdown" id="countdown" hidden>
+      <div class="cd-unit"><div class="cd-num" data-cd="days">&mdash;</div><div class="cd-lbl">Days</div></div>
+      <div class="cd-unit"><div class="cd-num" data-cd="hours">&mdash;</div><div class="cd-lbl">Hours</div></div>
+      <div class="cd-unit"><div class="cd-num" data-cd="minutes">&mdash;</div><div class="cd-lbl">Minutes</div></div>
+      <p class="visually-hidden" id="cd-text">Counting down to the Women in Power luncheon on 27 October 2026.</p>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn btn-accent" href="#programme">See the program &darr;</a>
+      <a class="btn btn-ghost" href="https://powerplatformconf.com/">Register for PPCC &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<main id="main">
+<div class="wrap-wide">
+
+  <!-- ============================== INTRO ============================== -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">Why bother</p>
+      <h2>A conference is a lonely place on your own</h2>
+    </div>
+    <p class="lead">Two hundred sessions, twenty thousand square feet of expo, and a lot of rooms where you might be the only one who looks like you. That is a very different week when you walk in with people.</p>
+    <p>Women in Power is a volunteer-led community across the Microsoft Power Platform and AI ecosystem, built on three things: mentoring, skilling and networking. PPCC is where the whole community lands in one place, so we have put something on every day of it &mdash; and we have designed all of it around meeting people rather than sitting in rows.</p>
+
+    <div class="grid grid-4" style="margin-top:var(--s-5)">
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Women in Power events</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">days, back to back</div></div>
+      <div class="stat"><div class="stat-num">600</div><div class="stat-label">seats at the luncheon</div></div>
+      <div class="stat"><div class="stat-num">All</div><div class="stat-label">welcome, allies included</div></div>
+    </div>
+  </section>
+
+  <!-- ============================ PROGRAMME ============================ -->
+  <section class="section" id="programme">
+    <div class="section-head">
+      <p class="eyebrow">The program</p>
+      <h2>Three days, four ways in</h2>
+    </div>
+    <p class="lead">Everything below is listed on the PPCC website and in the conference app, so you can add it to your schedule now and not think about it again.</p>
+
+    <!-- ---------------------------- TUESDAY --------------------------- -->
+    <div class="day">
+      <div class="day-head">
+        <span class="day-num">01</span>
+        <span class="day-date">Tuesday 27 October</span>
+        <span class="day-tag">Connection day</span>
+      </div>
+
+      <article class="slot">
+        <p class="slot-when">12:30 &ndash; 2:00 PM</p>
+        <h3>Women in Power Networking Luncheon</h3>
+        <p class="slot-where">Dedicated Women in Power lunch hall &middot; seats 600</p>
+        <div class="slot-body">
+          <p>No stage program this year. The whole thing is built around meeting the women you will spend the rest of the week with.</p>
+          <ul>
+            <li><strong>Round tables of ten</strong>, with icebreakers and a grounding topic on every table</li>
+            <li><strong>Find your conference buddy</strong> &mdash; leave lunch with someone to sit with, walk with and cheer for over the next two days</li>
+            <li><strong>A guided LinkedIn moment</strong>, so you leave with the connections actually made rather than intended</li>
+            <li><strong>A spotlight on the women speaking at PPCC</strong>, so you can plan which sessions to catch</li>
+          </ul>
+        </div>
+        <p class="slot-flag">Open to everyone &middot; add it in the app</p>
+      </article>
+
+      <article class="slot">
+        <p class="slot-when">Evening &middot; during the Night Market, 5:00 &ndash; 8:00 PM</p>
+        <h3>Night Market Meetup</h3>
+        <p class="slot-where">Expo Hall and Makers Hall &middot; meeting point announced closer to the event</p>
+        <div class="slot-body">
+          <p>Walking into a party alone is the worst part of any conference. Meet us first and walk in together &mdash; drinks, the expo floor and the makers community, with a group you already know.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- --------------------------- WEDNESDAY -------------------------- -->
+    <div class="day">
+      <div class="day-head">
+        <span class="day-num">02</span>
+        <span class="day-date">Wednesday 28 October</span>
+        <span class="day-tag">Our headline</span>
+      </div>
+
+      <article class="slot">
+        <p class="slot-when">2:00 PM PT &middot; 60 minutes</p>
+        <h3>The Women in Power Panel</h3>
+        <p class="slot-where">Featured session &middot; ballroom, full AV</p>
+        <div class="slot-body">
+          <p>A moderated conversation with women leading across product, engineering and the customer community: how the platform is actually changing, and what it takes to lead and influence while it does.</p>
+          <ul>
+            <li>Sits in the PPCC content catalog &mdash; <strong>add it to your schedule early</strong></li>
+            <li>Last year we hit fire code capacity with women sitting on the floor. This year we moved to a much bigger room</li>
+            <li>Full panelist lineup announced soon</li>
+          </ul>
+        </div>
+        <p class="slot-flag">Fills up &middot; schedule it now</p>
+      </article>
+    </div>
+
+    <!-- --------------------------- THURSDAY --------------------------- -->
+    <div class="day">
+      <div class="day-head">
+        <span class="day-num">03</span>
+        <span class="day-date">Thursday 29 October</span>
+        <span class="day-tag">Practical</span>
+      </div>
+
+      <article class="slot">
+        <p class="slot-when">60 minutes &middot; time announced soon</p>
+        <h3>Roundtable: Your Network Is Your Net Worth</h3>
+        <p class="slot-where">Small group roundtable &middot; listed in the content catalog</p>
+        <div class="slot-body">
+          <p>No slides. A small room, real talk, and practical guidance you can act on before you fly home &mdash; growing a network, showing up on LinkedIn, and building the professional brand that opens doors.</p>
+          <ul>
+            <li>Deliberately intimate, built for questions rather than presenting</li>
+            <li>Come with the thing you have been putting off</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================== ALLIES ============================= -->
+  <section class="section">
+    <div class="allies">
+      <p class="eyebrow">To the allies reading this</p>
+      <h2 style="margin-top:var(--s-3)">Yes, this means you.</h2>
+      <p style="margin-top:var(--s-4); font-size:var(--t-lg); max-width:60ch">Every Women in Power activation at PPCC is open to every attendee. Not tolerated &mdash; wanted. The rooms where things change are the ones with allies in them, and the fastest way to be a good one is to turn up, listen, and introduce someone to somebody who can open a door.</p>
+      <p style="margin-top:var(--s-4); max-width:60ch">Bring a colleague who has never been to one of these. That is the single most useful thing you can do all week.</p>
+    </div>
+  </section>
+
+  <!-- ============================ TAKEAWAYS ============================ -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">What you leave with</p>
+      <h2>Not a tote bag</h2>
+    </div>
+    <div class="takeaways">
+      <div class="takeaway">
+        <div class="n">01</div>
+        <h4>A conference buddy</h4>
+        <p>Someone to sit with on Wednesday, so you are not deciding between an empty table and skipping lunch.</p>
+      </div>
+      <div class="takeaway">
+        <div class="n">02</div>
+        <h4>Connections that stuck</h4>
+        <p>Made in the room, on LinkedIn, before anyone forgot a name. Not a stack of cards you never follow up.</p>
+      </div>
+      <div class="takeaway">
+        <div class="n">03</div>
+        <h4>A shortlist of sessions</h4>
+        <p>Including the ones led by women you just met, which is a much better reason to attend a talk.</p>
+      </div>
+      <div class="takeaway">
+        <div class="n">04</div>
+        <h4>Somewhere to land after</h4>
+        <p>Mentoring cohorts, monthly skilling sessions, and a community that carries on long after Vegas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== LAST YEAR ============================= -->
+  <section class="section" id="lastyear" hidden>
+    <div class="section-head">
+      <p class="eyebrow">Last year</p>
+      <h2>This is what it looks like</h2>
+    </div>
+    <figure class="lastyear">
+      <img src="../assets/img/ppcc/ppcc-2025-group.jpg" alt="Women in Power attendees gathered together at the Power Platform Community Conference" loading="lazy">
+      <figcaption>Women in Power at PPCC, Las Vegas. Every one of them walked in on their own the first time.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============================ ALL WEEK ============================= -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">All week long</p>
+      <h2>Find us between sessions</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>Swag worth queueing for</h4>
+        <p class="small muted">Exclusive Women in Power swag at registration and at every one of our events. Come early.</p>
+      </div>
+      <div class="card">
+        <h4>Follow along live</h4>
+        <p class="small muted">Updates, photos and shout-outs all week on the Women in Power LinkedIn page and in the community group.</p>
+        <p><a class="btn btn-ghost" href="https://www.linkedin.com/company/women-in-power-platform">Follow on LinkedIn &rarr;</a></p>
+      </div>
+      <div class="card">
+        <h4>Get involved</h4>
+        <p class="small muted">Want to mentor, join a skilling session, speak, or volunteer? Sign up at any of our events, or start now.</p>
+        <p><a class="btn btn-ghost" href="https://linktr.ee/womeninpower_platform">Our link tree &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CLOSE ============================== -->
+  <section class="section center">
+    <h2 style="font-size:clamp(1.8rem,1.3rem+2.2vw,3rem);letter-spacing:-.03em">See you in Vegas.</h2>
+    <p class="lead" style="max-width:52ch;margin-top:var(--s-4)">Add the luncheon to your schedule, and turn up on Tuesday not knowing anyone. You will not leave that way.</p>
+    <p class="row" style="justify-content:center;margin-top:var(--s-5)">
+      <a class="btn btn-accent" href="https://powerplatformconf.com/">Register for PPCC 2026</a>
+      <a class="btn btn-ghost" href="../mentoring/">Explore mentoring</a>
+    </p>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide foot-row">
+    <div>
+      <img class="win-logo" src="../assets/img/win-logo.png" alt="WIN — Women's Innovation Network">
+      <p class="tagline">When women innovate, the future follows.</p>
+      <p class="small" style="margin-top:var(--s-2)">Women in Power is a program of the Women&rsquo;s Innovation Network.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="../">Women in Power</a>
+      <a href="../about/">About us</a>
+      <a href="../mentoring/">Mentoring</a>
+      <a href="./">PPCC 2026</a>
+      <a href="https://www.linkedin.com/company/women-in-power-platform">Women in Power on LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="to-top" href="#top" title="Back to top">
+  <span class="visually-hidden">Back to top</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</a>
+
+<script src="../assets/js/wip.js" defer></script>
+<script>
+/* ==========================================================================
+   Page-specific behaviour: the countdown, and the hero photo.
+   Both are enhancements — the page is complete without either.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  /* --- Countdown --------------------------------------------------------
+     Anchored to the luncheon, the first thing on our program.
+     -07:00 is correct: US daylight time does not end until 1 November 2026,
+     so 27 October is still PDT. Written as an explicit offset rather than a
+     local-time string so it means the same moment in every reader's zone. */
+  var TARGET = new Date('2026-10-27T12:30:00-07:00').getTime();
+
+  function tick() {
+    var box = document.getElementById('countdown');
+    if (!box) return;
+    var left = TARGET - Date.now();
+    if (left <= 0) { box.hidden = true; return; }   // during and after, hide it
+
+    var mins  = Math.floor(left / 60000);
+    var days  = Math.floor(mins / 1440);
+    var hours = Math.floor((mins % 1440) / 60);
+
+    set('days', days); set('hours', hours); set('minutes', mins % 60);
+    box.hidden = false;
+
+    function set(k, v) {
+      var el = box.querySelector('[data-cd="' + k + '"]');
+      if (el) el.textContent = v < 10 ? '0' + v : String(v);
+    }
+  }
+
+  tick();
+  window.setInterval(tick, 30000);   // minutes only, so twice a minute is plenty
+
+  /* --- Hero photo -------------------------------------------------------
+     Preload, then reveal. The hero is designed to look finished on the
+     gradient alone, so a missing file costs nothing and there is never a
+     broken image or a flash of half-loaded photo. The same file, if present,
+     also un-hides the "last year" section further down. */
+  var hero = document.getElementById('hero');
+  var src = hero && hero.getAttribute('data-photo');
+  if (src) {
+    var probe = new Image();
+    probe.onload = function () {
+      hero.querySelector('.hero-photo').style.backgroundImage = 'url("' + src + '")';
+      hero.classList.add('has-photo');
+      var ly = document.getElementById('lastyear');
+      if (ly) ly.hidden = false;
+    };
+    probe.src = src;
+  }
+})();
+</script>
+</body>
+</html>
