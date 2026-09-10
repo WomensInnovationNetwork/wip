@@ -191,10 +191,13 @@
   .takeaway h4 { margin-top: var(--s-3); }
   .takeaway p { font-size: 0.9375rem; color: var(--ink-2); margin-top: var(--s-2); }
 
-  /* --- Last year's photo ----------------------------------------------- */
   @media print {
     .hero { background: #fff; color: #000; padding-block: var(--s-4); }
-    .hero::before, .hero::after, .hero-photo { display: none; }
+    .hero::before, .hero::after { display: none; }
+    /* The bloom is a blurred gradient — it prints as a grey smudge. */
+    .hero-figure::before { display: none; }
+    .hero-figure img { border-color: #ccc; box-shadow: none; }
+    .hero-figure figcaption { color: #555; }
     .hero h1, .hero-sub, .hero-facts, .hero-facts strong { color: #000; }
     .hero h1 .grad { -webkit-text-fill-color: #042559; color: #042559; }
     .countdown, .hero-cta { display: none; }
