@@ -22,7 +22,13 @@
      still belongs to the family.
      ====================================================================== */
 
-  /* --- Hero ------------------------------------------------------------ */
+  /* --- Hero -------------------------------------------------------------
+     Two columns: copy left, photo right. The photo used to sit full-bleed
+     BEHIND the copy, which buried "Hi, Women in Power!" on the screen under
+     this page's own headline — two headlines fighting, one of them blurred.
+     Giving each its own column means the photo is fully legible, including
+     that line, and nothing is scrimmed into mush.
+     ---------------------------------------------------------------------- */
   .hero {
     position: relative; overflow: hidden;
     background: var(--mast-b);
@@ -30,43 +36,36 @@
     padding-block: var(--s-7) var(--s-8);
     isolation: isolate;
   }
-  /* Photo layer. Added by JS only once the file loads, so the hero is
-     complete without it — see the note in assets/img/ppcc/README.md.
-
-     This uses the CROWD CROP, not the full group photo. The full frame has
-     "Hi, Women in Power!" on the screen behind everyone, which lands right
-     under this page's own headline: two headlines fighting, one of them
-     blurred. The crop takes the band of faces below the screen, which is
-     the part that was doing the emotional work anyway. The full photo still
-     appears further down, at full size, where that screen is the point. */
-  .hero-photo {
-    position: absolute; inset: 0; z-index: -2;
-    background-size: cover; background-position: center center;
-    opacity: 0; transition: opacity .8s var(--ease);
-  }
-  .hero.has-photo .hero-photo { opacity: .62; }
-  /* The scrim is heavy on the left, where the headline sits, and thins out to
-     the right so faces actually come through. A flat 90% scrim over the whole
-     hero is safe and lifeless — you may as well not have a photo. On narrow
-     screens the text spans the full width, so it goes back to flat and dark. */
   .hero::before {
     content: ""; position: absolute; inset: 0; z-index: -1;
     background:
-      radial-gradient(900px 500px at 88% 0%, rgba(215,32,208,.34), transparent 62%),
-      radial-gradient(700px 440px at 2% 6%, rgba(0,197,237,.22), transparent 58%),
-      linear-gradient(100deg,
-        rgba(4,16,38,.95) 0%,
-        rgba(4,16,38,.88) 34%,
-        rgba(4,16,38,.62) 66%,
-        rgba(4,16,38,.40) 100%);
+      radial-gradient(900px 520px at 84% -10%, rgba(215,32,208,.40), transparent 62%),
+      radial-gradient(760px 460px at 2% 6%, rgba(0,197,237,.26), transparent 58%),
+      linear-gradient(160deg, rgba(4,37,89,.92) 0%, rgba(5,11,23,.97) 74%);
   }
-  @media (max-width: 900px) {
-    .hero.has-photo .hero-photo { opacity: .38; }
-    .hero::before {
-      background:
-        radial-gradient(600px 380px at 80% 0%, rgba(215,32,208,.30), transparent 60%),
-        linear-gradient(165deg, rgba(4,16,38,.90) 0%, rgba(4,16,38,.95) 70%);
-    }
+
+  .hero-grid { display: grid; gap: var(--s-6); align-items: center; }
+  @media (min-width: 1020px) {
+    .hero-grid { grid-template-columns: 1.02fr .98fr; gap: var(--s-7); }
+  }
+
+  .hero-figure { margin: 0; position: relative; }
+  .hero-figure img {
+    width: 100%; display: block;
+    border-radius: var(--r-xl);
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 30px 70px rgba(0,0,0,.55);
+  }
+  /* A soft gradient bloom behind the frame, so it sits in the page rather
+     than looking pasted onto it. */
+  .hero-figure::before {
+    content: ""; position: absolute; inset: -14px -14px -18px -14px; z-index: -1;
+    border-radius: calc(var(--r-xl) + 12px);
+    background: var(--ribbon-diag); opacity: .5; filter: blur(26px);
+  }
+  .hero-figure figcaption {
+    margin-top: var(--s-3); font-size: var(--t-xs); color: rgba(255,255,255,.6);
+    letter-spacing: .04em;
   }
   .hero::after {
     content: ""; position: absolute; inset: auto 0 0 0; height: 4px;
@@ -96,9 +95,13 @@
     font-size: clamp(1rem, .95rem + .4vw, 1.25rem);
     color: rgba(255,255,255,.82); max-width: 54ch; margin-top: var(--s-5);
   }
+  /* Grid rather than flex: in the narrower left column these were wrapping
+     two-then-one, which reads as a mistake. auto-fit keeps them even at any
+     width. */
   .hero-facts {
-    display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6);
-    margin-top: var(--s-6); font-size: var(--t-sm); color: rgba(255,255,255,.72);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: var(--s-4); margin-top: var(--s-6);
+    font-size: var(--t-sm); color: rgba(255,255,255,.72);
   }
   .hero-facts strong { color: #fff; font-weight: 600; display: block; font-family: var(--font-display); font-size: var(--t-base); }
   .hero-cta { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-6); }
@@ -189,13 +192,6 @@
   .takeaway p { font-size: 0.9375rem; color: var(--ink-2); margin-top: var(--s-2); }
 
   /* --- Last year's photo ----------------------------------------------- */
-  .lastyear { border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--sh-3); }
-  .lastyear img { width: 100%; display: block; }
-  .lastyear figcaption {
-    background: var(--surface); padding: var(--s-4) var(--s-5);
-    font-size: var(--t-sm); color: var(--ink-3); border-top: 1px solid var(--line);
-  }
-
   @media print {
     .hero { background: #fff; color: #000; padding-block: var(--s-4); }
     .hero::before, .hero::after, .hero-photo { display: none; }
@@ -229,9 +225,10 @@
 </header>
 
 <!-- ================================ HERO ================================ -->
-<section class="hero" id="hero" data-photo="../assets/img/ppcc/ppcc-2025-crowd.jpg">
-  <div class="hero-photo" aria-hidden="true"></div>
+<section class="hero" id="hero">
   <div class="wrap-wide">
+    <div class="hero-grid">
+    <div>
     <p class="hero-badge"><span class="dot" aria-hidden="true"></span> Power Platform Community Conference &middot; #PPCC26</p>
 
     <h1>Come find <span class="grad">your people</span> in Las&nbsp;Vegas.</h1>
@@ -254,6 +251,15 @@
     <div class="hero-cta">
       <a class="btn btn-accent" href="#programme">See the program &darr;</a>
       <a class="btn btn-ghost" href="https://powerplatformconf.com/">Register for PPCC &rarr;</a>
+    </div>
+    </div>
+
+    <figure class="hero-figure">
+      <img src="../assets/img/ppcc/ppcc-2025-group.jpg"
+           alt="Around fifty women gathered in front of a screen reading &ldquo;Hi, Women in Power!&rdquo; at the Power Platform Community Conference"
+           width="1024" height="768">
+      <figcaption>Last year at PPCC. Most of them walked in on their own the first time.</figcaption>
+    </figure>
     </div>
   </div>
 </section>
@@ -407,18 +413,6 @@
     </div>
   </section>
 
-  <!-- =========================== LAST YEAR ============================= -->
-  <section class="section" id="lastyear" hidden>
-    <div class="section-head">
-      <p class="eyebrow">Last year</p>
-      <h2>This is what it looks like</h2>
-    </div>
-    <figure class="lastyear">
-      <img src="../assets/img/ppcc/ppcc-2025-group.jpg" alt="Women in Power attendees gathered together at the Power Platform Community Conference" loading="lazy">
-      <figcaption>Women in Power at PPCC, Las Vegas. Every one of them walked in on their own the first time.</figcaption>
-    </figure>
-  </section>
-
   <!-- ============================ ALL WEEK ============================= -->
   <section class="section">
     <div class="section-head">
@@ -516,26 +510,6 @@
   tick();
   window.setInterval(tick, 30000);   // minutes only, so twice a minute is plenty
 
-  /* --- Photos -----------------------------------------------------------
-     Two files, checked independently so neither depends on the other:
-
-       ppcc-2025-crowd.jpg  the hero band  (faces, no screen)
-       ppcc-2025-group.jpg  the full frame ("Last year" section)
-
-     Each is preloaded and only revealed once it has actually loaded, so a
-     missing file costs nothing — the hero is designed to look finished on
-     the gradient alone, and there is never a broken image or a flash of a
-     half-loaded photo. */
-  var hero = document.getElementById('hero');
-  var heroSrc = hero && hero.getAttribute('data-photo');
-  if (heroSrc) {
-    var heroProbe = new Image();
-    heroProbe.onload = function () {
-      hero.querySelector('.hero-photo').style.backgroundImage = 'url("' + heroSrc + '")';
-      hero.classList.add('has-photo');
-    };
-    heroProbe.src = heroSrc;
-  }
 
   var lastYear = document.getElementById('lastyear');
   var lyImg = lastYear && lastYear.querySelector('img');

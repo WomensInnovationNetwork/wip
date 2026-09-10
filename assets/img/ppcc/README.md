@@ -4,43 +4,28 @@
 
 | File | Used for |
 |---|---|
-| `ppcc-2025-crowd.jpg` | The hero background on `/ppcc-2026/`. A wide band of faces, cropped from the full photo. |
-| `ppcc-2025-group.jpg` | The "Last year" section, at full size. Also the source the crowd crop is cut from. |
+| `ppcc-2025-group.jpg` | The framed photo in the hero on `/ppcc-2026/`. |
 
-**Why two files.** The full frame has *"Hi, Women in Power!"* on the screen
-behind everyone. Behind the hero that lands directly under the page's own
-headline — two headlines competing, one of them blurred and half-covered. The
-crowd crop takes the band of faces *below* the screen, which was doing the
-emotional work anyway. The full photo still appears further down, at full
-size, where that screen is the whole point.
+The hero is **two columns** — copy on the left, this photo framed on the
+right. It is deliberately not a full-bleed background any more: behind the
+copy, the *"Hi, Women in Power!"* line on the screen sat directly under the
+page's own headline, so you got two headlines fighting and the one in the
+photo lost. In its own column it stays fully legible, which is the point of
+that photo.
 
-To recut the crop after replacing the group photo:
-
-```python
-from PIL import Image
-im = Image.open('ppcc-2025-group.jpg')
-im.crop((0, 282, 1024, 624)).save('ppcc-2025-crowd.jpg', quality=88,
-                                  optimize=True, progressive=True)
-```
-
-Adjust the box so the top edge sits just below the screen. Aim for roughly
-3:1 — it is a wide band behind a headline, not a portrait.
-
-Drop the files in with those exact names and they appear. **Nothing to edit in the
-HTML.** `wip.js`'s sibling script on that page preloads the image and only
-reveals it once it has actually loaded, so until then the hero renders on its
-gradient alone — which it is designed to do. A missing photo costs nothing and
-there is never a broken image or a half-loaded flash.
+The `<img>` is plain markup, so it needs no JavaScript and there is no
+fallback to design around — if the file is missing you get a broken image,
+unlike the leadership avatars.
 
 ## Specs
 
-- **Landscape, wide.** It sits behind the headline as a full-bleed background,
-  cropped to `center 32%` so faces stay in frame as the viewport narrows.
-- **1600px wide minimum**, 2400px is better. It goes edge to edge on a large
-  monitor.
+- **Landscape.** It sits in a rounded frame about half the hero wide, so
+  anything from 4:3 to 16:9 works.
+- **1024px wide minimum**, 1600px is better. It displays around 640px on a
+  large monitor, so 1024 is comfortable and 1600 is crisp on a retina screen.
 - **JPEG, under ~400 KB.** It is the first thing that loads on the page.
-- Busy is fine. It sits at 38% opacity under a dark scrim, so it reads as
-  texture and crowd rather than as a photo you study.
+- **Faces matter more than composition.** It is shown at full opacity now, not
+  scrimmed, so it is a photo people will actually look at.
 
 ## Before you publish a photo of people
 
