@@ -4,18 +4,37 @@
 
 | File | Used for |
 |---|---|
-| `ppcc-2025-group.jpg` | The framed photo in the hero on `/ppcc-2026/`. |
+| `ppcc-2025-group.jpg` | The framed photo in the hero. |
+| `ppcc-2025-luncheon.jpg` | Inside the Tuesday luncheon card. |
+| `ppcc-2025-panel.jpg` | Inside the Wednesday panel card. |
+| `ppcc-2025-swag.jpg` | The "Last year's table" feature under "All week long". Portrait, so it gets its own two-column block rather than being squeezed into a card. |
 
-The hero is **two columns** — copy on the left, this photo framed on the
-right. It is deliberately not a full-bleed background any more: behind the
-copy, the *"Hi, Women in Power!"* line on the screen sat directly under the
-page's own headline, so you got two headlines fighting and the one in the
-photo lost. In its own column it stays fully legible, which is the point of
-that photo.
+**Every photo on this page evidences the claim next to it.** The packed room
+proves 600 seats is real; the stage proves the panel is a proper production;
+the swag table proves the swag is worth queueing for. A photo that is not
+doing that job does not belong on the page — this is not a gallery.
 
-The `<img>` is plain markup, so it needs no JavaScript and there is no
-fallback to design around — if the file is missing you get a broken image,
-unlike the leadership avatars.
+All four are from PPCC 2025 and captioned as last year's, which is honest and
+also does useful work: it says this has happened before and it filled up.
+
+### Two we deliberately left out
+
+- Four women on the giant Copilot laptop. Lovely photo, but it is the same
+  set and backdrop as the hero. Two shots of one backdrop reads as thin.
+- Two women posing at the same laptop. Backlit, faces in shadow, mid-motion.
+  A good candid, not a marketing image.
+
+### The swag photo is deliberately uncropped
+
+It shows last year's **Connection Bingo** card alongside the merch, and the
+squares are legible — meet someone from a partner company, hear a speaker say
+"agent", find a first-time attendee. That is the most interesting thing in the
+frame, so it stays, and the copy beside it says plainly that it was 2025 and
+there is more this year.
+
+It is portrait, which is why it has its own two-column block instead of
+sitting inside one of the three small cards. Dropped in there it would be a
+tall sliver with unreadable detail, and it would stretch the whole row.
 
 ## Specs
 

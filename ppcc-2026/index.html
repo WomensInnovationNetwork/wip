@@ -166,6 +166,34 @@
     border-radius: var(--r-pill); padding: .4em 1em;
   }
 
+  /* Photos inside a programme slot. Each one evidences the claim in the
+     card above it — the packed room proves 600 seats is real, the stage
+     proves the panel is a proper production. A photo that is not doing
+     that job does not belong here. */
+  .slot-figure { margin: var(--s-5) 0 0; }
+  .slot-figure img {
+    width: 100%; display: block; border-radius: var(--r-md);
+    border: 1px solid var(--line);
+  }
+  .slot-figure figcaption {
+    font-size: var(--t-xs); color: var(--ink-3); margin-top: var(--s-2);
+    letter-spacing: .03em;
+  }
+
+  /* The swag photo is portrait and has readable detail in it — the Bingo
+     card's squares are the point, not just the merch. Dropped into one of
+     the three small cards it would be a tall illegible sliver, so it gets
+     its own two-column block where it can be large enough to read. */
+  .swag-feature { display: grid; gap: var(--s-5); margin-top: var(--s-5); align-items: center; }
+  @media (min-width: 800px) { .swag-feature { grid-template-columns: minmax(0, 380px) 1fr; gap: var(--s-6); } }
+  .swag-feature figure { margin: 0; }
+  .swag-feature img {
+    width: 100%; display: block; border-radius: var(--r-lg);
+    border: 1px solid var(--line); box-shadow: var(--sh-2);
+  }
+  .swag-feature h3 { letter-spacing: -.02em; }
+  .swag-feature p { margin-top: var(--s-3); color: var(--ink-2); }
+
   /* --- Allies band ----------------------------------------------------- */
   .allies {
     border-radius: var(--r-xl); padding: var(--s-6);
@@ -317,6 +345,11 @@
           </ul>
         </div>
         <p class="slot-flag">Open to everyone &middot; add it in the app</p>
+        <figure class="slot-figure">
+          <img src="../assets/img/ppcc/ppcc-2025-luncheon.jpg" loading="lazy" width="1400" height="1050"
+               alt="A packed ballroom of women at round tables during the Women in Power luncheon, with a panel on stage and screens showing the panel speakers">
+          <figcaption>Last year&rsquo;s luncheon. This is what 600 seats looks like.</figcaption>
+        </figure>
       </article>
 
       <article class="slot">
@@ -350,6 +383,11 @@
           </ul>
         </div>
         <p class="slot-flag">Fills up &middot; schedule it now</p>
+        <figure class="slot-figure">
+          <img src="../assets/img/ppcc/ppcc-2025-panel.jpg" loading="lazy" width="1400" height="1050"
+               alt="Eight panel speakers on stage in front of a lit Women in Power arch">
+          <figcaption>Last year&rsquo;s panel. This year&rsquo;s lineup is announced soon.</figcaption>
+        </figure>
       </article>
     </div>
 
@@ -425,7 +463,7 @@
     <div class="grid grid-3">
       <div class="card">
         <h4>Swag worth queueing for</h4>
-        <p class="small muted">Exclusive Women in Power swag at registration and at every one of our events. Come early.</p>
+        <p class="small muted">Exclusive Women in Power swag at registration and at every one of our events, and <strong>more giveaways than last year</strong>. Come early.</p>
       </div>
       <div class="card">
         <h4>Follow along live</h4>
@@ -436,6 +474,18 @@
         <h4>Get involved</h4>
         <p class="small muted">Want to mentor, join a skilling session, speak, or volunteer? Sign up at any of our events, or start now.</p>
         <p><a class="btn btn-ghost" href="https://linktr.ee/womeninpower_platform">Our link tree &rarr;</a></p>
+      </div>
+    </div>
+
+    <div class="swag-feature">
+      <figure>
+        <img src="../assets/img/ppcc/ppcc-2025-swag.jpg" loading="lazy" width="1000" height="1333"
+             alt="Laser-cut wooden Women in Power badges and stickers on a table, next to Connection Bingo cards">
+      </figure>
+      <div>
+        <h3>Last year&rsquo;s table</h3>
+        <p>Laser-cut wooden badges, stickers, and a <strong>Connection Bingo</strong> card &mdash; squares for meeting someone from a partner company, hearing a speaker say &ldquo;agent&rdquo;, finding a first-time attendee. A very good excuse to talk to a stranger.</p>
+        <p class="small muted">That was 2025. There is more this year.</p>
       </div>
     </div>
   </section>
