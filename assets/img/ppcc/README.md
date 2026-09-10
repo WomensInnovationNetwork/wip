@@ -57,3 +57,18 @@ not no bar:
   swap rather than argue.
 - Do not add names to a crowd photo. Nobody in a group shot consented to being
   identified by name on a public page.
+
+## Keep the page short
+
+Photos inside a programme slot sit **beside** the text on screens 900px and
+up, not underneath it, so they cost no vertical height at all. Stacked below,
+these two were 808px each — most of a screen per photo — and the programme
+section alone ran to 3,539px. Moving them alongside took the whole page from
+7,248px to 5,554px.
+
+Below 900px they stack, and are cropped to 16:9 with `object-fit: cover`,
+because 4:3 at full width is tall on a phone.
+
+If you add another photo to a slot, give the article `class="slot slot-split"`
+and wrap the text in `<div class="slot-main">`. Otherwise it will stack and
+add a screenful.
