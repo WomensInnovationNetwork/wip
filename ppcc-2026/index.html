@@ -166,6 +166,25 @@
     border-radius: var(--r-pill); padding: .4em 1em;
   }
 
+  /* Photos inside a programme slot. Each one evidences the claim in the
+     card above it — the packed room proves 600 seats is real, the stage
+     proves the panel is a proper production. A photo that is not doing
+     that job does not belong here. */
+  .slot-figure { margin: var(--s-5) 0 0; }
+  .slot-figure img {
+    width: 100%; display: block; border-radius: var(--r-md);
+    border: 1px solid var(--line);
+  }
+  .slot-figure figcaption {
+    font-size: var(--t-xs); color: var(--ink-3); margin-top: var(--s-2);
+    letter-spacing: .03em;
+  }
+  .card-figure { margin: var(--s-3) 0 0; }
+  .card-figure img {
+    width: 100%; display: block; border-radius: var(--r-md);
+    border: 1px solid var(--line);
+  }
+
   /* --- Allies band ----------------------------------------------------- */
   .allies {
     border-radius: var(--r-xl); padding: var(--s-6);
@@ -317,6 +336,11 @@
           </ul>
         </div>
         <p class="slot-flag">Open to everyone &middot; add it in the app</p>
+        <figure class="slot-figure">
+          <img src="../assets/img/ppcc/ppcc-2025-luncheon.jpg" loading="lazy" width="1400" height="1050"
+               alt="A packed ballroom of women at round tables during the Women in Power luncheon, with a panel on stage and screens showing the panel speakers">
+          <figcaption>Last year&rsquo;s luncheon. This is what 600 seats looks like.</figcaption>
+        </figure>
       </article>
 
       <article class="slot">
@@ -350,6 +374,11 @@
           </ul>
         </div>
         <p class="slot-flag">Fills up &middot; schedule it now</p>
+        <figure class="slot-figure">
+          <img src="../assets/img/ppcc/ppcc-2025-panel.jpg" loading="lazy" width="1400" height="1050"
+               alt="Eight panel speakers on stage in front of a lit Women in Power arch">
+          <figcaption>Last year&rsquo;s panel. This year&rsquo;s lineup is announced soon.</figcaption>
+        </figure>
       </article>
     </div>
 
@@ -426,6 +455,10 @@
       <div class="card">
         <h4>Swag worth queueing for</h4>
         <p class="small muted">Exclusive Women in Power swag at registration and at every one of our events. Come early.</p>
+        <figure class="card-figure">
+          <img src="../assets/img/ppcc/ppcc-2025-swag.jpg" loading="lazy" width="1400" height="985"
+               alt="Laser-cut wooden Women in Power badges, stickers and cards on a table">
+        </figure>
       </div>
       <div class="card">
         <h4>Follow along live</h4>

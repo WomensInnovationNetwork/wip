@@ -4,18 +4,33 @@
 
 | File | Used for |
 |---|---|
-| `ppcc-2025-group.jpg` | The framed photo in the hero on `/ppcc-2026/`. |
+| `ppcc-2025-group.jpg` | The framed photo in the hero. |
+| `ppcc-2025-luncheon.jpg` | Inside the Tuesday luncheon card. |
+| `ppcc-2025-panel.jpg` | Inside the Wednesday panel card. |
+| `ppcc-2025-swag.jpg` | Inside the swag card, under "All week long". |
 
-The hero is **two columns** — copy on the left, this photo framed on the
-right. It is deliberately not a full-bleed background any more: behind the
-copy, the *"Hi, Women in Power!"* line on the screen sat directly under the
-page's own headline, so you got two headlines fighting and the one in the
-photo lost. In its own column it stays fully legible, which is the point of
-that photo.
+**Every photo on this page evidences the claim next to it.** The packed room
+proves 600 seats is real; the stage proves the panel is a proper production;
+the swag table proves the swag is worth queueing for. A photo that is not
+doing that job does not belong on the page — this is not a gallery.
 
-The `<img>` is plain markup, so it needs no JavaScript and there is no
-fallback to design around — if the file is missing you get a broken image,
-unlike the leadership avatars.
+All four are from PPCC 2025 and captioned as last year's, which is honest and
+also does useful work: it says this has happened before and it filled up.
+
+### Two we deliberately left out
+
+- Four women on the giant Copilot laptop. Lovely photo, but it is the same
+  set and backdrop as the hero. Two shots of one backdrop reads as thin.
+- Two women posing at the same laptop. Backlit, faces in shadow, mid-motion.
+  A good candid, not a marketing image.
+
+### And one crop
+
+`ppcc-2025-swag.jpg` is cropped from a taller shot that also showed last
+year's **Connection Bingo** card. That card names a 10/30 date and a Christina
+Aguilera concert, and bingo is not in the 2026 plan — publishing it would
+advertise something that may not run. If Connection Bingo *is* running again,
+say so in the luncheon copy and use the full frame.
 
 ## Specs
 
