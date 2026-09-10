@@ -170,10 +170,25 @@
      card above it — the packed room proves 600 seats is real, the stage
      proves the panel is a proper production. A photo that is not doing
      that job does not belong here. */
+  /* On a wide screen the photo sits BESIDE the text rather than under it, so
+     it costs no vertical space at all. Stacked underneath, these were 808px
+     tall each — most of a screen per photo, on a page that already asks for
+     a lot of scrolling. */
+  @media (min-width: 900px) {
+    .slot-split {
+      display: grid; grid-template-columns: 1fr minmax(0, 400px);
+      gap: var(--s-5); align-items: start;
+    }
+    .slot-split .slot-figure { margin-top: 0; }
+  }
   .slot-figure { margin: var(--s-5) 0 0; }
   .slot-figure img {
     width: 100%; display: block; border-radius: var(--r-md);
     border: 1px solid var(--line);
+  }
+  /* Stacked on narrow screens, 4:3 is still tall. Crop to a band. */
+  @media (max-width: 899px) {
+    .slot-figure img { aspect-ratio: 16 / 9; object-fit: cover; }
   }
   .slot-figure figcaption {
     font-size: var(--t-xs); color: var(--ink-3); margin-top: var(--s-2);
@@ -331,7 +346,8 @@
         <span class="day-tag">Connection day</span>
       </div>
 
-      <article class="slot">
+      <article class="slot slot-split">
+        <div class="slot-main">
         <p class="slot-when">12:30 &ndash; 2:00 PM</p>
         <h3>Women in Power Networking Luncheon</h3>
         <p class="slot-where">Dedicated Women in Power lunch hall &middot; seats 600</p>
@@ -345,6 +361,8 @@
           </ul>
         </div>
         <p class="slot-flag">Open to everyone &middot; add it in the app</p>
+        </div>
+
         <figure class="slot-figure">
           <img src="../assets/img/ppcc/ppcc-2025-luncheon.jpg" loading="lazy" width="1400" height="1050"
                alt="A packed ballroom of women at round tables during the Women in Power luncheon, with a panel on stage and screens showing the panel speakers">
@@ -370,7 +388,8 @@
         <span class="day-tag">Our headline</span>
       </div>
 
-      <article class="slot">
+      <article class="slot slot-split">
+        <div class="slot-main">
         <p class="slot-when">2:00 PM PT &middot; 60 minutes</p>
         <h3>The Women in Power Panel</h3>
         <p class="slot-where">Featured session &middot; ballroom, full AV</p>
@@ -383,6 +402,8 @@
           </ul>
         </div>
         <p class="slot-flag">Fills up &middot; schedule it now</p>
+        </div>
+
         <figure class="slot-figure">
           <img src="../assets/img/ppcc/ppcc-2025-panel.jpg" loading="lazy" width="1400" height="1050"
                alt="Eight panel speakers on stage in front of a lit Women in Power arch">
