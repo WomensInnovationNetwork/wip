@@ -4,9 +4,29 @@
 
 | File | Used for |
 |---|---|
-| `ppcc-2025-group.jpg` | The hero background on `/ppcc-2026/`, and it un-hides the "Last year" section further down the page. |
+| `ppcc-2025-crowd.jpg` | The hero background on `/ppcc-2026/`. A wide band of faces, cropped from the full photo. |
+| `ppcc-2025-group.jpg` | The "Last year" section, at full size. Also the source the crowd crop is cut from. |
 
-Drop the file in with that exact name and both appear. **Nothing to edit in the
+**Why two files.** The full frame has *"Hi, Women in Power!"* on the screen
+behind everyone. Behind the hero that lands directly under the page's own
+headline — two headlines competing, one of them blurred and half-covered. The
+crowd crop takes the band of faces *below* the screen, which was doing the
+emotional work anyway. The full photo still appears further down, at full
+size, where that screen is the whole point.
+
+To recut the crop after replacing the group photo:
+
+```python
+from PIL import Image
+im = Image.open('ppcc-2025-group.jpg')
+im.crop((0, 282, 1024, 624)).save('ppcc-2025-crowd.jpg', quality=88,
+                                  optimize=True, progressive=True)
+```
+
+Adjust the box so the top edge sits just below the screen. Aim for roughly
+3:1 — it is a wide band behind a headline, not a portrait.
+
+Drop the files in with those exact names and they appear. **Nothing to edit in the
 HTML.** `wip.js`'s sibling script on that page preloads the image and only
 reveals it once it has actually loaded, so until then the hero renders on its
 gradient alone — which it is designed to do. A missing photo costs nothing and
