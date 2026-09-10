@@ -7,7 +7,7 @@
 | `ppcc-2025-group.jpg` | The framed photo in the hero. |
 | `ppcc-2025-luncheon.jpg` | Inside the Tuesday luncheon card. |
 | `ppcc-2025-panel.jpg` | Inside the Wednesday panel card. |
-| `ppcc-2025-swag.jpg` | Inside the swag card, under "All week long". |
+| `ppcc-2025-swag.jpg` | The "Last year's table" feature under "All week long". Portrait, so it gets its own two-column block rather than being squeezed into a card. |
 
 **Every photo on this page evidences the claim next to it.** The packed room
 proves 600 seats is real; the stage proves the panel is a proper production;
@@ -24,13 +24,17 @@ also does useful work: it says this has happened before and it filled up.
 - Two women posing at the same laptop. Backlit, faces in shadow, mid-motion.
   A good candid, not a marketing image.
 
-### And one crop
+### The swag photo is deliberately uncropped
 
-`ppcc-2025-swag.jpg` is cropped from a taller shot that also showed last
-year's **Connection Bingo** card. That card names a 10/30 date and a Christina
-Aguilera concert, and bingo is not in the 2026 plan — publishing it would
-advertise something that may not run. If Connection Bingo *is* running again,
-say so in the luncheon copy and use the full frame.
+It shows last year's **Connection Bingo** card alongside the merch, and the
+squares are legible — meet someone from a partner company, hear a speaker say
+"agent", find a first-time attendee. That is the most interesting thing in the
+frame, so it stays, and the copy beside it says plainly that it was 2025 and
+there is more this year.
+
+It is portrait, which is why it has its own two-column block instead of
+sitting inside one of the three small cards. Dropped in there it would be a
+tall sliver with unreadable detail, and it would stretch the whole row.
 
 ## Specs
 
