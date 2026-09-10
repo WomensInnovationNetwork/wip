@@ -31,10 +31,17 @@
     isolation: isolate;
   }
   /* Photo layer. Added by JS only once the file loads, so the hero is
-     complete without it — see the note in assets/img/ppcc/README.md. */
+     complete without it — see the note in assets/img/ppcc/README.md.
+
+     This uses the CROWD CROP, not the full group photo. The full frame has
+     "Hi, Women in Power!" on the screen behind everyone, which lands right
+     under this page's own headline: two headlines fighting, one of them
+     blurred. The crop takes the band of faces below the screen, which is
+     the part that was doing the emotional work anyway. The full photo still
+     appears further down, at full size, where that screen is the point. */
   .hero-photo {
     position: absolute; inset: 0; z-index: -2;
-    background-size: cover; background-position: center 32%;
+    background-size: cover; background-position: center center;
     opacity: 0; transition: opacity .8s var(--ease);
   }
   .hero.has-photo .hero-photo { opacity: .62; }
@@ -222,7 +229,7 @@
 </header>
 
 <!-- ================================ HERO ================================ -->
-<section class="hero" id="hero" data-photo="../assets/img/ppcc/ppcc-2025-group.jpg">
+<section class="hero" id="hero" data-photo="../assets/img/ppcc/ppcc-2025-crowd.jpg">
   <div class="hero-photo" aria-hidden="true"></div>
   <div class="wrap-wide">
     <p class="hero-badge"><span class="dot" aria-hidden="true"></span> Power Platform Community Conference &middot; #PPCC26</p>
@@ -509,22 +516,33 @@
   tick();
   window.setInterval(tick, 30000);   // minutes only, so twice a minute is plenty
 
-  /* --- Hero photo -------------------------------------------------------
-     Preload, then reveal. The hero is designed to look finished on the
-     gradient alone, so a missing file costs nothing and there is never a
-     broken image or a flash of half-loaded photo. The same file, if present,
-     also un-hides the "last year" section further down. */
+  /* --- Photos -----------------------------------------------------------
+     Two files, checked independently so neither depends on the other:
+
+       ppcc-2025-crowd.jpg  the hero band  (faces, no screen)
+       ppcc-2025-group.jpg  the full frame ("Last year" section)
+
+     Each is preloaded and only revealed once it has actually loaded, so a
+     missing file costs nothing — the hero is designed to look finished on
+     the gradient alone, and there is never a broken image or a flash of a
+     half-loaded photo. */
   var hero = document.getElementById('hero');
-  var src = hero && hero.getAttribute('data-photo');
-  if (src) {
-    var probe = new Image();
-    probe.onload = function () {
-      hero.querySelector('.hero-photo').style.backgroundImage = 'url("' + src + '")';
+  var heroSrc = hero && hero.getAttribute('data-photo');
+  if (heroSrc) {
+    var heroProbe = new Image();
+    heroProbe.onload = function () {
+      hero.querySelector('.hero-photo').style.backgroundImage = 'url("' + heroSrc + '")';
       hero.classList.add('has-photo');
-      var ly = document.getElementById('lastyear');
-      if (ly) ly.hidden = false;
     };
-    probe.src = src;
+    heroProbe.src = heroSrc;
+  }
+
+  var lastYear = document.getElementById('lastyear');
+  var lyImg = lastYear && lastYear.querySelector('img');
+  if (lyImg) {
+    var lyProbe = new Image();
+    lyProbe.onload = function () { lastYear.hidden = false; };
+    lyProbe.src = lyImg.getAttribute('src');
   }
 })();
 </script>
