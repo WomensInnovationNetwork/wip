@@ -48,6 +48,21 @@
      Use this any time the ribbon is a background for words. */
   --ribbon-deep: linear-gradient(90deg, #07688a 0%, #6a2db4 52%, #ae12a7 100%);
 
+  /* The ribbon for ROUNDED FILLS: circles (step numbers, avatars, the
+     back-to-top hover) and pill buttons. Two things go wrong when the full
+     diagonal ribbon is poured into a round shape:
+       1. A 135deg gradient puts its end colors in the box's corners, which
+          the rounding cuts off. What survives is a cyan wedge and a clipped
+          magenta edge, so the shape reads as a square squeezed into a
+          circle.
+       2. The cyan end sits under white text at 2.06:1.
+     So these drop cyan and run deep violet to deep magenta (white text
+     7.93 / 6.10). On circles the stops sit at 15% / 85%, which is where a
+     circle's edge crosses the 135deg line, so both colors are actually
+     visible. Pills run 90deg, along their long axis. */
+  --ribbon-round: linear-gradient(135deg, #6a2db4 15%, #ae12a7 85%);
+  --ribbon-pill:  linear-gradient(90deg,  #6a2db4 0%,  #ae12a7 100%);
+
   /* The ribbon for gradient TEXT on a page surface, e.g. the big stat
      numerals. Measured against the surface it actually sits on:
        light mode, on #fff   — 6.26 / 7.93 / 6.10
@@ -67,6 +82,7 @@
 
   /* --- Themed: accent used for eyebrows, markers, link hover ----------- */
   --accent:          #d91c81;
+  --link:            var(--win-navy-soft);
 
   /* --- Themed: tier colors -------------------------------------------- */
   --tier1:           #7a2e8e;   /* Group mentoring */
@@ -141,6 +157,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --accent:      #ff5cb8;
+    --link:        #7fb6ff;
     --ribbon-text: linear-gradient(90deg, #00c5ed 0%, #b27ce8 52%, #ff6bd6 100%);
 
     --tier1:       #cf95e6;  --tier1-wash: #241a33;  --tier1-line: #3d2b52;
@@ -177,6 +194,7 @@
 
 :root[data-theme="dark"] {
   --accent:      #ff5cb8;
+  --link:        #7fb6ff;
     --ribbon-text: linear-gradient(90deg, #00c5ed 0%, #b27ce8 52%, #ff6bd6 100%);
 
   --tier1:       #cf95e6;  --tier1-wash: #241a33;  --tier1-line: #3d2b52;
@@ -236,13 +254,14 @@ body {
 
 img, svg { max-width: 100%; height: auto; display: block; }
 
-a { color: var(--win-navy-soft); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+/* The link color is a token, lifted from navy to #7fb6ff in dark mode.
+   It used to be switched with ":root[data-theme=dark] a", but that
+   selector outweighs any single class, so it repainted every white-text
+   link (accent buttons, the announcement bar, the masthead nav) light
+   blue in dark mode. A token keeps "a" at its natural weight and lets
+   components set their own color. */
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 a:hover { color: var(--accent); }
-/* Navy links are unreadable on a dark ground — lift them. */
-:root[data-theme="dark"] a { color: #7fb6ff; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) a { color: #7fb6ff; }
-}
 
 :focus-visible { outline: 3px solid var(--grad-violet); outline-offset: 2px; border-radius: 4px; }
 
@@ -322,7 +341,7 @@ main { padding-bottom: var(--s-8); }
 
 /* Legacy CSS-only lockup, kept for any page that has no image to hand. */
 .lockup-mark {
-  width: 38px; height: 38px; border-radius: 10px; background: var(--ribbon-diag);
+  width: 38px; height: 38px; border-radius: 10px; background: var(--ribbon-round);
   display: grid; place-items: center; flex: none;
   font-family: var(--font-display); font-weight: 800; font-size: 15px; color: #fff; letter-spacing: .02em;
 }
@@ -500,7 +519,7 @@ code { font-family: var(--font-mono); font-size: .88em; background: var(--surfac
 .btn-primary:hover { background: var(--win-navy-soft); color: #fff; transform: translateY(-1px); box-shadow: var(--sh-3); }
 :root[data-theme="dark"] .btn-primary { background: #1d4fa8; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { background: #1d4fa8; } }
-.btn-accent { background: var(--ribbon-diag); color: #fff; box-shadow: var(--sh-2); }
+.btn-accent { background: var(--ribbon-pill); color: #fff; box-shadow: var(--sh-2); }
 .btn-accent:hover { color: #fff; transform: translateY(-1px); box-shadow: var(--sh-3); }
 .btn-ghost { background: transparent; color: var(--heading); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
@@ -565,7 +584,7 @@ td.col-week { font-family: var(--font-display); font-weight: 700; color: var(--h
 .steps > li::before {
   counter-increment: step; content: counter(step);
   position: absolute; left: 0; top: -2px; width: 2rem; height: 2rem; border-radius: 50%;
-  background: var(--ribbon-diag); color: #fff;
+  background: var(--ribbon-round); color: #fff;
   font-family: var(--font-display); font-weight: 700; font-size: var(--t-sm);
   display: grid; place-items: center;
 }
@@ -703,7 +722,7 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 .je-step[aria-selected="true"]::before { background: var(--grad-violet); }
 
 .je-step[aria-selected="true"] .je-dot {
-  background: var(--ribbon-diag); border-color: transparent; color: #fff;
+  background: var(--ribbon-round); border-color: transparent; color: #fff;
   transform: scale(1.14); box-shadow: 0 0 0 4px var(--tier1-wash);
 }
 .je-step[aria-selected="true"] .je-lbl { color: var(--heading); font-weight: 600; }
@@ -793,7 +812,7 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 
 .to-top:hover {
   color: #fff;
-  background: var(--ribbon-diag);
+  background: var(--ribbon-round);
   border-color: transparent;
   transform: translateY(-2px);
 }
@@ -848,7 +867,7 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 .person-avatar {
   width: 72px; height: 72px; border-radius: 50%; flex: none;
   display: grid; place-items: center; overflow: hidden;
-  background: var(--ribbon-diag); color: #fff;
+  background: var(--ribbon-round); color: #fff;
   font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; letter-spacing: .02em;
 }
 img.person-avatar { object-fit: cover; }
