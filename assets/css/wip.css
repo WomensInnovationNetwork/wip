@@ -60,6 +60,10 @@
      7.93 / 6.10). On circles the stops sit at 15% / 85%, which is where a
      circle's edge crosses the 135deg line, so both colors are actually
      visible. Pills run 90deg, along their long axis. */
+  /* On anything with a (transparent) border, write the background as
+     "var(--ribbon-round) border-box". By default a gradient is sized to
+     the padding box and then TILED into the border, so the far end of
+     the gradient shows as a thin strip along the top and left edges. */
   --ribbon-round: linear-gradient(135deg, #6a2db4 15%, #ae12a7 85%);
   --ribbon-pill:  linear-gradient(90deg,  #6a2db4 0%,  #ae12a7 100%);
 
@@ -519,7 +523,7 @@ code { font-family: var(--font-mono); font-size: .88em; background: var(--surfac
 .btn-primary:hover { background: var(--win-navy-soft); color: #fff; transform: translateY(-1px); box-shadow: var(--sh-3); }
 :root[data-theme="dark"] .btn-primary { background: #1d4fa8; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { background: #1d4fa8; } }
-.btn-accent { background: var(--ribbon-pill); color: #fff; box-shadow: var(--sh-2); }
+.btn-accent { background: var(--ribbon-pill) border-box; color: #fff; box-shadow: var(--sh-2); }
 .btn-accent:hover { color: #fff; transform: translateY(-1px); box-shadow: var(--sh-3); }
 .btn-ghost { background: transparent; color: var(--heading); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
@@ -722,7 +726,7 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 .je-step[aria-selected="true"]::before { background: var(--grad-violet); }
 
 .je-step[aria-selected="true"] .je-dot {
-  background: var(--ribbon-round); border-color: transparent; color: #fff;
+  background: var(--ribbon-round) border-box; border-color: transparent; color: #fff;
   transform: scale(1.14); box-shadow: 0 0 0 4px var(--tier1-wash);
 }
 .je-step[aria-selected="true"] .je-lbl { color: var(--heading); font-weight: 600; }
@@ -812,7 +816,7 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 
 .to-top:hover {
   color: #fff;
-  background: var(--ribbon-round);
+  background: var(--ribbon-round) border-box;
   border-color: transparent;
   transform: translateY(-2px);
 }
