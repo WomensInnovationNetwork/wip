@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cohort 2, Autumn 2026 — Women in Power Mentoring</title>
-<meta name="description" content="Everything mentors and mentees need for Women in Power Mentoring Cohort 2: 21 September to 16 December 2026. Interactive journeys, calendar, hours and certificates.">
+<title>AMPLIFY, Cohort 2 — Women in Power Mentoring</title>
+<meta name="description" content="AMPLIFY, the Women in Power mentoring program. Cohort 2 runs Wednesday 23 September to Wednesday 9 December 2026: a weekly Power Hour for everyone, plus Circuits or Power Pairs.">
 <meta name="theme-color" content="#042559">
-<!-- Apply the reader's stored theme before first paint, so there is no flash. -->
 <script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,9 +19,33 @@
   .keydate .d { font-family: var(--font-display); font-weight: 800; color: var(--heading); font-size: 1.05rem; }
   .keydate .l { font-size: var(--t-sm); color: var(--ink-3); margin-top: 2px; }
 
-  .events { display: grid; gap: var(--s-3); }
-  @media (min-width: 760px) { .events { grid-template-columns: 1fr 1fr; } }
-  .events .card { padding: var(--s-4); }
+  /* The three pieces of AMPLIFY. The Power Hour spans the row because it
+     is the one thing everyone shares; the two tracks sit beneath it. */
+  .shape { display: grid; gap: var(--s-4); }
+  @media (min-width: 760px) {
+    .shape { grid-template-columns: 1fr 1fr; }
+    .shape .card-joint { grid-column: 1 / -1; }
+  }
+
+  .runsheet { list-style: none; padding: 0; margin: var(--s-4) 0 0; max-width: none;
+              display: grid; gap: var(--s-2); }
+  @media (min-width: 700px) { .runsheet { grid-template-columns: repeat(4, 1fr); } }
+  .runsheet li { margin: 0; background: var(--surface-2); border: 1px solid var(--line);
+                 border-radius: var(--r-md); padding: var(--s-3) var(--s-4); }
+  .runsheet .t { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+                 letter-spacing: .08em; color: var(--accent); }
+  .runsheet .n { font-family: var(--font-display); font-weight: 700; color: var(--heading); margin-top: 2px; }
+  .runsheet .d { font-size: var(--t-sm); color: var(--ink-3); margin-top: 2px; }
+
+  .arcs { display: grid; gap: var(--s-4); }
+  @media (min-width: 760px) { .arcs { grid-template-columns: repeat(3, 1fr); } }
+  .arc .wk { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+             letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .arc h4 { margin-top: var(--s-2); }
+
+  td.topic strong { color: var(--heading); font-family: var(--font-display); font-weight: 600; }
+  td.read { color: var(--ink-3); font-style: italic; }
+  tr.moment td { background: var(--joint-wash); }
 
   .spotlight {
     background:
@@ -32,7 +55,7 @@
     position: relative; overflow: hidden; border: 1px solid var(--line);
   }
   .spotlight h3, .spotlight h4 { color: #fff; }
-  .spotlight p { color: rgba(255,255,255,.82); }
+  .spotlight p, .spotlight li { color: rgba(255,255,255,.82); }
   .spotlight .eyebrow { color: var(--grad-cyan); }
   .spotlight::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--ribbon); }
   .spotlight .card { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); box-shadow: none; }
@@ -66,12 +89,12 @@
         <button type="button" class="theme-toggle" data-theme-toggle>Theme</button>
       </div>
     </div>
-    <p class="kicker">Mentoring &middot; Cohort 2 &middot; Autumn 2026</p>
-    <h1>Twelve weeks. Two tiers. One community.</h1>
-    <p class="standfirst">Everything you need for Cohort 2, whether you are mentoring or being mentored. Read your tier, put the dates in your calendar, and come to kickoff knowing exactly what you signed up for.</p>
+    <p class="kicker">Mentoring &middot; Cohort 2 &middot; Fall 2026</p>
+    <h1>AMPLIFY</h1>
+    <p class="standfirst">One community. Two ways to be mentored. Twelve weeks to change your trajectory &mdash; built around the two things members ask for most: <strong>confidence</strong> and <strong>network</strong>.</p>
     <p class="meta">
-      <span>Runs <strong>Mon 21 Sep &ndash; Wed 16 Dec 2026</strong></span>
-      <span>Commitment <strong>about 1 hour a week</strong></span>
+      <span>Runs <strong>Wed 23 Sep &ndash; Wed 9 Dec 2026</strong></span>
+      <span>Commitment <strong>about 90 minutes a week</strong></span>
       <span>Run by <strong>volunteer mentors</strong></span>
     </p>
   </div>
@@ -91,13 +114,14 @@
 <div class="jump">
   <div class="wrap-wide">
     <ul>
-      <li><a href="#tier-check">Which tier am I in?</a></li>
-      <li><a href="#formats">How each tier works</a></li>
+      <li><a href="#shape">How it works</a></li>
+      <li><a href="#track">Which track?</a></li>
+      <li><a href="#power-hour">The Power Hour</a></li>
+      <li><a href="#schedule">Schedule</a></li>
       <li><a href="#journey">Your journey</a></li>
-      <li><a href="#calendar">Calendar</a></li>
-      <li><a href="#presentation">The presentation</a></li>
-      <li><a href="#certificates">Hours &amp; certificates</a></li>
-      <li><a href="#events">Events</a></li>
+      <li><a href="#presentation">Presenting</a></li>
+      <li><a href="#commitments">Commitments</a></li>
+      <li><a href="#glossary">Glossary</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
   </div>
@@ -106,104 +130,135 @@
 <main id="main">
 <div class="wrap-wide">
 
-  <div class="callout callout-note" style="margin-top:var(--s-6)">
-    <p class="callout-title">Working draft</p>
-    <p class="small">The shape of Cohort 2 is set and the dates below are the plan of record. A handful of specifics &mdash; exact session times, the skilling dates and the final certificate thresholds &mdash; are still being confirmed and will be updated here. Anything marked <em>provisional</em> may still shift.</p>
-  </div>
-
   <!-- ========================== AT A GLANCE ========================== -->
   <section class="section">
     <div class="section-head">
       <p class="eyebrow">At a glance</p>
       <h2>Key dates and numbers</h2>
     </div>
-    <div class="grid grid-3">
-      <div class="stat"><div class="stat-num">21 Sep</div><div class="stat-label">Joint kickoff, both tiers</div></div>
-      <div class="stat"><div class="stat-num">12</div><div class="stat-label">weeks, kickoff to certificates</div></div>
-      <div class="stat"><div class="stat-num">16 Dec</div><div class="stat-label">Closing call and certificates</div></div>
-      <div class="stat"><div class="stat-num">6</div><div class="stat-label">group sessions in Tier 1</div></div>
-      <div class="stat"><div class="stat-num">6+</div><div class="stat-label">1:1 sessions in Tier 2</div></div>
-      <div class="stat"><div class="stat-num">1</div><div class="stat-label">presentation, every Tier 2 mentee</div></div>
+    <div class="grid grid-4">
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">weeks, kickoff to Graduation</div></div>
+      <div class="stat"><div class="stat-num">1 hr</div><div class="stat-label">Power Hour, every week, everyone</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">tracks &mdash; Circuits or Power Pairs</div></div>
+      <div class="stat"><div class="stat-num">24 hrs</div><div class="stat-label">every session recorded and posted</div></div>
     </div>
-
     <div class="keydates" style="margin-top:var(--s-4)">
-      <div class="keydate"><div class="d">Week of 14 Sep</div><div class="l">Welcome email, topic menu published, 1:1 pairing emails go out</div></div>
-      <div class="keydate"><div class="d">Mon 21 Sep</div><div class="l">Joint kickoff &mdash; the one session everybody attends</div></div>
-      <div class="keydate"><div class="d">By Wed 16 Dec</div><div class="l">Closing call, digital certificates, final feedback</div></div>
+      <div class="keydate"><div class="d">Wed 23 Sep</div><div class="l">Kickoff: Plug In &mdash; meet your Circuit or Power Pair</div></div>
+      <div class="keydate"><div class="d">Wed 18 Nov</div><div class="l">Community Showcase Night &mdash; members present</div></div>
+      <div class="keydate"><div class="d">Wed 9 Dec</div><div class="l">Graduation: The Power Hour Live</div></div>
     </div>
   </section>
 
-  <!-- ========================== TIER CHECK =========================== -->
-  <section class="section" id="tier-check">
+  <!-- ============================= SHAPE ============================= -->
+  <section class="section" id="shape">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>One community, two ways in</h2>
+    </div>
+    <p class="lead">Everyone belongs to the whole community <em>and</em> to exactly one mentoring track.</p>
+
+    <div class="shape" style="margin-top:var(--s-5)">
+      <div class="card card-joint">
+        <div class="card-hd"><h3 style="margin:0">The Power Hour</h3><span class="pill pill-joint">Everyone &middot; every week</span></div>
+        <p>A weekly one-hour session for the whole community: a lesson, time for questions, and time to connect. It is the one fixed point in everyone&rsquo;s twelve weeks, and everything else sits on top of it.</p>
+      </div>
+      <div class="card card-t1">
+        <div class="tier-head"><span class="tier-num t1">Circuits</span><h3 style="margin:0">Group mentoring</h3></div>
+        <p>A small pod &mdash; typically around six Circuit Members &mdash; guided by one mentor, the <strong>Circuit Lead</strong>. You get a mentor <em>and</em> a built-in squad, and your Circuit-mates are often the relationships that last longest.</p>
+        <p class="small muted">45&ndash;60 minutes, every other week &mdash; about six sessions.</p>
+      </div>
+      <div class="card card-t2">
+        <div class="tier-head"><span class="tier-num t2">Power Pairs</span><h3 style="margin:0">1:1 mentoring</h3></div>
+        <p>One mentor, one mentee, matched on goals, career stage and interests. The pair sets its own rhythm; the program provides the structure, not the scheduling.</p>
+        <p class="small muted">30&ndash;45 minutes, every other week &mdash; about six conversations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= TRACK ============================= -->
+  <section class="section" id="track">
     <div class="section-head">
       <p class="eyebrow">Start here</p>
-      <h2>Which tier am I in?</h2>
+      <h2>Which track am I in?</h2>
     </div>
-    <p class="lead">It depends on your history with this program &mdash; not on how senior you are.</p>
-
+    <p class="lead">It depends on your mentoring experience, not your seniority.</p>
     <div class="grid grid-2" style="margin-top:var(--s-5)">
       <div class="card card-t1">
-        <div class="tier-head">
-          <span class="tier-num t1">Tier 1</span>
-          <h3 style="margin:0">Group mentoring</h3>
-        </div>
-        <p><strong>You&rsquo;re here if this is your first Women in Power cohort</strong> &mdash; as a mentor or a mentee, whatever your years in the industry.</p>
-        <p class="small muted">Sessions are levelled foundational and advanced, so twenty years of experience is not a reason to skip it. A lot of our strongest room hosts started here.</p>
+        <h4>You&rsquo;ll be placed in a Circuit if&hellip;</h4>
+        <p class="small muted">You are new to Women in Power, or you have never been part of a mentoring relationship. The Circuit gives you the foundation &mdash; and completing it is what lets you apply for Power Pairs in the cohort that follows.</p>
       </div>
       <div class="card card-t2">
-        <div class="tier-head">
-          <span class="tier-num t2">Tier 2</span>
-          <h3 style="margin:0">1:1 mentoring</h3>
-        </div>
-        <p><strong>You&rsquo;re here if you&rsquo;ve completed a previous cohort</strong> in either tier, or you are a mentor with prior mentoring experience in the program.</p>
-        <p class="small muted">Tier 1 graduates who opted in on their final feedback form are in this tier. Mentors not matched to a 1:1 pair join Tier 1 as room hosts &mdash; that is a full role, not a consolation prize.</p>
+        <h4>You&rsquo;ll be offered Power Pairs if&hellip;</h4>
+        <p class="small muted">You have completed a cohort with us before, or been through an established mentoring program elsewhere. You are ready to go deep with one mentor at your own pace.</p>
       </div>
-    </div>
-
-    <div class="callout" style="margin-top:var(--s-4)">
-      <p class="callout-title">Both tiers share a spine</p>
-      <p class="small">One kickoff, one closing call, joint presentations on alternating weeks, the same feedback forms and the same skilling events. You will see the other tier regularly &mdash; that is deliberate.</p>
     </div>
   </section>
 
-  <!-- =========================== FORMATS ============================= -->
-  <section class="section" id="formats">
+  <!-- ========================== POWER HOUR =========================== -->
+  <section class="section" id="power-hour">
     <div class="section-head">
-      <p class="eyebrow">How each tier works</p>
-      <h2>The format, before the detail</h2>
+      <p class="eyebrow">Every week</p>
+      <h2>The Power Hour</h2>
+    </div>
+    <p>Sixty minutes, balanced on purpose: a real lesson, real time for questions, and real time to meet people &mdash; every single week.</p>
+    <ol class="runsheet">
+      <li><div class="t">0:00 &ndash; 0:05</div><div class="n">Welcome</div><div class="d">Housekeeping, wins of the week</div></li>
+      <li><div class="t">0:05 &ndash; 0:30</div><div class="n">Lesson</div><div class="d">That week&rsquo;s topic, from a guest, sponsor or member</div></li>
+      <li><div class="t">0:30 &ndash; 0:45</div><div class="n">Q&amp;A</div><div class="d">Open floor, live or in chat</div></li>
+      <li><div class="t">0:45 &ndash; 1:00</div><div class="n">Connect Round</div><div class="d">Breakouts, speed-connects, or time with your Circuit or Pair</div></li>
+    </ol>
+    <div class="callout" style="margin-top:var(--s-4)">
+      <p class="callout-title">The time moves on purpose</p>
+      <p class="small">Sessions rotate between four slots from 8&nbsp;AM to 6&nbsp;PM Central &mdash; an early crowd, a lunch crowd, a mid-afternoon crowd and an after-work crowd &mdash; so the same people are never the ones always missing it live. Every session is recorded and posted within 24 hours, and catching the recording within 48 counts as being there.</p>
+    </div>
+  </section>
+
+  <!-- =========================== SCHEDULE ============================ -->
+  <section class="section" id="schedule">
+    <div class="section-head">
+      <p class="eyebrow">The twelve weeks</p>
+      <h2>Three months, three arcs</h2>
+    </div>
+    <div class="arcs">
+      <div class="card arc"><p class="wk">Weeks 1&ndash;4</p><h4>Foundations</h4><p class="small muted">Get grounded: confidence, community, and Power Platform as a career map.</p></div>
+      <div class="card arc"><p class="wk">Weeks 5&ndash;9</p><h4>Visibility &amp; Voice</h4><p class="small muted">Get seen: presenting, data storytelling, negotiation, Copilot, and the Showcase.</p></div>
+      <div class="card arc"><p class="wk">Weeks 10&ndash;12</p><h4>Launch &amp; Career Momentum</h4><p class="small muted">Get moving: resumes, interviews, and a plan for what comes next.</p></div>
     </div>
 
-    <div class="grid grid-2">
-      <div class="card card-t1">
-        <div class="tier-head"><span class="tier-num t1">Tier 1</span><h3 style="margin:0">Group mentoring</h3></div>
-        <p>Six bi-weekly one-hour sessions. Each opens with a five to ten minute framing, then splits into breakout rooms by topic. Mentors take a room each, empty rooms are closed, and you choose where to go.</p>
-        <p>Topics are published a week ahead so you know what you are walking into &mdash; the single most requested change from the last cohort. Every room is labelled <strong>foundational</strong> or <strong>advanced</strong>.</p>
-        <h4 style="margin-top:var(--s-4)">Breakout topics</h4>
-        <ul class="topics">
-          <li><span class="topic">Power Platform technical</span></li>
-          <li><span class="topic">Early career navigation</span></li>
-          <li><span class="topic">Communication confidence</span></li>
-          <li><span class="topic">Certifications</span></li>
-          <li><span class="topic">Career pivots &amp; role transitions</span></li>
-          <li><span class="topic">Getting ready for 1:1 &middot; sessions 5&ndash;6</span></li>
-        </ul>
-        <p class="small muted">Career pivots was both the most popular breakout topic last cohort and a recent skilling theme. Expect it to be busy.</p>
-      </div>
+    <div class="table-scroll" style="margin-top:var(--s-5)">
+      <table>
+        <caption>Every Power Hour is on a Wednesday. Times are Central &mdash; Eastern is one hour later, Pacific two hours earlier. Each week comes with an optional suggested read.</caption>
+        <thead><tr><th scope="col">Wk</th><th scope="col">Date</th><th scope="col">Time (CT)</th><th scope="col">Power Hour topic</th><th scope="col">Suggested read</th></tr></thead>
+        <tbody>
+          <tr class="moment"><td class="col-week">1</td><td>23 Sep</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="topic"><strong>Kickoff: Plug In</strong></td><td class="read">Daring Greatly &mdash; Bren&eacute; Brown</td></tr>
+          <tr><td class="col-week">2</td><td>30 Sep</td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="topic"><strong>Claiming Your Power</strong></td><td class="read">Presence &mdash; Amy Cuddy</td></tr>
+          <tr><td class="col-week">3</td><td>7 Oct</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="topic"><strong>Power Platform 101: Your Superpower</strong></td><td class="read">Broad Band &mdash; Claire L. Evans</td></tr>
+          <tr><td class="col-week">4</td><td>14 Oct</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="topic"><strong>Your Story, Your Brand</strong></td><td class="read">Stand Out &mdash; Dorie Clark</td></tr>
+          <tr><td class="col-week">5</td><td>21 Oct</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="topic"><strong>Presentation Skills I</strong></td><td class="read">Resonate &mdash; Nancy Duarte</td></tr>
+          <tr><td class="col-week">6</td><td>28 Oct</td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="topic"><strong>Data Storytelling with Power BI</strong></td><td class="read">Storytelling with Data &mdash; Cole Nussbaumer Knaflic</td></tr>
+          <tr><td class="col-week">7</td><td>4 Nov</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="topic"><strong>The Art of Advocating for Yourself</strong></td><td class="read">Women Don&rsquo;t Ask &mdash; Linda Babcock &amp; Sara Laschever</td></tr>
+          <tr><td class="col-week">8</td><td>11 Nov</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="topic"><strong>Copilot as Your Career Co-Pilot</strong></td><td class="read">The Big Nine &mdash; Amy Webb</td></tr>
+          <tr class="moment"><td class="col-week">9</td><td>18 Nov</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="topic"><strong>Community Showcase Night</strong></td><td class="read">All These Wonders &mdash; ed. Catherine Burns</td></tr>
+          <tr><td class="col-week">10</td><td>25 Nov<sup>*</sup></td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="topic"><strong>Resumes That Read Like Leadership</strong></td><td class="read">Nice Girls Don&rsquo;t Get the Corner Office &mdash; Lois P. Frankel</td></tr>
+          <tr><td class="col-week">11</td><td>2 Dec</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="topic"><strong>Interviewing with Impact</strong></td><td class="read">Ask for More &mdash; Alexandra Carter</td></tr>
+          <tr class="moment"><td class="col-week">12</td><td>9 Dec</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="topic"><strong>Graduation: The Power Hour Live</strong></td><td class="read">Becoming &mdash; Michelle Obama</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top:var(--s-3)"><sup>*</sup> Thanksgiving week &mdash; this session may move to Tuesday 24 November. Confirmed in your welcome email.</p>
+  </section>
 
-      <div class="card card-t2">
-        <div class="tier-head"><span class="tier-num t2">Tier 2</span><h3 style="margin:0">1:1 mentoring</h3></div>
-        <p>You are matched with one mentor for the whole cohort and meet on your own cadence &mdash; bi-weekly works for most pairs &mdash; supported by mentor meetups, joint presentations and a graduation presentation to work toward.</p>
-        <p>Pairing uses years of experience, goals and time zone from your interest form. Pairing emails go out the week of <strong>14 September</strong>, with a few days to request a re-match. Ask early rather than quietly disengaging.</p>
-        <h4 style="margin-top:var(--s-4)">What pairs actually work on</h4>
-        <ul class="topics">
-          <li><span class="topic">Career growth</span></li>
-          <li><span class="topic">Technical upskilling</span></li>
-          <li><span class="topic">R&eacute;sum&eacute; &amp; mock interviews</span></li>
-          <li><span class="topic">Communication &amp; presentation</span></li>
-          <li><span class="topic">Personal branding</span></li>
-          <li><span class="topic">Imposter syndrome</span></li>
-        </ul>
-      </div>
+  <!-- ============================ CURRENTS =========================== -->
+  <section class="section">
+    <div class="section-head">
+      <p class="eyebrow">What you&rsquo;ll work on</p>
+      <h2>The three Growth Currents</h2>
+    </div>
+    <p>Almost everything a member wants from twelve weeks falls into one of three buckets. You pick a lead in Week 1, and most people touch all three by the end.</p>
+    <div class="grid grid-3" style="margin-top:var(--s-4)">
+      <div class="card"><h4>Power Skills</h4><p class="small muted">The things that make people listen: public speaking, presence, negotiating, hard conversations, personal branding.</p></div>
+      <div class="card"><h4>Platform Power</h4><p class="small muted">Technical range in Power Apps, Power Automate, Power BI, Copilot Studio and AI &mdash; plus the certifications and portfolio to prove it.</p></div>
+      <div class="card"><h4>Current Connections</h4><p class="small muted">The network and visibility that get you into the room before the job is even posted.</p></div>
     </div>
   </section>
 
@@ -213,16 +268,15 @@
       <p class="eyebrow">Your journey, step by step</p>
       <h2>What the twelve weeks look like for you</h2>
     </div>
-    <p class="lead">Pick your tier and your role, then walk the milestones. Every step tells you when it happens, what to expect and roughly how long it takes.</p>
+    <p class="lead">Pick your track and your role, then walk the milestones. These sit on top of the weekly Power Hour.</p>
 
     <div class="journey-explorer" data-tier="1" data-role="mentee">
-
       <div class="je-controls">
         <div class="je-group">
-          <span class="je-legend" id="je-tier-label">Your tier</span>
+          <span class="je-legend" id="je-tier-label">Your track</span>
           <div class="seg" role="radiogroup" aria-labelledby="je-tier-label">
-            <button type="button" class="seg-btn" role="radio" data-tier="1" aria-checked="true"  tabindex="0">Tier 1 &middot; Group</button>
-            <button type="button" class="seg-btn" role="radio" data-tier="2" aria-checked="false" tabindex="-1">Tier 2 &middot; 1:1</button>
+            <button type="button" class="seg-btn" role="radio" data-tier="1" aria-checked="true"  tabindex="0">Circuits &middot; group</button>
+            <button type="button" class="seg-btn" role="radio" data-tier="2" aria-checked="false" tabindex="-1">Power Pairs &middot; 1:1</button>
           </div>
         </div>
         <div class="je-group">
@@ -240,15 +294,13 @@
         <div class="je-railwrap">
           <div class="je-rail" role="tablist" aria-label="Journey milestones"></div>
         </div>
-
         <div class="je-panel" id="je-panel" role="tabpanel" tabindex="0">
-          <p class="je-count">Step 1 of 9</p>
-          <p class="je-when">By week of 14 Sep</p>
-          <h3 class="je-title">Sign up and confirm</h3>
-          <div class="je-body"><p>Choose a tier and a role above to walk through the whole twelve weeks, step by step.</p></div>
+          <p class="je-count">Step 1 of 7</p>
+          <p class="je-when">Before Week 1</p>
+          <h3 class="je-title">Sign up and placement</h3>
+          <div class="je-body"><p>Choose a track and a role above to walk through your twelve weeks.</p></div>
           <div class="je-tags"></div>
         </div>
-
         <div class="je-foot">
           <div class="je-bar"><i></i></div>
           <div class="je-nav">
@@ -262,434 +314,303 @@
         <button type="button" class="btn btn-ghost" data-je-showall aria-expanded="false">Show all four journeys as a list</button>
       </p>
 
-      <!-- ==================================================================
-           The four journeys. This is the single source of the words: the
-           explorer above reads them from here, and with JavaScript off (or
-           on paper) they render as plain timelines.
-           ================================================================== -->
+      <!-- The source of the words. The explorer reads these; with JS off,
+           and on paper, they render as plain timelines. -->
       <div class="je-source">
 
-        <!-- ---------------------- TIER 1 · MENTEE ---------------------- -->
-        <div class="je-journey" data-tier="1" data-role="mentee"
-             data-total="About 11.5 hours across 12 weeks — roughly an hour a week. Seven hours for kickoff, sessions and closing only.">
-          <h4><span class="pill pill-t1">Tier 1</span> Your journey as a <strong>mentee</strong></h4>
+        <div class="je-journey" data-tier="1" data-role="mentee" data-name="Circuits &middot; Circuit Member"
+             data-total="The weekly Power Hour plus six Circuit sessions, every other week — about an hour and a half a week.">
+          <h4><span class="pill pill-t1">Circuits</span> Your journey as a <strong>Circuit Member</strong></h4>
           <ol class="timeline">
             <li data-label="Sign up">
-              <div class="tl-when">By week of 14 Sep</div>
-              <div class="tl-title">Sign up and confirm</div>
-              <p class="tl-body">Your confirmation email tells you which senders to save so program mail does not land in junk, and links you to the community space. <strong>Please actually do this</strong> &mdash; a lot of last cohort&rsquo;s email went to spam.</p>
-              <span class="tl-time">15 min</span>
-            </li>
-            <li data-label="Self-assessment">
-              <div class="tl-when">Week of 14 Sep</div>
-              <div class="tl-title">Skills self-assessment</div>
-              <p class="tl-body">Rate yourself across the five topic areas and tell us what you are after &mdash; networking, hard skills or soft skills. We use it to level the rooms, and you retake it at the end.</p>
+              <div class="tl-when">Before Week 1</div>
+              <div class="tl-title">Sign up and placement</div>
+              <p class="tl-body">A short sign-up asks what you want to optimize for this quarter &mdash; confidence and presence, a technical skill, or a job move. New to Women in Power or to mentoring? You&rsquo;ll be placed in a Circuit.</p>
               <span class="tl-time">10 min</span>
             </li>
-            <li data-label="Joint kickoff">
-              <div class="tl-when">Mon 21 Sep</div>
-              <div class="tl-title">Joint kickoff</div>
-              <p class="tl-body">What the program is and is not, what group mentoring looks like, how you progress to 1:1, and the full calendar. Both tiers in one room.</p>
-              <span class="tl-time">60 min</span>
+            <li data-label="Goal-setting">
+              <div class="tl-when">Session 1 &middot; Week 1</div>
+              <div class="tl-title">Round-robin goal-setting</div>
+              <p class="tl-body">Name your lead Growth Current and one honest, one-sentence goal for the quarter &mdash; out loud, to your Circuit. Peer accountability starts here.</p>
+              <span class="tl-time">45&ndash;60 min</span>
             </li>
-            <li data-label="Group sessions">
-              <div class="tl-when">Bi-weekly &middot; 21 Sep, 5 Oct, 19 Oct, 2 Nov, 16 Nov, 30 Nov</div>
-              <div class="tl-title">Group sessions 1&ndash;6</div>
-              <p class="tl-body">Short framing, then pick your breakout room. The topic menu goes out a week ahead. <strong>Come with one question</strong> &mdash; that is the whole preparation.</p>
-              <span class="tl-time">6 &times; 60 min</span>
+            <li data-label="Shared activities">
+              <div class="tl-when">Sessions 2&ndash;3 &middot; &asymp; Weeks 3 &amp; 5</div>
+              <div class="tl-title">Shared activities</div>
+              <p class="tl-body">A lightning-talk round, a group Copilot Studio build, or a network round robin &mdash; whatever fits the group&rsquo;s most common Current. Come with one real question each time.</p>
+              <span class="tl-time">2 &times; 45&ndash;60 min</span>
             </li>
-            <li data-label="Joint presentations">
-              <div class="tl-when">Alternate weeks</div>
-              <div class="tl-title">Joint presentations</div>
-              <p class="tl-body">Watch Tier 2 mentees and pairs present. This is a preview of what your own graduation will look like next cohort &mdash; and a low-stakes way to see the room before you stand up in it.</p>
-              <span class="tl-time">6 &times; 30 min</span>
+            <li data-label="Mid-point">
+              <div class="tl-when">Session 4 &middot; &asymp; Weeks 6&ndash;7</div>
+              <div class="tl-title">Mid-point pulse</div>
+              <p class="tl-body">Revisit your goal with the group. It is normal, and good, for it to shift. There&rsquo;s a short Week 6 pulse check too.</p>
+              <span class="tl-time">45&ndash;60 min</span>
             </li>
-            <li data-label="Skilling Series">
-              <div class="tl-when">As scheduled &middot; optional</div>
-              <div class="tl-title">Skilling Series events</div>
-              <p class="tl-body">Deeper technical and career sessions run monthly, shared in every program email. Open to everyone, no charge and no experience assumed.</p>
-              <span class="tl-time">optional</span>
+            <li data-label="Build">
+              <div class="tl-when">Session 5 &middot; &asymp; Week 9</div>
+              <div class="tl-title">Build toward something to show</div>
+              <p class="tl-body">Another shared activity, aimed at every member having something to show by Week 12.</p>
+              <span class="tl-time">45&ndash;60 min</span>
             </li>
-            <li data-label="Coffee chats">
-              <div class="tl-when">Any time &middot; optional</div>
-              <div class="tl-title">Coffee chats</div>
-              <p class="tl-body">Reach out to any mentor on the list for a one-to-one conversation. Genuinely &mdash; they said yes to being asked. This is the most under-used thing in the program.</p>
-              <span class="tl-time">optional</span>
+            <li data-label="Demo day">
+              <div class="tl-when">Session 6 &middot; &asymp; Week 11</div>
+              <div class="tl-title">Demo day</div>
+              <p class="tl-body">Show your Circuit one thing you built or one way you grew. This is your dry run before the wider community sees it.</p>
+              <span class="tl-time">45&ndash;60 min</span>
             </li>
-            <li data-label="Feedback">
-              <div class="tl-when">19 Oct and 14 Dec</div>
-              <div class="tl-title">Feedback and closing self-assessment</div>
-              <p class="tl-body">Short forms. The end assessment is compared to your start &mdash; this is how you see the shift, and how we know what to fix.</p>
-              <span class="tl-time">2 &times; 10 min</span>
+            <li data-label="Present &amp; graduate">
+              <div class="tl-when">Week 9 or Week 12</div>
+              <div class="tl-title">Present, and graduate</div>
+              <p class="tl-body">Take a Showcase slot or the Graduation stage &mdash; about five minutes, on a topic you choose. Then submit your End-of-Cohort Assessment. Together, that&rsquo;s your path to Power Pairs.</p>
+              <span class="tl-time">~5 min + assessment</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="je-journey" data-tier="1" data-role="mentor" data-name="Circuits &middot; Circuit Lead"
+             data-total="The weekly Power Hour plus six sessions you host, every other week — with under 15 minutes of prep for each.">
+          <h4><span class="pill pill-t1">Circuits</span> Your journey as a <strong>Circuit Lead</strong></h4>
+          <ol class="timeline">
+            <li data-label="Say yes">
+              <div class="tl-when">Before Week 1</div>
+              <div class="tl-title">Say yes</div>
+              <p class="tl-body">Six one-hour Circuit sessions over twelve weeks, every other week. You get a short Circuit Lead Kit for each one, so prep stays under fifteen minutes.</p>
+              <span class="tl-time">10 min</span>
+            </li>
+            <li data-label="Goal-setting">
+              <div class="tl-when">Session 1 &middot; Week 1</div>
+              <div class="tl-title">Run the goal-setting round</div>
+              <p class="tl-body">Each member names her lead Growth Current and one goal out loud. Peer accountability starts here.</p>
+              <span class="tl-time">45&ndash;60 min</span>
+            </li>
+            <li data-label="Facilitate">
+              <div class="tl-when">Sessions 2&ndash;3 &middot; &asymp; Weeks 3 &amp; 5</div>
+              <div class="tl-title">Facilitate, don&rsquo;t lecture</div>
+              <p class="tl-body">Pick one shared activity for the group&rsquo;s most common Current. The group is the resource &mdash; ask &ldquo;who in this room has done this before?&rdquo; often. Check-in, one activity, one commitment each.</p>
+              <span class="tl-time">2 &times; 45&ndash;60 min</span>
+            </li>
+            <li data-label="Mid-point">
+              <div class="tl-when">Session 4 &middot; &asymp; Weeks 6&ndash;7</div>
+              <div class="tl-title">Mid-point pulse</div>
+              <p class="tl-body">Check each member&rsquo;s goal from Session 1 and adjust out loud where needed.</p>
+              <span class="tl-time">45&ndash;60 min</span>
+            </li>
+            <li data-label="Build">
+              <div class="tl-when">Session 5 &middot; &asymp; Week 9</div>
+              <div class="tl-title">Build toward demo day</div>
+              <p class="tl-body">Another shared activity, aimed at every member having something to show by Week 12.</p>
+              <span class="tl-time">45&ndash;60 min</span>
+            </li>
+            <li data-label="Demo day">
+              <div class="tl-when">Session 6 &middot; &asymp; Week 11</div>
+              <div class="tl-title">Host demo day</div>
+              <p class="tl-body">Each member shows one thing she built or one way she grew, then names her next goal. Your job is to make it feel safe.</p>
+              <span class="tl-time">45&ndash;60 min</span>
+            </li>
+            <li data-label="Reflect">
+              <div class="tl-when">Week 12</div>
+              <div class="tl-title">Reflect, and be recognized</div>
+              <p class="tl-body">Complete a short end-of-cohort reflection on each member&rsquo;s growth &mdash; it is part of her path to Power Pairs &mdash; and name one strength to highlight at Graduation. Circuit Leads are recognized publicly there too.</p>
+              <span class="tl-time">20 min</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="je-journey" data-tier="2" data-role="mentee" data-name="Power Pairs &middot; Mentee"
+             data-total="The weekly Power Hour plus six 30–45 minute conversations, every other week — a little over an hour a week.">
+          <h4><span class="pill pill-t2">Power Pairs</span> Your journey as a <strong>mentee</strong></h4>
+          <ol class="timeline">
+            <li data-label="Matched">
+              <div class="tl-when">Before Week 1</div>
+              <div class="tl-title">Matched with your mentor</div>
+              <p class="tl-body">Matching uses your goals, career stage and interests from the intake form &mdash; especially what you&rsquo;re optimizing for this quarter.</p>
+              <span class="tl-time">10 min</span>
+            </li>
+            <li data-label="Kickoff">
+              <div class="tl-when">Conversation 1 &middot; Week 1</div>
+              <div class="tl-title">Kickoff</div>
+              <p class="tl-body">Set one confidence goal and one skill goal, and schedule the whole quarter now. A slot a few days after the Power Hour lets you unpack that week&rsquo;s lesson while it&rsquo;s fresh.</p>
+              <span class="tl-time">30&ndash;45 min</span>
+            </li>
+            <li data-label="Build">
+              <div class="tl-when">Conversations 2&ndash;4 &middot; &asymp; Weeks 3&ndash;5</div>
+              <div class="tl-title">Build</div>
+              <p class="tl-body">Work your lead Growth Current. Drive the agenda &mdash; come with something real &mdash; and do the follow-through between conversations.</p>
+              <span class="tl-time">3 &times; 30&ndash;45 min</span>
+            </li>
+            <li data-label="Mid-point">
+              <div class="tl-when">Conversation 5 &middot; Week 6</div>
+              <div class="tl-title">Mid-point pulse</div>
+              <p class="tl-body">Is the goal still the right goal? Changing it is a feature, not a failure. A short survey helps the program catch a mismatch early.</p>
+              <span class="tl-time">30&ndash;45 min</span>
+            </li>
+            <li data-label="Showcase">
+              <div class="tl-when">Week 9 &middot; optional</div>
+              <div class="tl-title">Community Showcase</div>
+              <p class="tl-body">An open-mic Power Hour where members present a project, a win or a hard-won lesson. If you have something to show, take a slot.</p>
+              <span class="tl-time">~5 min</span>
+            </li>
+            <li data-label="Reflect &amp; graduate">
+              <div class="tl-when">Conversation 6 &middot; Week 12</div>
+              <div class="tl-title">Reflection and Graduation</div>
+              <p class="tl-body">Close the loop with your mentor &mdash; what changed, what&rsquo;s next, and whether to keep going past the formal quarter. At Graduation, share your 90-day growth story and personal action plan.</p>
+              <span class="tl-time">30&ndash;45 min</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="je-journey" data-tier="2" data-role="mentor" data-name="Power Pairs &middot; Mentor"
+             data-total="The weekly Power Hour plus six 30–45 minute conversations, every other week — a little over an hour a week.">
+          <h4><span class="pill pill-t2">Power Pairs</span> Your journey as a <strong>mentor</strong></h4>
+          <ol class="timeline">
+            <li data-label="Matched">
+              <div class="tl-when">Before Week 1</div>
+              <div class="tl-title">Matched with your mentee</div>
+              <p class="tl-body">Six conversations over the quarter, 30&ndash;45 minutes each, every other week. You&rsquo;ll get a one-page Power Pair Guide with a goal-setting worksheet and discussion starters.</p>
+              <span class="tl-time">10 min</span>
+            </li>
+            <li data-label="Kickoff">
+              <div class="tl-when">Conversation 1 &middot; Week 1</div>
+              <div class="tl-title">The goal-setting conversation</div>
+              <p class="tl-body">Get past the polite answer &mdash; &ldquo;twelve weeks from now, what&rsquo;s different?&rdquo; Leave with one written sentence: her lead Current and one achievable goal.</p>
+              <span class="tl-time">30&ndash;45 min</span>
+            </li>
+            <li data-label="Build">
+              <div class="tl-when">Conversations 2&ndash;4 &middot; &asymp; Weeks 3&ndash;5</div>
+              <div class="tl-title">Build</div>
+              <p class="tl-body">Work her lead Current. Ask more than you tell, choose honesty over flattery, and give her one concrete thing to do before you next meet.</p>
+              <span class="tl-time">3 &times; 30&ndash;45 min</span>
+            </li>
+            <li data-label="Mid-point">
+              <div class="tl-when">Conversation 5 &middot; Week 6</div>
+              <div class="tl-title">Mid-point pulse</div>
+              <p class="tl-body">Is the goal still the right goal? Adjust it out loud &mdash; that&rsquo;s a feature, not a failure.</p>
+              <span class="tl-time">30&ndash;45 min</span>
+            </li>
+            <li data-label="Reflect">
+              <div class="tl-when">Conversation 6 &middot; Week 12</div>
+              <div class="tl-title">Reflection</div>
+              <p class="tl-body">What changed, what&rsquo;s next, and whether you both want to keep going past the formal quarter.</p>
+              <span class="tl-time">30&ndash;45 min</span>
             </li>
             <li data-label="Graduation">
-              <div class="tl-when">Week of 14 Dec</div>
-              <div class="tl-title">Graduation and certificate</div>
-              <p class="tl-body">Closing call and your digital certificate. On the final form you can opt in to 1:1 mentoring for the next cohort.</p>
-              <span class="tl-time">60 min</span>
+              <div class="tl-when">Week 12</div>
+              <div class="tl-title">Graduation</div>
+              <p class="tl-body">Name one strength to highlight publicly for your mentee. Power Pair mentors are recognized at Graduation too.</p>
+              <span class="tl-time">1 hr</span>
             </li>
           </ol>
         </div>
 
-        <!-- ---------------------- TIER 1 · MENTOR ---------------------- -->
-        <div class="je-journey" data-tier="1" data-role="mentor"
-             data-total="About 12 hours across 12 weeks — roughly an hour a week. Six hours if you attend only the core group sessions.">
-          <h4><span class="pill pill-t1">Tier 1</span> Your journey as a <strong>mentor</strong></h4>
-          <ol class="timeline">
-            <li data-label="Sign up">
-              <div class="tl-when">By week of 14 Sep</div>
-              <div class="tl-title">Sign up and confirm</div>
-              <p class="tl-body">Interest form, then a confirmation email listing the senders to save. Tell us your topic preferences and whether mornings or afternoons work better for you.</p>
-              <span class="tl-time">15 min</span>
-            </li>
-            <li data-label="Onboarding">
-              <div class="tl-when">Week of 14 Sep</div>
-              <div class="tl-title">Mentor onboarding call</div>
-              <p class="tl-body">Session format, breakout room etiquette, how hours are tracked, and access to the resource hub.</p>
-              <span class="tl-time">45 min</span>
-            </li>
-            <li data-label="Joint kickoff">
-              <div class="tl-when">Mon 21 Sep</div>
-              <div class="tl-title">Joint kickoff</div>
-              <p class="tl-body">Both tiers together: program vision, the two-tier path, the calendar and communication norms.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-            <li data-label="Host your room">
-              <div class="tl-when">Bi-weekly &middot; 21 Sep, 5 Oct, 19 Oct, 2 Nov, 16 Nov, 30 Nov</div>
-              <div class="tl-title">Group sessions 1&ndash;6</div>
-              <p class="tl-body">Host a breakout room on your topic. Expect three to eight mentees. Bring <strong>one skilling or community resource</strong> to share each time.</p>
-              <span class="tl-time">6 &times; 60 min</span>
-            </li>
-            <li data-label="Joint presentations">
-              <div class="tl-when">Alternate weeks &middot; optional</div>
-              <div class="tl-title">Joint presentations</div>
-              <p class="tl-body">Attend or co-present a 30-minute session, and cheer on the Tier 2 presenters. Counts toward your hours.</p>
-              <span class="tl-time">up to 6 &times; 30 min</span>
-            </li>
-            <li data-label="Mentor check-in">
-              <div class="tl-when">Mid-cohort</div>
-              <div class="tl-title">Mentor-only check-in</div>
-              <p class="tl-body">What is working, what to adjust, and flagging mentees who look ready for 1:1 next cohort.</p>
-              <span class="tl-time">45 min</span>
-            </li>
-            <li data-label="Feedback">
-              <div class="tl-when">19 Oct and 14 Dec</div>
-              <div class="tl-title">Feedback</div>
-              <p class="tl-body">Two short forms, the same ones both tiers use. Completing them is part of the certificate threshold.</p>
-              <span class="tl-time">2 &times; 10 min</span>
-            </li>
-            <li data-label="Certificate">
-              <div class="tl-when">Week of 14 Dec</div>
-              <div class="tl-title">Closing and certificate</div>
-              <p class="tl-body">Attend the closing call. Your certificate shows your logged hours, and you become eligible to mentor 1:1 in the next cohort.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-          </ol>
-        </div>
-
-        <!-- ---------------------- TIER 2 · MENTEE ---------------------- -->
-        <div class="je-journey" data-tier="2" data-role="mentee"
-             data-total="About 15 hours across 12 weeks — roughly an hour and a quarter a week. Heaviest around the graduation presentation in late November.">
-          <h4><span class="pill pill-t2">Tier 2</span> Your journey as a <strong>mentee</strong></h4>
-          <ol class="timeline">
-            <li data-label="Sign up &amp; pairing">
-              <div class="tl-when">By 18 Sep</div>
-              <div class="tl-title">Sign up and pairing</div>
-              <p class="tl-body">Your pairing email arrives the week of 14 Sep, with a re-match window if the fit is not right. <strong>Ask early</strong> &mdash; it is much easier now than in November.</p>
-              <span class="tl-time">30 min</span>
-            </li>
-            <li data-label="Joint kickoff">
-              <div class="tl-when">Mon 21 Sep</div>
-              <div class="tl-title">Joint kickoff</div>
-              <p class="tl-body">Structure, expectations, the calendar &mdash; and your graduation presentation explained up front, not sprung on you in November.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-            <li data-label="First meeting">
-              <div class="tl-when">Week of 21 Sep</div>
-              <div class="tl-title">First meeting with your mentor</div>
-              <p class="tl-body"><strong>You schedule this one.</strong> Introductions, an ice-breaker, expectations and SMART goals. Owning the scheduling is deliberate &mdash; it is the habit the whole tier is built on.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-            <li data-label="1:1 sessions">
-              <div class="tl-when">Bi-weekly &middot; 5 Oct to 7 Dec</div>
-              <div class="tl-title">Regular 1:1 sessions</div>
-              <p class="tl-body">Own the agenda, follow up on your actions, be open to feedback. The mentees who get the most out of this are the ones who drive it.</p>
-              <span class="tl-time">6 &times; 60 min</span>
-            </li>
-            <li data-label="Meetups">
-              <div class="tl-when">Alternate weeks</div>
-              <div class="tl-title">Joint presentations and mentee meetup</div>
-              <p class="tl-body">Attend the joint presentations, plus at least one mentee meetup with ten-minute lightning talks and networking.</p>
-              <span class="tl-time">3 &times; 45 min</span>
-            </li>
-            <li data-label="Skilling Series">
-              <div class="tl-when">As scheduled &middot; optional</div>
-              <div class="tl-title">Skilling Series events</div>
-              <p class="tl-body">Pick the ones aligned to your goals &mdash; ideally with your mentor, in a session, rather than guessing on your own.</p>
-              <span class="tl-time">optional</span>
-            </li>
-            <li data-label="Prep &amp; dry run">
-              <div class="tl-when">Weeks of 16 Nov &ndash; 30 Nov</div>
-              <div class="tl-title">Graduation presentation prep</div>
-              <p class="tl-body">Five to ten minutes on a win, a project, a lesson learned or a Power Platform topic. Dry run with your mentor, and optionally at a mentor meetup.</p>
-              <span class="tl-time">~3 hrs</span>
-            </li>
-            <li data-label="You present">
-              <div class="tl-when">Week of 7 Dec</div>
-              <div class="tl-title">Graduation presentation</div>
-              <p class="tl-body">You present, in the joint slot, so the Tier 1 mentees can see the path ahead. <strong>Every 1:1 mentee does this.</strong> Five minutes counts, and you can co-present with your mentor.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-            <li data-label="Feedback">
-              <div class="tl-when">19 Oct and 14 Dec</div>
-              <div class="tl-title">Feedback</div>
-              <p class="tl-body">The same standardized forms both tiers use.</p>
-              <span class="tl-time">2 &times; 10 min</span>
-            </li>
-            <li data-label="Closing">
-              <div class="tl-when">Week of 14 Dec</div>
-              <div class="tl-title">Closing and certificate</div>
-              <p class="tl-body">Closing call, certificate, and an invitation into the alumni community &mdash; as a returning mentor, a committee volunteer, or both.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-          </ol>
-        </div>
-
-        <!-- ---------------------- TIER 2 · MENTOR ---------------------- -->
-        <div class="je-journey" data-tier="2" data-role="mentor"
-             data-total="13 to 15 hours across 12 weeks — roughly an hour and a quarter a week. The 1:1 sessions themselves are about half of that.">
-          <h4><span class="pill pill-t2">Tier 2</span> Your journey as a <strong>mentor</strong></h4>
-          <ol class="timeline">
-            <li data-label="Sign up &amp; pairing">
-              <div class="tl-when">By 18 Sep</div>
-              <div class="tl-title">Sign up and pairing</div>
-              <p class="tl-body">Interest form, then your pairing email the week of 14 Sep with a few days to request a re-match.</p>
-              <span class="tl-time">30 min</span>
-            </li>
-            <li data-label="Joint kickoff">
-              <div class="tl-when">Mon 21 Sep</div>
-              <div class="tl-title">Joint kickoff</div>
-              <p class="tl-body">Structure, expectations, the resource hub, hours tracking, and the graduation presentation your mentee will be working toward.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-            <li data-label="First meeting">
-              <div class="tl-when">Week of 21 Sep</div>
-              <div class="tl-title">First meeting</div>
-              <p class="tl-body">Introductions, an ice-breaker, expectations and SMART goals. Your mentee schedules it &mdash; that is by design, so let them.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-            <li data-label="1:1 sessions">
-              <div class="tl-when">Bi-weekly &middot; 5 Oct to 7 Dec</div>
-              <div class="tl-title">Regular 1:1 sessions</div>
-              <p class="tl-body">Progress against goals, adjusted as you go. Most pairs land on bi-weekly.</p>
-              <span class="tl-time">6 &times; 60 min</span>
-            </li>
-            <li data-label="Mentor meetups">
-              <div class="tl-when">Weeks of 12 Oct, 2 Nov, 30 Nov</div>
-              <div class="tl-title">Mentor meetups</div>
-              <p class="tl-body">A ten-minute chalk talk from one mentor, then open discussion. There is a sign-up sheet for who speaks &mdash; take a slot.</p>
-              <span class="tl-time">3 &times; 45 min</span>
-            </li>
-            <li data-label="Joint presentations">
-              <div class="tl-when">Alternate weeks</div>
-              <div class="tl-title">Joint presentations</div>
-              <p class="tl-body">Co-present with your mentee once, and attend the others when you can.</p>
-              <span class="tl-time">~2 hrs incl. prep</span>
-            </li>
-            <li data-label="Dry run">
-              <div class="tl-when">Weeks of 16 Nov &ndash; 30 Nov</div>
-              <div class="tl-title">Presentation dry run</div>
-              <p class="tl-body">Coach your mentee through a full rehearsal of their graduation presentation. For a lot of mentees this is the hardest part of the cohort &mdash; <strong>it is the part where you matter most</strong>.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-            <li data-label="Feedback">
-              <div class="tl-when">19 Oct and 14 Dec</div>
-              <div class="tl-title">Feedback</div>
-              <p class="tl-body">The same standardized forms both tiers use. Your 1:1 hours are self-reported here.</p>
-              <span class="tl-time">2 &times; 10 min</span>
-            </li>
-            <li data-label="Graduation">
-              <div class="tl-when">Weeks of 7 and 14 Dec</div>
-              <div class="tl-title">Graduation and closing</div>
-              <p class="tl-body">Be in the room for your mentee&rsquo;s presentation, then the closing call and your certificate with logged hours.</p>
-              <span class="tl-time">60 min</span>
-            </li>
-          </ol>
-        </div>
-
-      </div><!-- /.je-source -->
-    </div><!-- /.journey-explorer -->
-  </section>
-
-  <!-- =========================== CALENDAR ============================ -->
-  <section class="section" id="calendar">
-    <div class="section-head">
-      <p class="eyebrow">The whole thing on one page</p>
-      <h2>Cohort calendar</h2>
+      </div>
     </div>
-    <p>Group sessions and joint presentations alternate, so there is one community touchpoint every week. <span class="muted">Scroll the table sideways on a narrow screen &mdash; or print this page, it is laid out for it.</span></p>
-
-    <div class="row" style="margin-top:var(--s-3)">
-      <span class="pill pill-t1">Tier 1 &middot; Group</span>
-      <span class="pill pill-t2">Tier 2 &middot; 1:1</span>
-      <span class="pill pill-joint">Both tiers</span>
-    </div>
-
-    <div class="table-scroll" style="margin-top:var(--s-4)">
-      <table>
-        <caption>All weeks begin on a Monday. Session times are confirmed in your welcome email.</caption>
-        <thead>
-          <tr>
-            <th scope="col">Week</th>
-            <th scope="col">Week of</th>
-            <th scope="col">Tier 1 &middot; Group</th>
-            <th scope="col">Tier 2 &middot; 1:1</th>
-            <th scope="col">Both tiers</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="col-week">0</td><td>14 Sep</td><td class="cell-t1">Welcome email, topic menu published</td><td class="cell-t2">Pairing emails sent, re-match window open</td><td>&mdash;</td></tr>
-          <tr><td class="col-week">1</td><td>21 Sep</td><td class="cell-t1">Group session 1</td><td class="cell-t2">First 1:1 meeting &mdash; goals set</td><td class="cell-joint">Joint kickoff &middot; Mon 21 Sep</td></tr>
-          <tr><td class="col-week">2</td><td>28 Sep</td><td>&mdash;</td><td class="cell-t2">1:1 session</td><td class="cell-joint">Joint presentation 1 + Skilling Series</td></tr>
-          <tr><td class="col-week">3</td><td>5 Oct</td><td class="cell-t1">Group session 2</td><td class="cell-t2">1:1 session</td><td>&mdash;</td></tr>
-          <tr><td class="col-week">4</td><td>12 Oct</td><td>&mdash;</td><td class="cell-t2">1:1 session &middot; mentor meetup 1</td><td class="cell-joint">Joint presentation 2</td></tr>
-          <tr><td class="col-week">5</td><td>19 Oct</td><td class="cell-t1">Group session 3</td><td class="cell-t2">1:1 session</td><td class="cell-joint">Mid-point feedback form</td></tr>
-          <tr><td class="col-week">6</td><td>26 Oct</td><td>&mdash;</td><td class="cell-t2">1:1 session</td><td class="cell-joint">Joint presentation 3 + Skilling Series</td></tr>
-          <tr><td class="col-week">7</td><td>2 Nov</td><td class="cell-t1">Group session 4</td><td class="cell-t2">1:1 session &middot; mentor meetup 2</td><td>&mdash;</td></tr>
-          <tr><td class="col-week">8</td><td>9 Nov</td><td>&mdash;</td><td class="cell-t2">1:1 session</td><td class="cell-joint">Joint presentation 4</td></tr>
-          <tr><td class="col-week">9</td><td>16 Nov</td><td class="cell-t1">Group session 5</td><td class="cell-t2">1:1 session</td><td class="cell-joint">Presentation dry runs begin</td></tr>
-          <tr><td class="col-week">10</td><td>23 Nov</td><td>&mdash;</td><td class="cell-t2">1:1 session &mdash; light week</td><td class="cell-joint">Joint presentation 5 + Skilling Series</td></tr>
-          <tr><td class="col-week">11</td><td>30 Nov</td><td class="cell-t1">Group session 6</td><td class="cell-t2">1:1 session &middot; mentor meetup 3</td><td>&mdash;</td></tr>
-          <tr><td class="col-week">12</td><td>7 Dec</td><td>&mdash;</td><td class="cell-t2">Final 1:1 session &middot; wrap-up</td><td class="cell-joint">Graduation presentations</td></tr>
-          <tr><td class="col-week">13</td><td>14 Dec</td><td>&mdash;</td><td>&mdash;</td><td class="cell-joint">Closing call &amp; certificates by Wed 16 Dec &middot; final feedback</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small muted" style="margin-top:var(--s-3)">Week 10 falls on US Thanksgiving week and is deliberately light. Joint presentations run 30 minutes: a Tier 2 mentee or a mentor&ndash;mentee pair presents, and Tier 1 mentees come to see what the next tier looks like.</p>
   </section>
 
   <!-- ========================= PRESENTATION ========================== -->
   <section class="section" id="presentation">
     <div class="spotlight">
-      <p class="eyebrow">The one thing that is not optional</p>
-      <h3 style="margin-top:var(--s-3)">Every 1:1 mentee presents before graduating</h3>
-      <p style="margin-top:var(--s-4)">Five to ten minutes. A win, a project, a lesson learned, or something you have figured out in the Power Platform. It runs in the joint presentation slot, so both tiers are watching &mdash; and you will have rehearsed it with your mentor first.</p>
-      <p style="margin-top:var(--s-3)">We added this because in every cohort the same handful of women speak and everyone else stays quiet. The point is not a polished keynote. The point is that you leave this cohort having spoken in front of the group, once, with people who wanted you to do well.</p>
+      <p class="eyebrow">Being seen is half of Power Skills</p>
+      <h3 style="margin-top:var(--s-3)">Every Circuit Member presents once</h3>
+      <p style="margin-top:var(--s-4)">Take a slot at the <strong>Community Showcase</strong> (Week 9) or the <strong>Graduation</strong> stage (Week 12), on a topic you choose: a project you built, a hard-won lesson, or a win worth sharing. It&rsquo;s not a test. It&rsquo;s a low-stakes, high-support room to practice being seen.</p>
       <div class="grid grid-3" style="margin-top:var(--s-5)">
-        <div class="card">
-          <h4>Prep starts in November</h4>
-          <p class="small">Weeks of 16 and 30 Nov, with your mentor. You are not doing this alone.</p>
-        </div>
-        <div class="card">
-          <h4>Dry run first</h4>
-          <p class="small">Full rehearsal with your mentor, and you can take it to a mentor meetup too.</p>
-        </div>
-        <div class="card">
-          <h4>Or co-present</h4>
-          <p class="small">Pairs can present together. If going solo feels like too much, this is the answer.</p>
-        </div>
+        <div class="card"><h4>About five minutes</h4><p class="small">Shorter and specific beats long and general. Pick something you&rsquo;re proud of, not what you think will impress.</p></div>
+        <div class="card"><h4>Dry run first</h4><p class="small">Your Circuit&rsquo;s Session 6 demo day exists exactly for this.</p></div>
+        <div class="card"><h4>Name the FOPO</h4><p class="small">Fear of other people&rsquo;s opinions is normal. Try the 90-second breathing routine from Week 5, name it, and do it anyway.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ========================= CERTIFICATES ========================== -->
-  <section class="section" id="certificates">
+  <!-- ============================ AFTER ============================== -->
+  <section class="section">
     <div class="section-head">
-      <p class="eyebrow">Recognition</p>
-      <h2>Hours and certificates</h2>
+      <p class="eyebrow">What comes out of it</p>
+      <h2>A plan, not a certificate in a folder</h2>
     </div>
-    <p>Everyone who finishes gets a digital certificate. Mentors&rsquo; certificates carry their logged hours, because volunteering here should be visible on a CV and on LinkedIn.</p>
+    <div class="grid grid-2">
+      <div class="card">
+        <h4>What you walk away with</h4>
+        <ul>
+          <li>A lead Growth Current and a goal you actually worked</li>
+          <li>Something built or practiced live &mdash; an agent, a dashboard, a pitch</li>
+          <li>A Microsoft Learn milestone toward your next certification</li>
+          <li>Your Circuit-mates or mentor, plus new connections from the Power Hour</li>
+          <li>A personal action plan, and a clear answer to &ldquo;what&rsquo;s next?&rdquo;</li>
+        </ul>
+      </div>
+      <div class="card card-t2">
+        <h4>Your path to Power Pairs</h4>
+        <p class="small muted">Finishing a full Circuit makes you eligible to apply for Power Pairs next cohort. That means:</p>
+        <ol class="steps" style="margin-top:var(--s-2)">
+          <li><strong>Show up</strong> &mdash; the Power Hour and your Circuit sessions, live or on the recording within 48 hours.</li>
+          <li><strong>Present</strong> &mdash; one Showcase slot or the Graduation stage.</li>
+          <li><strong>Reflect</strong> &mdash; submit the End-of-Cohort Assessment.</li>
+          <li><strong>Get a nod</strong> &mdash; your Circuit Lead completes her reflection on your growth.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
+  <!-- ========================== COMMITMENTS ========================== -->
+  <section class="section" id="commitments">
+    <div class="section-head">
+      <p class="eyebrow">What we ask</p>
+      <h2>The commitment, in plain words</h2>
+    </div>
+    <p>Everyone signs a short Commitment Agreement at kickoff. It&rsquo;s not a contract &mdash; it&rsquo;s so everyone starts with the same expectations.</p>
+    <div class="grid grid-3" style="margin-top:var(--s-4)">
+      <div class="card card-joint">
+        <h4>Everyone</h4>
+        <ul class="small">
+          <li>Attend the Power Hour live, or catch the recording within 48 hours</li>
+          <li>Show up prepared, and give notice if you need to reschedule</li>
+          <li>Keep what&rsquo;s shared confidential</li>
+          <li>Bring one real goal or question each time</li>
+          <li>Give honest feedback in Weeks 6 and 12</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Mentors &amp; Circuit Leads</h4>
+        <ul class="small">
+          <li>Be reliable, within the time you said you could give</li>
+          <li>Be honest over flattering</li>
+          <li>Make introductions from your network when they help</li>
+          <li>Keep it scoped &mdash; a guide and a connector, not a therapist or a hiring manager</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Mentees &amp; Circuit Members</h4>
+        <ul class="small">
+          <li>Drive the agenda &mdash; don&rsquo;t wait to be asked</li>
+          <li>Do the follow-through between conversations</li>
+          <li>Respect your mentor&rsquo;s time and the boundaries you agree</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== GLOSSARY ============================ -->
+  <section class="section" id="glossary">
+    <div class="section-head">
+      <p class="eyebrow">New this cohort</p>
+      <h2>Glossary</h2>
+    </div>
+    <p>AMPLIFY brings some new names. Power, current and connection run through all of them.</p>
     <div class="table-scroll" style="margin-top:var(--s-4)">
       <table>
-        <caption>What earns a certificate. Thresholds are provisional and will be confirmed before the mid-point.</caption>
-        <thead><tr><th scope="col">You are a&hellip;</th><th scope="col">Threshold</th><th scope="col">Plus</th></tr></thead>
+        <thead><tr><th scope="col">Term</th><th scope="col">What it means</th></tr></thead>
         <tbody>
-          <tr><td><span class="pill pill-t1">Tier 1</span> mentor</td><td>At least <strong>2 of the 6</strong> group sessions</td><td>Final feedback form</td></tr>
-          <tr><td><span class="pill pill-t1">Tier 1</span> mentee</td><td>At least <strong>4 of the 6</strong> group sessions <em class="muted">(provisional)</em></td><td>Both feedback forms</td></tr>
-          <tr><td><span class="pill pill-t2">Tier 2</span> mentor</td><td><strong>8 logged hours</strong> <em class="muted">(provisional)</em></td><td>Both feedback forms</td></tr>
-          <tr><td><span class="pill pill-t2">Tier 2</span> mentee</td><td>Deliver your <strong>graduation presentation</strong></td><td>Both feedback forms</td></tr>
+          <tr><td><strong>AMPLIFY</strong></td><td>The twelve-week mentoring program as a whole.</td></tr>
+          <tr><td><strong>The Power Hour</strong></td><td>The weekly one-hour session for the whole community.</td></tr>
+          <tr><td><strong>Lesson</strong></td><td>The teaching segment inside the Power Hour.</td></tr>
+          <tr><td><strong>Connect Round</strong></td><td>The networking part of the Power Hour &mdash; breakouts, speed-connects or pod time.</td></tr>
+          <tr><td><strong>Showcase</strong></td><td>Week 9&rsquo;s open-mic Power Hour, where members present a project, a win or a lesson.</td></tr>
+          <tr><td><span class="pill pill-t1">Circuits</span></td><td>The group mentoring track: one mentor and a small pod of mentees.</td></tr>
+          <tr><td><strong>Circuit Lead</strong></td><td>The mentor who leads a Circuit.</td></tr>
+          <tr><td><strong>Circuit Member</strong></td><td>A mentee in a Circuit.</td></tr>
+          <tr><td><span class="pill pill-t2">Power Pairs</span></td><td>The 1:1 mentoring track: one mentor, one mentee.</td></tr>
+          <tr><td><strong>Growth Currents</strong></td><td>Power Skills, Platform Power and Current Connections &mdash; the three areas you pick a lead from.</td></tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="grid grid-2" style="margin-top:var(--s-4)">
-      <div class="card">
-        <h4>What counts as an hour</h4>
-        <ul>
-          <li>Group sessions, mentor meetups, joint presentations, kickoff and closing &mdash; taken from the meeting attendance report</li>
-          <li>1:1 sessions &mdash; self-reported on the mid-point and final forms</li>
-          <li>Skilling Series events &mdash; from the skilling attendance report</li>
-        </ul>
-        <p class="small muted">You do not need to track anything yourself beyond your 1:1 count. Turn up and fill in the two forms.</p>
-      </div>
-      <div class="card">
-        <h4>What you get at the end</h4>
-        <ul>
-          <li>A digital certificate, issued by 16 December</li>
-          <li>Your total hours on it, if you are a mentor</li>
-          <li>A LinkedIn shout-out graphic</li>
-          <li>Tier 1 mentors: eligibility to mentor 1:1 next cohort</li>
-          <li>Tier 1 mentees: the option to opt into Tier 2 next cohort</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ EVENTS ============================= -->
-  <section class="section" id="events">
-    <div class="section-head">
-      <p class="eyebrow">While the cohort is running</p>
-      <h2>Where to find us in person</h2>
-    </div>
-    <p>Four community events fall inside Cohort 2. None of them are required &mdash; but if you are going anyway, there are WiP people to find, and a conference is a very efficient place to meet your mentor&rsquo;s network.</p>
-
-    <div class="events" style="margin-top:var(--s-4)">
-      <div class="card">
-        <div class="event">
-          <div class="event-date"><div class="event-mon">Oct</div><div class="event-day">11&ndash;15</div></div>
-          <div class="event-body">
-            <h4>Community Summit North America</h4>
-            <p class="event-meta">Nashville, TN</p>
-            <p class="small muted" style="margin-top:var(--s-2)">WiP there: Delia Zuniga, Geetha Sivasailam</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="event">
-          <div class="event-date"><div class="event-mon">Oct</div><div class="event-day">27&ndash;29</div></div>
-          <div class="event-body">
-            <h4>Power Platform Community Conference</h4>
-            <p class="event-meta">Las Vegas, NV</p>
-            <p class="small muted" style="margin-top:var(--s-2)">WiP there: Danielle Moon, Delia Zuniga, Geetha Sivasailam, Drew Tattam, Sravani Seethi</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="event">
-          <div class="event-date"><div class="event-mon">Nov</div><div class="event-day">17&ndash;20</div></div>
-          <div class="event-body">
-            <h4>Microsoft Ignite</h4>
-            <p class="event-meta">San Francisco, CA</p>
-            <p class="small muted" style="margin-top:var(--s-2)">WiP there: Delia Zuniga</p>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="event">
-          <div class="event-date"><div class="event-mon">Nov&ndash;Dec</div><div class="event-day">30&ndash;3</div></div>
-          <div class="event-body">
-            <h4>ESPC 2026</h4>
-            <p class="event-meta">Amsterdam, Netherlands</p>
-            <p class="small muted" style="margin-top:var(--s-2)">WiP there: Danielle Moon</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="callout" style="margin-top:var(--s-4)">
-      <p class="callout-title">Skilling Series &mdash; monthly, all cohort long</p>
-      <p class="small">Community sessions run every month through the rest of the year, on Power Apps, Power Automate, Power BI, Dataverse, AI Builder and Copilot. Autumn dates are announced on the <a href="https://www.linkedin.com/company/women-in-power-platform">Women in Power LinkedIn page</a> and go out in every cohort email. They slot into weeks 2, 6 and 10 of the calendar above.</p>
     </div>
   </section>
 
@@ -699,38 +620,29 @@
       <p class="eyebrow">Questions</p>
       <h2>Things people ask</h2>
     </div>
-
     <details class="faq">
-      <summary>What if I miss a session?</summary>
-      <p>Nothing breaks. Certificates use an attendance threshold, not perfect attendance. In Tier 2, tell your mentor rather than going quiet &mdash; that is the only thing that genuinely derails a pairing.</p>
+      <summary>Can I choose Power Pairs instead of a Circuit?</summary>
+      <p>Placement is based on mentoring experience, not preference. If you&rsquo;re new to Women in Power or to mentoring, you start in a Circuit &mdash; and finishing it is what makes you eligible to apply for Power Pairs next cohort.</p>
     </details>
     <details class="faq">
-      <summary>My 1:1 pairing does not feel right. Can I change it?</summary>
-      <p>Yes. There is a re-match window in the few days after pairing emails go out the week of 14 September. Ask early; it is much easier then than in November.</p>
+      <summary>What if I can&rsquo;t make the Power Hour live?</summary>
+      <p>Times rotate across four slots so nobody always misses it, and every session is recorded and posted within 24 hours. Catching the recording within 48 hours counts as attending.</p>
     </details>
     <details class="faq">
-      <summary>The session times do not work for my time zone.</summary>
-      <p>We are alternating group session times across zones this cohort so everyone can attend at least half of them live. For 1:1s, you and your mentor set your own time &mdash; time zone is one of the inputs to the matching.</p>
-    </details>
-    <details class="faq">
-      <summary>I signed up but I am not getting the emails.</summary>
-      <p>Check your junk folder first &mdash; a lot of program mail landed there last cohort. Your confirmation email lists the exact senders to add to your contacts. Do that, and everything after it will arrive.</p>
-    </details>
-    <details class="faq">
-      <summary>I&rsquo;m in Tier 1. Can I still get 1:1 time with a mentor?</summary>
-      <p>Yes &mdash; coffee chats. Any mentor on the Tier 1 list is there because they said yes to being asked. Reach out directly, any time in the cohort.</p>
+      <summary>What if I miss a Circuit session or a Power Pair conversation?</summary>
+      <p>Move it, don&rsquo;t cancel it &mdash; and give notice. Six sessions is a floor, not a ceiling; pairs and Circuits can meet more often if they want.</p>
     </details>
     <details class="faq">
       <summary>Do I really have to present?</summary>
-      <p>If you are a Tier 2 mentee, yes. Five minutes counts, you can co-present with your mentor, and you will have done a full dry run first. It is the one requirement we are firm on, and it is the thing graduates most often say mattered.</p>
+      <p>If you&rsquo;re a Circuit Member, yes &mdash; once, for about five minutes, at the Showcase or at Graduation, on a topic you pick. You&rsquo;ll have done a dry run at your Circuit&rsquo;s demo day first. Power Pair mentees are warmly invited to take a Showcase slot too.</p>
     </details>
     <details class="faq">
-      <summary>Can I attend the other tier&rsquo;s sessions?</summary>
-      <p>The joint presentations and the Skilling Series are open to everyone in the cohort, and that is where the two tiers deliberately overlap. Group sessions and 1:1s stay within their tier.</p>
+      <summary>I signed up but I&rsquo;m not getting the emails.</summary>
+      <p>Check your junk folder first. Your confirmation email lists the senders to add to your contacts &mdash; do that, and everything after it will arrive.</p>
     </details>
     <details class="faq">
-      <summary>What happens after 16 December?</summary>
-      <p>Tier 1 graduates can opt into Tier 2 for the next cohort on the final feedback form. Tier 2 graduates are invited into the alumni community and can come back as a mentor, a committee volunteer or a community speaker. Most of our mentors came up this way.</p>
+      <summary>What happens after 9 December?</summary>
+      <p>Circuit graduates can apply for Power Pairs next cohort. Everyone can come back as a mentor or Circuit Lead &mdash; the End-of-Cohort Assessment asks. Most of our mentors came up through the program themselves.</p>
     </details>
   </section>
 
@@ -741,23 +653,10 @@
       <h2>Who to ask</h2>
     </div>
     <div class="grid grid-3">
-      <div class="card card-t1">
-        <h4>Tier 1 &middot; Group mentoring</h4>
-        <p class="small muted">Session format, breakout topics, hosting a room, attendance. Led by <strong>Drew Tattam</strong>.</p>
-      </div>
-      <div class="card card-t2">
-        <h4>Tier 2 &middot; 1:1 mentoring</h4>
-        <p class="small muted">Pairings, re-matches, mentor meetups, presentations. Led by <strong>Shriya Malhotra</strong>.</p>
-      </div>
-      <div class="card">
-        <h4>Anything else</h4>
-        <p class="small muted">Forms, emails you are not receiving, certificates &mdash; reply to any program email and it will reach the committee.</p>
-      </div>
+      <div class="card card-t1"><h4>Circuits</h4><p class="small muted">Circuit placement, Circuit Leads, sessions and demo day. Led by <strong>Drew Tattam</strong>.</p></div>
+      <div class="card card-t2"><h4>Power Pairs</h4><p class="small muted">Matching, re-matches and conversations. Led by <strong>Shriya Malhotra</strong>.</p></div>
+      <div class="card"><h4>Anything else</h4><p class="small muted">The Power Hour, the schedule, emails you&rsquo;re not receiving &mdash; reply to any program email and it reaches the committee.</p></div>
     </div>
-    <p class="row" style="margin-top:var(--s-5)">
-      <a class="btn btn-primary" href="../">About WiP mentoring</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/company/women-in-power-platform">Follow us on LinkedIn</a>
-    </p>
   </section>
 
 </div>
@@ -771,10 +670,10 @@
       <p class="small" style="margin-top:var(--s-2)">Women in Power is a program of the Women&rsquo;s Innovation Network.</p>
     </div>
     <nav aria-label="Footer">
-      <a href="../">Mentoring</a>
-      <a href="./">Cohort 2 &mdash; Autumn 2026</a>
       <a href="../../">Women in Power</a>
       <a href="../../about/">About us</a>
+      <a href="../">Mentoring</a>
+      <a href="./">AMPLIFY &mdash; Cohort 2</a>
       <a href="../mentorship-prompts/">Mentor-Ask Prompt Pack</a>
       <a href="https://www.linkedin.com/company/women-in-power-platform">Women in Power on LinkedIn</a>
     </nav>

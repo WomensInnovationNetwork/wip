@@ -89,6 +89,9 @@
       var key = j.getAttribute('data-tier') + '-' + j.getAttribute('data-role');
       map[key] = {
         total: j.getAttribute('data-total') || '',
+        // The label shown on the step's pill, e.g. "Circuits · Circuit Member".
+        // Owned by the markup so renaming a track never means editing JS.
+        name:  j.getAttribute('data-name') || '',
         steps: Array.prototype.map.call(j.querySelectorAll('li'), function (li) {
           var title = text(li, '.tl-title');
           return {
@@ -167,8 +170,7 @@
       elTitle.textContent = s.title;
       elBody.innerHTML    = s.body;
       elTags.innerHTML    = (s.time ? '<span class="pill pill-neutral">' + s.time + '</span>' : '') +
-        '<span class="pill ' + (tier === '1' ? 'pill-t1' : 'pill-t2') + '">Tier ' + tier +
-        ' &middot; ' + (role === 'mentor' ? 'Mentor' : 'Mentee') + '</span>';
+        (j.name ? '<span class="pill ' + (tier === '1' ? 'pill-t1' : 'pill-t2') + '">' + j.name + '</span>' : '');
       elCount.textContent = 'Step ' + (index + 1) + ' of ' + steps.length;
       if (elTotal) elTotal.textContent = j.total;
       if (bar) bar.style.width = ((index + 1) / steps.length * 100) + '%';

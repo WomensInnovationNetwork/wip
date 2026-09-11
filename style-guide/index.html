@@ -72,7 +72,7 @@
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us &mdash; and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>1.8</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>1.9</strong></span><span>Updated <strong>3 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -216,7 +216,10 @@
         <tbody>
           <tr><td>The program</td><td>Women in Power, then WiP</td><td>WIP, W.I.P., Women In Power</td></tr>
           <tr><td>The non-profit</td><td>Women&rsquo;s Innovation Network (WIN)</td><td>WIN Network, Womens Innovation Network</td></tr>
-          <tr><td>The tiers</td><td>Tier 1 (group mentoring), Tier 2 (1:1 mentoring)</td><td>Beginner tier, advanced tier</td></tr>
+          <tr><td>The program</td><td>AMPLIFY &mdash; all caps, no &ldquo;the&rdquo;</td><td>Amplify, the AMPLIFY program</td></tr>
+          <tr><td>The tracks</td><td>Circuits (group mentoring), Power Pairs (1:1 mentoring)</td><td>Tier 1, Tier 2, beginner track, advanced track</td></tr>
+          <tr><td>The roles</td><td>Circuit Lead, Circuit Member; mentor and mentee in Power Pairs</td><td>Room host, group mentee</td></tr>
+          <tr><td>The weekly session</td><td>The Power Hour</td><td>Joint session, joint presentation, the call</td></tr>
           <tr><td>Spelling</td><td><strong>US English</strong> &mdash; program, organization, color, standardize</td><td>programme, organisation, colour (British forms)</td></tr>
           <tr><td>Dates</td><td>Mon 21 Sep 2026 &middot; spell the month</td><td>9/21/26 (ambiguous for a global community)</td></tr>
           <tr><td>Times</td><td>Always name the time zone, and give a second zone where we can</td><td>&ldquo;7am&rdquo; with no zone</td></tr>
@@ -326,9 +329,10 @@
     <h3 style="margin-top: var(--s-5)">Tier colors</h3>
     <p class="small muted">Fixed meanings. Once a reader learns violet = group and blue = 1:1, every calendar and table reads faster. Do not reassign these.</p>
     <div class="swatches" style="margin-top:var(--s-3)">
-      <div class="sw"><div class="sw-chip" style="background:#7a2e8e"></div><div class="sw-meta"><div class="sw-name">Tier 1 &mdash; group</div><div class="sw-var">--tier1<br>#7A2E8E</div></div></div>
-      <div class="sw"><div class="sw-chip" style="background:#0f6fa8"></div><div class="sw-meta"><div class="sw-name">Tier 2 &mdash; 1:1</div><div class="sw-var">--tier2<br>#0F6FA8</div></div></div>
-      <div class="sw"><div class="sw-chip" style="background:#b8127a"></div><div class="sw-meta"><div class="sw-name">Joint &mdash; both</div><div class="sw-var">--joint<br>#B8127A</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#7a2e8e"></div><div class="sw-meta"><div class="sw-name">Circuits &mdash; group</div><div class="sw-var">--tier1<br>#7A2E8E</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#0f6fa8"></div><div class="sw-meta"><div class="sw-name">Power Pairs &mdash; 1:1</div><div class="sw-var">--tier2<br>#0F6FA8</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#b8127a"></div><div class="sw-meta"><div class="sw-name">Power Hour &mdash; everyone</div><div class="sw-var">--joint<br>#B8127A</div></div></div>
+    <p class="small muted" style="margin-top:var(--s-3)"><strong>Why the tokens still say &ldquo;tier&rdquo;.</strong> AMPLIFY renamed the tracks, but <code>--tier1</code>, <code>--tier2</code>, <code>.pill-t1</code> and friends keep their names &mdash; they&rsquo;re internal, and renaming them would touch every page for no visible change. The meanings moved with the program: <code>tier1</code> is Circuits, <code>tier2</code> is Power Pairs, <code>joint</code> is the Power Hour. Never show the word &ldquo;tier&rdquo; to a member.</p>
     </div>
 
     <h3 style="margin-top: var(--s-5)">Neutrals</h3>
@@ -411,8 +415,8 @@
       <div class="type-row"><span class="lbl">--t-xl &middot; h3</span><span style="font-family:var(--font-display);font-weight:700;font-size:var(--t-xl);color:var(--win-navy)">What we track for you</span></div>
       <div class="type-row"><span class="lbl">--t-lg &middot; lead</span><span class="lead">Twelve weeks, about an hour a week, and you leave having spoken in front of the group.</span></div>
       <div class="type-row"><span class="lbl">--t-base &middot; body</span><span>Each session opens with a short framing, then you pick a breakout room by topic.</span></div>
-      <div class="type-row"><span class="lbl">--t-sm &middot; small</span><span class="small muted">Certificates are issued to mentors who attend at least two of the six group sessions.</span></div>
-      <div class="type-row" style="border:0"><span class="lbl">.eyebrow</span><span class="eyebrow">Tier 1 &middot; group mentoring</span></div>
+      <div class="type-row"><span class="lbl">--t-sm &middot; small</span><span class="small muted">Every session is recorded and posted within 24 hours.</span></div>
+      <div class="type-row" style="border:0"><span class="lbl">.eyebrow</span><span class="eyebrow">Circuits &middot; group mentoring</span></div>
     </div>
 
     <ul class="rule-list" style="margin-top:var(--s-4)">
@@ -458,14 +462,14 @@
     <h3 style="margin-top:var(--s-5)">Pills</h3>
     <div class="demo">
       <div class="row">
-        <span class="pill pill-t1">Tier 1 &middot; Group</span>
-        <span class="pill pill-t2">Tier 2 &middot; 1:1</span>
-        <span class="pill pill-joint">Both tiers</span>
+        <span class="pill pill-t1">Circuits</span>
+        <span class="pill pill-t2">Power Pairs</span>
+        <span class="pill pill-joint">Power Hour</span>
         <span class="pill pill-neutral">Optional</span>
         <span class="pill pill-ok">Confirmed</span>
       </div>
     </div>
-    <div class="code">&lt;span class=<span class="t">"pill pill-t1"</span>&gt;Tier 1 · Group&lt;/span&gt;</div>
+    <div class="code">&lt;span class=<span class="t">"pill pill-t1"</span>&gt;Circuits&lt;/span&gt;</div>
 
     <h3 style="margin-top:var(--s-5)">Buttons</h3>
     <div class="demo">
@@ -480,11 +484,11 @@
     <h3 style="margin-top:var(--s-5)">Card and stat</h3>
     <div class="grid grid-3">
       <div class="card card-t1">
-        <div class="card-hd"><h4>Group mentoring</h4><span class="pill pill-t1">Tier 1</span></div>
+        <div class="card-hd"><h4>Group mentoring</h4><span class="pill pill-t1">Circuits</span></div>
         <p class="small muted">Six bi-weekly hour-long sessions, topic-based breakout rooms, open to anyone new to the program.</p>
       </div>
-      <div class="stat"><div class="stat-num">12</div><div class="stat-label">weeks, kickoff to certificates</div></div>
-      <div class="stat"><div class="stat-num">~1 hr</div><div class="stat-label">per week, both tiers</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">weeks, kickoff to Graduation</div></div>
+      <div class="stat"><div class="stat-num">~90 min</div><div class="stat-label">a week, either track</div></div>
     </div>
 
     <h3 style="margin-top:var(--s-5)">Callout</h3>
@@ -509,8 +513,8 @@
         </li>
         <li>
           <div class="tl-when">Mon 21 Sep</div>
-          <div class="tl-title">Joint kickoff</div>
-          <p class="tl-body">Both tiers together: what the program is, how the two tiers connect, and the full calendar.</p>
+          <div class="tl-title">Kickoff: Plug In</div>
+          <p class="tl-body">The first Power Hour: meet your Circuit or Power Pair, and see the whole twelve weeks.</p>
           <span class="tl-time">60 min</span>
         </li>
       </ul>
@@ -519,7 +523,7 @@
     <h3 style="margin-top:var(--s-5)">Steps</h3>
     <div class="demo">
       <ol class="steps">
-        <li><strong>Pick your tier.</strong> New to WiP mentoring? Tier 1. Done a cohort before? Tier 2.</li>
+        <li><strong>Find your track.</strong> New to WiP or to mentoring? A Circuit. Done a cohort before? Power Pairs.</li>
         <li><strong>Watch for the confirmation email.</strong> Save the senders it lists.</li>
         <li><strong>Show up to kickoff.</strong> Everything else follows from there.</li>
       </ol>
@@ -538,12 +542,12 @@
 
     <h3 style="margin-top:var(--s-5)">FAQ</h3>
     <details class="faq">
-      <summary>Can I do both tiers at once?</summary>
-      <p>No &mdash; you are placed in one tier for the cohort. Tier 1 graduates move into Tier 2 next time round.</p>
+      <summary>Can I be in both tracks at once?</summary>
+      <p>No &mdash; you are in one track for the cohort. Circuit graduates can apply for Power Pairs next time round.</p>
     </details>
     <details class="faq">
       <summary>What if I miss a session?</summary>
-      <p>Nothing breaks. Certificates have an attendance threshold rather than a perfect-attendance requirement.</p>
+      <p>Nothing breaks. Catch the recording within 48 hours and it counts.</p>
     </details>
 
     <h3 style="margin-top:var(--s-5)">People</h3>
@@ -661,10 +665,10 @@
     <p class="small muted">Always wrap a table in <code>.table-scroll</code> so wide calendars scroll inside their own box instead of breaking the page on a phone.</p>
     <div class="table-scroll">
       <table>
-        <thead><tr><th>Week</th><th>Tier 1</th><th>Tier 2</th><th>Joint</th></tr></thead>
+        <thead><tr><th>Week</th><th>Circuits</th><th>Power Pairs</th><th>Power Hour</th></tr></thead>
         <tbody>
-          <tr><td class="col-week">Wk 1</td><td class="cell-t1">Group session 1</td><td class="cell-t2">First 1:1 meeting</td><td class="cell-joint">Kickoff</td></tr>
-          <tr><td class="col-week">Wk 2</td><td>&mdash;</td><td class="cell-t2">1:1 session</td><td class="cell-joint">Joint presentation 1</td></tr>
+          <tr><td class="col-week">Wk 1</td><td class="cell-t1">Goal-setting</td><td class="cell-t2">Kickoff conversation</td><td class="cell-joint">Plug In</td></tr>
+          <tr><td class="col-week">Wk 2</td><td>&mdash;</td><td>&mdash;</td><td class="cell-joint">Claiming Your Power</td></tr>
         </tbody>
       </table>
     </div>
@@ -679,7 +683,7 @@
     <p>Non-negotiable. A member page nobody can read is a page that failed.</p>
     <ul class="rule-list">
       <li><strong>Contrast.</strong> Body ink on the page ground clears WCAG AA comfortably. The bright ribbon colors are <em>decoration</em> &mdash; never put small text in cyan or magenta on white.</li>
-      <li><strong>Never color alone.</strong> Tier colors always carry a text label too (&ldquo;Tier 1 &middot; Group&rdquo;), because roughly one in twelve readers will not see the hue difference.</li>
+      <li><strong>Never color alone.</strong> Track colors always carry a text label too (&ldquo;Circuits&rdquo;, &ldquo;Power Pairs&rdquo;), because roughly one in twelve readers will not see the hue difference.</li>
       <li><strong>Focus is visible.</strong> A 3px violet ring, defined once globally. Do not remove outlines.</li>
       <li><strong>Real semantics.</strong> One <code>h1</code>, headings in order, <code>&lt;table&gt;</code> for tabular data, <code>&lt;details&gt;</code> for FAQs. Every page opens with a skip link.</li>
       <li><strong>Reduced motion respected.</strong> Transitions and smooth scroll switch off automatically.</li>
@@ -715,6 +719,7 @@
       <table>
         <thead><tr><th>Version</th><th>Date</th><th>What changed</th></tr></thead>
         <tbody>
+          <tr><td>1.9</td><td>10 Sep 2026</td><td>AMPLIFY terminology: Circuits, Power Pairs, Circuit Lead and Member, the Power Hour. Track token names kept; meanings remapped. Examples rewritten.</td></tr>
           <tr><td>1.8</td><td>8 Sep 2026</td><td>PPCC 2026 event page. Announcement bar component. Two new ribbon tokens after finding the bright ribbon fails contrast behind and inside text &mdash; cyan 2.06:1 on white, violet 2.81:1 on dark.</td></tr>
           <tr><td>1.7</td><td>5 Sep 2026</td><td>Nav ordered so live pages lead and placeholders follow, with quieter "soon" styling. Heading and no-JS fixes on the cohort page.</td></tr>
           <tr><td>1.6</td><td>5 Sep 2026</td><td>About us page added, with the .person and .roster components. Roster is data-driven and tested at 1,000 names. Drop-in leadership photos.</td></tr>
@@ -741,7 +746,7 @@
     </div>
     <nav aria-label="Footer">
       <a href="../mentoring/">Mentoring</a>
-      <a href="../mentoring/2026-cohort2/">Cohort 2 &mdash; Autumn 2026</a>
+      <a href="../mentoring/2026-cohort2/">AMPLIFY &mdash; Cohort 2</a>
       <a href="../">Women in Power</a>
       <a href="../mentoring/mentorship-prompts/">Mentor-Ask Prompt Pack</a>
       <a href="https://www.linkedin.com/company/women-in-power-platform">Women in Power on LinkedIn</a>
