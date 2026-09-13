@@ -6,12 +6,12 @@
 <title>Style Guide — Women in Power</title>
 <meta name="description" content="The living style guide for Women in Power member pages: brand foundations, voice, color, type and components.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#042559">
+<meta name="theme-color" content="#3b0b4e">
 <!-- Apply the reader's stored theme before first paint, so there is no flash. -->
 <script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/wip.css">
 <style>
   /* Style-guide-only presentation. Nothing here belongs in wip.css. */
@@ -72,7 +72,7 @@
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us &mdash; and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>1.10</strong></span><span>Updated <strong>11 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>2.0</strong></span><span>Updated <strong>12 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -331,6 +331,28 @@
       <div class="sw"><div class="sw-chip" style="background:#12b6a8"></div><div class="sw-meta"><div class="sw-name">Teal</div><div class="sw-var">--wip-teal<br>#12B6A8</div></div></div>
     </div>
 
+    <h3 style="margin-top: var(--s-5)">Bloom &mdash; the warm layer</h3>
+    <p class="small muted">Added in 2.0 to give the site warmth without clutter. Neutrals moved from cool blue-gray to ivory and plum-black, and these five carry the rest.</p>
+    <div class="swatches" style="margin-top:var(--s-3)">
+      <div class="sw"><div class="sw-chip" style="background:var(--blush)"></div><div class="sw-meta"><div class="sw-name">Blush</div><div class="sw-var">--blush<br>grounds and washes</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:var(--petal)"></div><div class="sw-meta"><div class="sw-name">Petal</div><div class="sw-var">--petal<br>the bloom motif</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:var(--rose)"></div><div class="sw-meta"><div class="sw-name">Rose</div><div class="sw-var">--rose<br>eyebrows, the warm word</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:var(--gold)"></div><div class="sw-meta"><div class="sw-name">Champagne</div><div class="sw-var">--gold<br>hairlines only</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:var(--solid)"></div><div class="sw-meta"><div class="sw-name">Plum solid</div><div class="sw-var">--solid<br>filled buttons</div></div></div>
+    </div>
+    <div class="callout" style="margin-top:var(--s-4)">
+      <p class="callout-title">Using Bloom without overdoing it</p>
+      <ul class="small" style="margin-top:var(--s-2)">
+        <li><strong>The motif is original line art</strong>, drawn in <code>wip.css</code> (section 5b). Do not swap in stock florals or anyone else&rsquo;s pattern.</li>
+        <li><strong>Masthead:</strong> automatic. One large bloom turns very slowly (four minutes a turn, off for reduced motion); one small rose bloom sits beside it.</li>
+        <li><strong>Sections:</strong> automatic. Every <code>.section-head</code> opens with a small bloom and a fading hairline.</li>
+        <li><strong><code>.panel-bloom</code></strong> &mdash; a blush panel with a watermark. <em>One per page</em>, for the invitation or call to action.</li>
+        <li><strong><code>.card-bloom</code></strong> &mdash; a bloom in a card&rsquo;s top corner. For a row of equals, like the three pillars. Not on every card.</li>
+        <li><strong>The warm word:</strong> wrap one word of a heading in <code>&lt;em&gt;</code> and it sets in rose italic. One per heading at most, and only where the word carries the feeling.</li>
+        <li><strong>Champagne is 2.7:1</strong> on ivory. Hairlines and gradients only, never text.</li>
+      </ul>
+    </div>
+
     <h3 style="margin-top: var(--s-5)">Tier colors</h3>
     <p class="small muted">Fixed meanings. Once a reader learns violet = group and blue = 1:1, every calendar and table reads faster. Do not reassign these.</p>
     <div class="swatches" style="margin-top:var(--s-3)">
@@ -412,12 +434,12 @@
       <p class="eyebrow">07</p>
       <h2>Type</h2>
     </div>
-    <p><strong>Poppins</strong> for display &mdash; it matches the geometry of the WIN wordmark. <strong>Inter</strong> for body. Both fall back to Segoe UI and the system stack, so a page still reads correctly if webfonts fail.</p>
+    <p><strong>Fraunces</strong> for headings, names and big numerals &mdash; a soft, modern serif, and most of the site&rsquo;s warmth. <strong>Poppins</strong> for the small uppercase labels, buttons and UI, where its geometry matches the WIN wordmark. <strong>Inter</strong> for body. Each falls back to a system face (Georgia, Segoe UI), so a page still reads correctly if webfonts fail.</p>
 
     <div class="demo" style="margin-top:var(--s-4)">
-      <div class="type-row"><span class="lbl">--t-3xl &middot; h1</span><span style="font-family:var(--font-display);font-weight:800;font-size:var(--t-3xl);color:var(--win-navy);line-height:1.08">Cohort 2 starts 21 September</span></div>
-      <div class="type-row"><span class="lbl">--t-2xl &middot; h2</span><span style="font-family:var(--font-display);font-weight:700;font-size:var(--t-2xl);color:var(--win-navy)">Your mentee journey</span></div>
-      <div class="type-row"><span class="lbl">--t-xl &middot; h3</span><span style="font-family:var(--font-display);font-weight:700;font-size:var(--t-xl);color:var(--win-navy)">What we track for you</span></div>
+      <div class="type-row"><span class="lbl">--t-3xl &middot; h1</span><span style="font-family:var(--font-serif);font-weight:600;font-size:var(--t-3xl);color:var(--heading);line-height:1.08">Cohort 2 starts <em style="color:var(--rose);font-weight:500">23 September</em></span></div>
+      <div class="type-row"><span class="lbl">--t-2xl &middot; h2</span><span style="font-family:var(--font-serif);font-weight:600;font-size:var(--t-2xl);color:var(--heading)">Your mentee journey</span></div>
+      <div class="type-row"><span class="lbl">--t-xl &middot; h3</span><span style="font-family:var(--font-serif);font-weight:600;font-size:var(--t-xl);color:var(--heading)">What you walk away with</span></div>
       <div class="type-row"><span class="lbl">--t-lg &middot; lead</span><span class="lead">Twelve weeks, about an hour a week, and you leave having spoken in front of the group.</span></div>
       <div class="type-row"><span class="lbl">--t-base &middot; body</span><span>Each session opens with a short framing, then you pick a breakout room by topic.</span></div>
       <div class="type-row"><span class="lbl">--t-sm &middot; small</span><span class="small muted">Every session is recorded and posted within 24 hours.</span></div>
@@ -726,6 +748,7 @@
         <tbody>
           <tr><td>1.9</td><td>10 Sep 2026</td><td>AMPLIFY terminology: Circuits, Power Pairs, Circuit Lead and Member, the Power Hour. Track token names kept; meanings remapped. Examples rewritten.</td></tr>
           <tr><td>1.10</td><td>11 Sep 2026</td><td>Rounded-fill ribbons, <code>--ribbon-round</code> and <code>--ribbon-pill</code>. Step numbers, avatars, the journey dot, back-to-top and accent buttons no longer use the diagonal ribbon, which looked squashed in round shapes and put white text on cyan. Gradients on bordered shapes are now drawn from the border box, which removes a thin strip that showed along the top and left edges.</td></tr>
+          <tr><td>2.0</td><td>12 Sep 2026</td><td><strong>Bloom.</strong> Warm neutrals (ivory, plum-black ink, aubergine headings), a warm dark theme, Fraunces serif headings with an optional rose-italic warm word, an original line-drawn bloom motif (masthead, section dividers, <code>.panel-bloom</code>, <code>.card-bloom</code>), plum masthead and solid buttons, plum-tinted shadows, softer radii. Also fixed bold text disappearing on dark bands in light mode.</td></tr>
           <tr><td>1.8</td><td>8 Sep 2026</td><td>PPCC 2026 event page. Announcement bar component. Two new ribbon tokens after finding the bright ribbon fails contrast behind and inside text &mdash; cyan 2.06:1 on white, violet 2.81:1 on dark.</td></tr>
           <tr><td>1.7</td><td>5 Sep 2026</td><td>Nav ordered so live pages lead and placeholders follow, with quieter "soon" styling. Heading and no-JS fixes on the cohort page.</td></tr>
           <tr><td>1.6</td><td>5 Sep 2026</td><td>About us page added, with the .person and .roster components. Roster is data-driven and tested at 1,000 names. Drop-in leadership photos.</td></tr>

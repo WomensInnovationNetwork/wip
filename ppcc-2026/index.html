@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Women in Power at PPCC 2026 — Las Vegas</title>
 <meta name="description" content="Four Women in Power activations across all three days of the Power Platform Community Conference, 27–29 October 2026 at the MGM Grand, Las Vegas. Open to everyone, including allies.">
-<meta name="theme-color" content="#042559">
+<meta name="theme-color" content="#3b0b4e">
 <meta property="og:title" content="Women in Power at PPCC 2026">
 <meta property="og:description" content="A luncheon, a night market meetup, a panel and a roundtable. Three days, four ways in. MGM Grand, Las Vegas, 27–29 October 2026.">
 <meta property="og:type" content="website">
 <script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/wip.css">
 <style>
   /* ======================================================================
@@ -39,9 +39,10 @@
   .hero::before {
     content: ""; position: absolute; inset: 0; z-index: -1;
     background:
-      radial-gradient(900px 520px at 84% -10%, rgba(215,32,208,.40), transparent 62%),
-      radial-gradient(760px 460px at 2% 6%, rgba(0,197,237,.26), transparent 58%),
-      linear-gradient(160deg, rgba(4,37,89,.92) 0%, rgba(5,11,23,.97) 74%);
+      var(--bloom-rose) right -60px bottom -90px / 240px 240px no-repeat,
+      radial-gradient(900px 520px at 84% -10%, rgba(236,112,168,.38), transparent 62%),
+      radial-gradient(760px 460px at 2% 6%, rgba(255,184,150,.20), transparent 58%),
+      linear-gradient(160deg, rgba(59,11,78,.95) 0%, rgba(15,18,54,.98) 74%);
   }
 
   .hero-grid { display: grid; gap: var(--s-6); align-items: center; }
@@ -61,7 +62,7 @@
   .hero-figure::before {
     content: ""; position: absolute; inset: -14px -14px -18px -14px; z-index: -1;
     border-radius: calc(var(--r-xl) + 12px);
-    background: var(--ribbon-diag); opacity: .5; filter: blur(26px);
+    background: linear-gradient(135deg, #e7a3bb, #ae12a7 55%, #f1d09f); opacity: .45; filter: blur(28px);
   }
   .hero-figure figcaption {
     margin-top: var(--s-3); font-size: var(--t-xs); color: rgba(255,255,255,.6);
@@ -85,16 +86,19 @@
   }
   .hero h1 {
     font-size: clamp(2.4rem, 1.4rem + 4.6vw, 5rem);
-    line-height: .98; letter-spacing: -.035em; font-weight: 800;
+    line-height: 1.02; letter-spacing: -.02em; font-weight: 600;
     margin-top: var(--s-5); max-width: 16ch; color: #fff;
   }
   .hero h1 .grad {
-    background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-style: italic; font-weight: 500; padding-right: .06em;
+    background: linear-gradient(90deg, #f7b3cf, #f1d09f); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .hero-sub {
     font-size: clamp(1rem, .95rem + .4vw, 1.25rem);
     color: rgba(255,255,255,.82); max-width: 54ch; margin-top: var(--s-5);
   }
+  /* Base <strong> uses the body ink, which is dark: invisible on this hero. */
+  .hero-sub strong { color: #fff; }
   /* Grid rather than flex: in the narrower left column these were wrapping
      two-then-one, which reads as a mistake. auto-fit keeps them even at any
      width. */
@@ -117,8 +121,8 @@
     backdrop-filter: blur(6px);
   }
   .cd-num {
-    font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; line-height: 1;
-    background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-family: var(--font-serif); font-weight: 600; font-size: 1.9rem; line-height: 1;
+    background: linear-gradient(90deg, #f7b3cf, #f1d09f); -webkit-background-clip: text; background-clip: text; color: transparent;
     font-variant-numeric: tabular-nums;
   }
   .cd-lbl {
@@ -130,11 +134,11 @@
   .day { margin-top: var(--s-6); }
   .day-head { display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; margin-bottom: var(--s-4); }
   .day-num {
-    font-family: var(--font-display); font-weight: 800; font-size: clamp(2.2rem, 1.6rem + 2vw, 3.4rem);
-    line-height: 1; letter-spacing: -.04em;
-    background: var(--ribbon-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-family: var(--font-serif); font-weight: 600; font-size: clamp(2.4rem, 1.7rem + 2.2vw, 3.8rem);
+    line-height: 1; letter-spacing: -.02em;
+    background: var(--bloom-text); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .day-date { font-family: var(--font-display); font-weight: 700; font-size: var(--t-xl); color: var(--heading); }
+  .day-date { font-family: var(--font-serif); font-weight: 600; font-size: var(--t-xl); color: var(--heading); }
   .day-tag {
     font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
     letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
@@ -147,7 +151,7 @@
   }
   .slot + .slot { margin-top: var(--s-4); }
   .slot::before {
-    content: ""; position: absolute; inset: 0 auto 0 0; width: 6px; background: var(--ribbon-diag);
+    content: ""; position: absolute; inset: 0 auto 0 0; width: 6px; background: linear-gradient(180deg, var(--petal), var(--rose));
   }
   .slot-when {
     font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
@@ -213,14 +217,15 @@
   .allies {
     border-radius: var(--r-xl); padding: var(--s-6);
     background:
-      radial-gradient(700px 320px at 88% -30%, rgba(0,197,237,.26), transparent 62%),
+      var(--bloom-rose) right -60px top -60px / 220px 220px no-repeat,
+      radial-gradient(700px 320px at 88% -30%, var(--mast-glow-1), transparent 62%),
       linear-gradient(150deg, var(--mast-a) 0%, var(--mast-b) 100%);
     color: #fff; position: relative; overflow: hidden; border: 1px solid var(--line);
   }
   .allies::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--ribbon); }
   .allies h2, .allies h3 { color: #fff; }
   .allies p { color: rgba(255,255,255,.82); }
-  .allies .eyebrow { color: var(--grad-cyan); }
+  .allies .eyebrow { color: #f7b3cf; }
 
   /* --- Take-aways ------------------------------------------------------ */
   .takeaways { display: grid; gap: var(--s-4); }
@@ -228,8 +233,8 @@
   @media (min-width: 1000px) { .takeaways { grid-template-columns: repeat(4, 1fr); } }
   .takeaway { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); }
   .takeaway .n {
-    font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; line-height: 1;
-    background: var(--ribbon-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-family: var(--font-serif); font-weight: 600; font-size: 1.9rem; line-height: 1;
+    background: var(--bloom-text); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .takeaway h4 { margin-top: var(--s-3); }
   .takeaway p { font-size: 0.9375rem; color: var(--ink-2); margin-top: var(--s-2); }
@@ -242,7 +247,7 @@
     .hero-figure img { border-color: #ccc; box-shadow: none; }
     .hero-figure figcaption { color: #555; }
     .hero h1, .hero-sub, .hero-facts, .hero-facts strong { color: #000; }
-    .hero h1 .grad { -webkit-text-fill-color: #042559; color: #042559; }
+    .hero h1 .grad { -webkit-text-fill-color: #3b0b4e; color: #3b0b4e; }
     .countdown, .hero-cta { display: none; }
     .slot { box-shadow: none; break-inside: avoid; }
   }
