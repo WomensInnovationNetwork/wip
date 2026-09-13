@@ -77,6 +77,8 @@
      dark BAND (the masthead kicker, the hero headline) keeps --ribbon;
      those grounds are dark in both themes. */
   --ribbon-text: linear-gradient(90deg, #07688a 0%, #6a2db4 52%, #ae12a7 100%);
+  /* Warm gradient text for serif numerals. 10.9 / 5.9 on white. */
+  --bloom-text:  linear-gradient(90deg, #5a1f7a 0%, #b3346b 100%);
 
   /* --- Brand: Women in Power accents ----------------------------------- */
   --wip-plum:        #3b0b4e;
@@ -84,9 +86,25 @@
   --wip-pink:        #ff2e9e;
   --wip-teal:        #12b6a8;
 
+  /* --- Brand: Bloom — the warm layer ------------------------------------
+     Added in v2.0 to give the site warmth without adding clutter. Blush and
+     petal are grounds and washes; rose carries small text; gold is a
+     hairline detail only (it is 2.7:1 on ivory, so never for words). The
+     bloom motif itself is drawn in CSS further down (section 5b). */
+  --blush:           #f9e6e8;
+  --blush-2:         #fdf2ef;
+  --petal:           #e7a3bb;
+  --rose:            #b3346b;   /* 5.5:1 on --bg, 4.8:1 on --blush */
+  --gold:            #b8925a;
+  --gold-soft:       #ecdcc0;
+
   /* --- Themed: accent used for eyebrows, markers, link hover ----------- */
-  --accent:          #d91c81;
-  --link:            var(--win-navy-soft);
+  --accent:          #b3346b;
+  --link:            #7b2667;
+  /* Solid fills behind white text: primary buttons, the selected role
+     and roster filter. Was WIN navy; plum carries the warmth. */
+  --solid:           #3b1554;   /* white on it 13:1 */
+  --solid-hover:     #57206f;
 
   /* --- Themed: tier colors -------------------------------------------- */
   --tier1:           #7a2e8e;   /* Group mentoring */
@@ -100,22 +118,26 @@
   --joint-line:      #f4cfe3;
 
   /* --- Themed: neutrals ------------------------------------------------ */
-  --ink:             #10192e;
-  --ink-2:           #414d68;
-  --ink-3:           #6b7590;
-  --heading:         #042559;   /* headings; goes near-white in dark      */
-  --line:            #e2e7f1;
-  --line-soft:       #eef1f7;
-  --surface:         #ffffff;
-  --surface-2:       #f7f9fd;
-  --bg:              #f4f7fc;
-  --sticky-bg:       rgba(244, 247, 252, .94);
+  /* Warm neutrals: ivory grounds with a breath of blush, plum-black ink.
+     The old cool blue-grays read as corporate; these read as paper. */
+  --ink:             #231a2c;
+  --ink-2:           #4d4357;
+  --ink-3:           #6a5f73;   /* 5.7:1 on --bg, 5.0:1 on --blush */
+  --heading:         #2a1540;   /* aubergine; goes near-white in dark     */
+  --line:            #eee1dc;
+  --line-soft:       #f6ece8;
+  --surface:         #fffdfb;
+  --surface-2:       #fbf3ef;
+  --bg:              #fcf8f5;
+  --sticky-bg:       rgba(252, 248, 245, .94);
 
   /* --- Themed: masthead ------------------------------------------------ */
-  --mast-a:          #042559;
-  --mast-b:          #02132e;
-  --mast-glow-1:     rgba(215, 32, 208, .28);
-  --mast-glow-2:     rgba(0, 197, 237, .24);
+  /* WiP plum into midnight indigo, lit with rose and peach rather than
+     the old cyan. The cyan still arrives in the ribbon along the base. */
+  --mast-a:          #3b0b4e;
+  --mast-b:          #0f1236;
+  --mast-glow-1:     rgba(236, 112, 168, .30);
+  --mast-glow-2:     rgba(255, 184, 150, .16);
 
   /* --- Themed: semantic ------------------------------------------------ */
   --ok:              #1f7a56;  --ok-wash:   #e9f5ef;  --ok-line: #cbe6da;
@@ -124,6 +146,9 @@
 
   /* --- Type ------------------------------------------------------------ */
   --font-display: "Poppins", "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  /* Headings. A soft, modern serif is where most of the warmth comes
+     from; Poppins stays for the small uppercase labels, buttons and UI. */
+  --font-serif:   "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-body:    "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono:    ui-monospace, "Cascadia Code", Consolas, monospace;
 
@@ -140,10 +165,11 @@
   --s-5: 1.5rem;  --s-6: 2rem;    --s-7: 3rem;    --s-8: 4rem;
 
   /* --- Radius, shadow, motion ------------------------------------------ */
-  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 22px; --r-pill: 999px;
-  --sh-1: 0 1px 2px rgba(4, 37, 89, .06);
-  --sh-2: 0 6px 20px rgba(4, 37, 89, .07);
-  --sh-3: 0 18px 44px rgba(4, 37, 89, .12);
+  --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px; --r-pill: 999px;
+  /* Shadows tinted plum, not navy-gray, so cards glow rather than float. */
+  --sh-1: 0 1px 2px rgba(74, 28, 58, .05);
+  --sh-2: 0 8px 24px rgba(74, 28, 58, .07);
+  --sh-3: 0 20px 48px rgba(74, 28, 58, .12);
   --ease: cubic-bezier(.22, .61, .36, 1);
 
   --wrap: 940px;
@@ -160,29 +186,34 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --accent:      #ff5cb8;
-    --link:        #7fb6ff;
+    --accent:      #ff86bb;
+    --link:        #f2acd6;
+    --solid:       #74338f;  --solid-hover: #8a42a8;
+    --blush:       #2b1b28;  --blush-2: #21161f;
+    --petal:       #e58bb0;  --rose:    #ff8fbf;
+    --gold:        #d8b67c;  --gold-soft: #4a3b28;
     --ribbon-text: linear-gradient(90deg, #00c5ed 0%, #b27ce8 52%, #ff6bd6 100%);
+    --bloom-text:  linear-gradient(90deg, #d9a9f2 0%, #ff8fbf 100%);
 
     --tier1:       #cf95e6;  --tier1-wash: #241a33;  --tier1-line: #3d2b52;
     --tier2:       #6ec6f2;  --tier2-wash: #0f2436;  --tier2-line: #1f3f59;
     --joint:       #ff74bb;  --joint-wash: #2c1428;  --joint-line: #4a2340;
 
-    --ink:         #e9eef8;
-    --ink-2:       #b6c1d8;
-    --ink-3:       #8a97b3;
-    --heading:     #f2f6ff;
-    --line:        #22304d;
-    --line-soft:   #1a2740;
-    --surface:     #121c31;
-    --surface-2:   #0d1728;
-    --bg:          #080e1c;
-    --sticky-bg:   rgba(8, 14, 28, .94);
+    --ink:         #f5eef3;
+    --ink-2:       #cfc2d2;
+    --ink-3:       #a797ac;
+    --heading:     #fdf5fa;
+    --line:        #35283d;
+    --line-soft:   #281e2f;
+    --surface:     #1c1523;
+    --surface-2:   #17111d;
+    --bg:          #110c16;
+    --sticky-bg:   rgba(17, 12, 22, .94);
 
-    --mast-a:      #0b1730;
-    --mast-b:      #050b17;
-    --mast-glow-1: rgba(215, 32, 208, .22);
-    --mast-glow-2: rgba(0, 197, 237, .18);
+    --mast-a:      #2c0a3a;
+    --mast-b:      #0a0a1f;
+    --mast-glow-1: rgba(236, 112, 168, .24);
+    --mast-glow-2: rgba(255, 184, 150, .12);
 
     --ok:      #5fd3a3;  --ok-wash:     #0f2a20;  --ok-line: #1f4d3a;
     --warn:    #f0c274;  --warn-wash:   #2c2313;
@@ -197,29 +228,34 @@
 }
 
 :root[data-theme="dark"] {
-  --accent:      #ff5cb8;
-  --link:        #7fb6ff;
+  --accent:      #ff86bb;
+  --link:        #f2acd6;
+  --solid:       #74338f;  --solid-hover: #8a42a8;
+  --blush:       #2b1b28;  --blush-2: #21161f;
+  --petal:       #e58bb0;  --rose:    #ff8fbf;
+  --gold:        #d8b67c;  --gold-soft: #4a3b28;
     --ribbon-text: linear-gradient(90deg, #00c5ed 0%, #b27ce8 52%, #ff6bd6 100%);
+    --bloom-text:  linear-gradient(90deg, #d9a9f2 0%, #ff8fbf 100%);
 
   --tier1:       #cf95e6;  --tier1-wash: #241a33;  --tier1-line: #3d2b52;
   --tier2:       #6ec6f2;  --tier2-wash: #0f2436;  --tier2-line: #1f3f59;
   --joint:       #ff74bb;  --joint-wash: #2c1428;  --joint-line: #4a2340;
 
-  --ink:         #e9eef8;
-  --ink-2:       #b6c1d8;
-  --ink-3:       #8a97b3;
-  --heading:     #f2f6ff;
-  --line:        #22304d;
-  --line-soft:   #1a2740;
-  --surface:     #121c31;
-  --surface-2:   #0d1728;
-  --bg:          #080e1c;
-  --sticky-bg:   rgba(8, 14, 28, .94);
+  --ink:         #f5eef3;
+  --ink-2:       #cfc2d2;
+  --ink-3:       #a797ac;
+  --heading:     #fdf5fa;
+  --line:        #35283d;
+  --line-soft:   #281e2f;
+  --surface:     #1c1523;
+  --surface-2:   #17111d;
+  --bg:          #110c16;
+  --sticky-bg:   rgba(17, 12, 22, .94);
 
-  --mast-a:      #0b1730;
-  --mast-b:      #050b17;
-  --mast-glow-1: rgba(215, 32, 208, .22);
-  --mast-glow-2: rgba(0, 197, 237, .18);
+  --mast-a:      #2c0a3a;
+  --mast-b:      #0a0a1f;
+  --mast-glow-1: rgba(236, 112, 168, .24);
+  --mast-glow-2: rgba(255, 184, 150, .12);
 
   --ok:      #5fd3a3;  --ok-wash:     #0f2a20;  --ok-line: #1f4d3a;
   --warn:    #f0c274;  --warn-wash:   #2c2313;
@@ -331,6 +367,9 @@ main { padding-bottom: var(--s-8); }
 }
 .masthead::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--ribbon); }
 .masthead a { color: #fff; }
+/* Base <strong> is set in the body ink, which is dark in light mode and
+   vanishes on this ground. Same for the page-level dark bands. */
+.masthead strong, .masthead b, .spotlight strong, .allies strong { color: #fff; }
 
 .masthead-top { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; margin-bottom: var(--s-6); }
 .masthead-right { display: flex; align-items: center; gap: var(--s-5); flex-wrap: wrap; }
@@ -386,11 +425,13 @@ main { padding-bottom: var(--s-8); }
 .theme-toggle svg { width: 15px; height: 15px; flex: none; }
 
 .masthead h1, .masthead h2, .masthead h3, .masthead h4 { color: #fff; }
-.masthead h1 { font-family: var(--font-display); font-size: var(--t-3xl); font-weight: 800; line-height: 1.08; letter-spacing: -.02em; max-width: 20ch; }
+.masthead h1 { font-family: var(--font-serif); font-size: calc(var(--t-3xl) * 1.08); font-weight: 600; line-height: 1.06; letter-spacing: -.02em; max-width: 20ch; }
+.masthead h1 em { color: #f7b3cf; }
 .masthead .kicker {
   font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
   letter-spacing: .16em; text-transform: uppercase;
-  background: var(--ribbon); -webkit-background-clip: text; background-clip: text; color: transparent;
+  /* Rose into champagne: the ribbon's cyan read cold against the plum. */
+  background: linear-gradient(90deg, #f7b3cf, #f1d09f); -webkit-background-clip: text; background-clip: text; color: transparent;
   margin-bottom: var(--s-3);
 }
 .masthead .standfirst { font-size: var(--t-lg); color: rgba(255,255,255,.8); max-width: 62ch; margin-top: var(--s-4); }
@@ -414,7 +455,7 @@ main { padding-bottom: var(--s-8); }
   :root:not([data-theme="light"]) .logo-plate:not(.dark) img { background: #fff; padding: 6px 10px; border-radius: 4px; }
 }
 .site-footer nav { display: flex; flex-direction: column; gap: var(--s-2); }
-.site-footer .tagline { font-family: var(--font-display); font-weight: 600; color: var(--heading); }
+.site-footer .tagline { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: var(--t-lg); color: var(--heading); }
 
 /* --- Section sub-navigation ---------------------------------------------
    Sits directly under the masthead on pages inside a pillar. Deliberately
@@ -466,10 +507,124 @@ main { padding-bottom: var(--s-8); }
 @media print { .announce { display: none; } }
 
 /* ==========================================================================
+   5b. BLOOM — the warm layer
+   An original line-drawn bloom, used sparingly: one large and one small in
+   the masthead, a small one opening every section, a watermark on warm
+   panels. The large masthead bloom turns very slowly (a nod to a flower
+   spinner), and stops for anyone who prefers reduced motion.
+
+   Everything here is decoration: aria-hidden by construction (pseudo-
+   elements and backgrounds), never behind body text at more than a whisper.
+   ========================================================================== */
+
+:root {
+  --bloom-line:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-64 -64 128 128'%3E %3Cdefs%3E %3Cpath id='a' d='M0 -9 C -11 -22 -11 -45 0 -61 C 11 -45 11 -22 0 -9 Z'/%3E %3Cpath id='b' d='M0 -7 C -6 -15 -6 -27 0 -36 C 6 -27 6 -15 0 -7 Z'/%3E %3Cpath id='v' d='M0 -14 L0 -52'/%3E %3C/defs%3E %3Cg fill='none' stroke='%23ffffff' stroke-width='.42' stroke-linecap='round'%3E %3Cuse href='%23a' transform='rotate(0)'/%3E%3Cuse href='%23a' transform='rotate(45)'/%3E%3Cuse href='%23a' transform='rotate(90)'/%3E%3Cuse href='%23a' transform='rotate(135)'/%3E%3Cuse href='%23a' transform='rotate(180)'/%3E%3Cuse href='%23a' transform='rotate(225)'/%3E%3Cuse href='%23a' transform='rotate(270)'/%3E%3Cuse href='%23a' transform='rotate(315)'/%3E%3Cg stroke-opacity='.55'%3E%3Cuse href='%23v' transform='rotate(0)'/%3E%3Cuse href='%23v' transform='rotate(45)'/%3E%3Cuse href='%23v' transform='rotate(90)'/%3E%3Cuse href='%23v' transform='rotate(135)'/%3E%3Cuse href='%23v' transform='rotate(180)'/%3E%3Cuse href='%23v' transform='rotate(225)'/%3E%3Cuse href='%23v' transform='rotate(270)'/%3E%3Cuse href='%23v' transform='rotate(315)'/%3E%3C/g%3E%3Cuse href='%23b' transform='rotate(22.5)'/%3E%3Cuse href='%23b' transform='rotate(67.5)'/%3E%3Cuse href='%23b' transform='rotate(112.5)'/%3E%3Cuse href='%23b' transform='rotate(157.5)'/%3E%3Cuse href='%23b' transform='rotate(202.5)'/%3E%3Cuse href='%23b' transform='rotate(247.5)'/%3E%3Cuse href='%23b' transform='rotate(292.5)'/%3E%3Cuse href='%23b' transform='rotate(337.5)'/%3E %3Ccircle r='6.2'/%3E%3Ccircle r='2.8'/%3E %3C/g%3E %3Cg fill='%23ffffff'%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(22.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(67.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(112.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(157.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(202.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(247.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(292.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(337.5)'/%3E%3C/g%3E %3C/svg%3E");
+  --bloom-rose:   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-64 -64 128 128'%3E %3Cdefs%3E %3Cpath id='a' d='M0 -9 C -11 -22 -11 -45 0 -61 C 11 -45 11 -22 0 -9 Z'/%3E %3Cpath id='b' d='M0 -7 C -6 -15 -6 -27 0 -36 C 6 -27 6 -15 0 -7 Z'/%3E %3Cpath id='v' d='M0 -14 L0 -52'/%3E %3C/defs%3E %3Cg fill='none' stroke='%23f6a9c8' stroke-width='.6' stroke-linecap='round'%3E %3Cuse href='%23a' transform='rotate(0)'/%3E%3Cuse href='%23a' transform='rotate(45)'/%3E%3Cuse href='%23a' transform='rotate(90)'/%3E%3Cuse href='%23a' transform='rotate(135)'/%3E%3Cuse href='%23a' transform='rotate(180)'/%3E%3Cuse href='%23a' transform='rotate(225)'/%3E%3Cuse href='%23a' transform='rotate(270)'/%3E%3Cuse href='%23a' transform='rotate(315)'/%3E%3Cg stroke-opacity='.55'%3E%3Cuse href='%23v' transform='rotate(0)'/%3E%3Cuse href='%23v' transform='rotate(45)'/%3E%3Cuse href='%23v' transform='rotate(90)'/%3E%3Cuse href='%23v' transform='rotate(135)'/%3E%3Cuse href='%23v' transform='rotate(180)'/%3E%3Cuse href='%23v' transform='rotate(225)'/%3E%3Cuse href='%23v' transform='rotate(270)'/%3E%3Cuse href='%23v' transform='rotate(315)'/%3E%3C/g%3E%3Cuse href='%23b' transform='rotate(22.5)'/%3E%3Cuse href='%23b' transform='rotate(67.5)'/%3E%3Cuse href='%23b' transform='rotate(112.5)'/%3E%3Cuse href='%23b' transform='rotate(157.5)'/%3E%3Cuse href='%23b' transform='rotate(202.5)'/%3E%3Cuse href='%23b' transform='rotate(247.5)'/%3E%3Cuse href='%23b' transform='rotate(292.5)'/%3E%3Cuse href='%23b' transform='rotate(337.5)'/%3E %3Ccircle r='6.2'/%3E%3Ccircle r='2.8'/%3E %3C/g%3E %3Cg fill='%23f6a9c8'%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(22.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(67.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(112.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(157.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(202.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(247.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(292.5)'/%3E%3Ccircle cx='0' cy='-13' r='.9' transform='rotate(337.5)'/%3E%3C/g%3E %3C/svg%3E");
+  --bloom-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E %3Cdefs%3E%3Cellipse id='p' cx='0' cy='-6.3' rx='3.3' ry='4.7'/%3E%3C/defs%3E %3Cuse href='%23p' transform='rotate(0)'/%3E%3Cuse href='%23p' transform='rotate(72)'/%3E%3Cuse href='%23p' transform='rotate(144)'/%3E%3Cuse href='%23p' transform='rotate(216)'/%3E%3Cuse href='%23p' transform='rotate(288)'/%3E%3Ccircle r='1.3'/%3E %3C/svg%3E");
+  --bloom-sprig:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 20'%3E %3Cdefs%3E %3ClinearGradient id='f'%3E%3Cstop offset='0' stop-color='%23000'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='0'/%3E%3C/linearGradient%3E %3Cellipse id='p' cx='0' cy='-5.3' rx='2.8' ry='3.9'/%3E %3C/defs%3E %3Cg transform='translate(10 10)'%3E%3Cuse href='%23p' transform='rotate(0)'/%3E%3Cuse href='%23p' transform='rotate(72)'/%3E%3Cuse href='%23p' transform='rotate(144)'/%3E%3Cuse href='%23p' transform='rotate(216)'/%3E%3Cuse href='%23p' transform='rotate(288)'/%3E%3Ccircle r='1.1'/%3E%3C/g%3E %3Crect x='24' y='9.4' width='108' height='1.2' rx='.6' fill='url(%23f)'/%3E %3C/svg%3E");
+}
+
+/* --- Masthead --------------------------------------------------------- */
+.masthead { overflow: hidden; isolation: isolate; }
+.masthead > .wrap { position: relative; z-index: 1; }
+.masthead::before {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  width: min(620px, 92vw); aspect-ratio: 1;
+  right: max(-150px, -12vw); top: -170px;
+  background: var(--bloom-line) center / contain no-repeat;
+  opacity: .13;
+  animation: bloom-turn 240s linear infinite;
+}
+/* The small rose bloom sits in the background layer stack so it needs no
+   extra element. Listed first, so it paints above the glows. */
+.masthead {
+  background:
+    var(--bloom-rose) right 6% bottom -64px / 180px 180px no-repeat,
+    radial-gradient(1000px 420px at 82% -30%, var(--mast-glow-1), transparent 62%),
+    radial-gradient(760px 360px at 6% -10%, var(--mast-glow-2), transparent 60%),
+    linear-gradient(160deg, var(--mast-a) 0%, var(--mast-b) 100%);
+}
+@media (max-width: 760px) {
+  .masthead::before { top: -120px; right: -45vw; opacity: .10; }
+  .masthead { background-size: 140px 140px, auto, auto, auto; background-position: right -40px bottom -50px, 0 0, 0 0, 0 0; }
+}
+/* A compact masthead (logo and nav only, no headline, e.g. PPCC) is too
+   short for the small bloom: it lands on the nav. */
+.masthead:not(:has(h1)) { background-size: 0 0, auto, auto, auto; }
+.masthead:not(:has(h1))::before { opacity: .08; }
+@keyframes bloom-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .masthead::before { animation: none; } }
+
+/* --- Section divider: bloom and a fading hairline --------------------- */
+.section-head::after {
+  width: 132px; height: 20px; border-radius: 0;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  -webkit-mask: var(--bloom-sprig) left center / contain no-repeat;
+          mask: var(--bloom-sprig) left center / contain no-repeat;
+}
+
+/* --- A warm panel ------------------------------------------------------
+   Blush ground, soft edge, a large bloom watermark in the corner. For one
+   section per page at most: the invitation, the call to action. */
+.panel-bloom {
+  position: relative; overflow: hidden; isolation: isolate;
+  background:
+    radial-gradient(520px 260px at 0% 0%, var(--blush), transparent 70%),
+    var(--blush-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: clamp(var(--s-5), 4vw, var(--s-7));
+}
+.panel-bloom::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  width: 340px; aspect-ratio: 1; right: -90px; bottom: -110px;
+  background: var(--petal); opacity: .28;
+  -webkit-mask: var(--bloom-line) center / contain no-repeat;
+          mask: var(--bloom-line) center / contain no-repeat;
+}
+.panel-bloom > * + * { margin-top: var(--s-4); }
+
+/* --- A small bloom in a card's top corner ------------------------------ */
+.card-bloom { position: relative; overflow: hidden; }
+.card-bloom::after {
+  content: ""; position: absolute; pointer-events: none;
+  width: 120px; aspect-ratio: 1; right: -38px; top: -38px;
+  background: var(--petal); opacity: .38;
+  -webkit-mask: var(--bloom-line) center / contain no-repeat;
+          mask: var(--bloom-line) center / contain no-repeat;
+  transition: transform .8s var(--ease), opacity .3s var(--ease);
+}
+.card-bloom:hover::after { transform: rotate(30deg); opacity: .55; }
+
+/* --- Inline bloom mark, e.g. before the footer tagline ------------------ */
+.bloom-mark {
+  display: inline-block; width: .95em; height: .95em; vertical-align: -.08em;
+  background: linear-gradient(135deg, var(--petal), var(--rose));
+  -webkit-mask: var(--bloom-filled) center / contain no-repeat;
+          mask: var(--bloom-filled) center / contain no-repeat;
+}
+.site-footer .tagline::before {
+  content: ""; display: inline-block; width: .9em; height: .9em;
+  margin-right: .45em; vertical-align: -.06em;
+  background: linear-gradient(135deg, var(--petal), var(--rose));
+  -webkit-mask: var(--bloom-filled) center / contain no-repeat;
+          mask: var(--bloom-filled) center / contain no-repeat;
+}
+
+@media print {
+  .masthead::before, .panel-bloom::after, .card-bloom::after { display: none; }
+  .panel-bloom { background: none; border: 0; padding: 0; }
+}
+
+/* ==========================================================================
    6. TYPOGRAPHY
    ========================================================================== */
 
-h1, h2, h3, h4, h5 { font-family: var(--font-display); font-weight: 700; line-height: 1.2; letter-spacing: -.015em; color: var(--heading); }
+h1, h2, h3, h4, h5 { font-family: var(--font-serif); font-weight: 600; line-height: 1.18; letter-spacing: -.01em; color: var(--heading); font-optical-sizing: auto; }
+h5 { font-family: var(--font-display); }
+/* An <em> inside a heading is the one warm word: italic, in rose.
+   Use it once per heading at most, on the word that carries the feeling. */
+h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; color: var(--rose); }
 h2 { font-size: var(--t-2xl); }
 h3 { font-size: var(--t-xl); }
 h4 { font-size: var(--t-lg); font-weight: 600; }
@@ -519,12 +674,10 @@ code { font-family: var(--font-mono); font-size: .88em; background: var(--surfac
   text-decoration: none; cursor: pointer;
   transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease);
 }
-.btn-primary { background: var(--win-navy); color: #fff; box-shadow: var(--sh-2); }
-.btn-primary:hover { background: var(--win-navy-soft); color: #fff; transform: translateY(-1px); box-shadow: var(--sh-3); }
-:root[data-theme="dark"] .btn-primary { background: #1d4fa8; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { background: #1d4fa8; } }
-.btn-accent { background: var(--ribbon-pill) border-box; color: #fff; box-shadow: var(--sh-2); }
-.btn-accent:hover { color: #fff; transform: translateY(-1px); box-shadow: var(--sh-3); }
+.btn-primary { background: var(--solid); color: #fff; box-shadow: var(--sh-2); }
+.btn-primary:hover { background: var(--solid-hover); color: #fff; transform: translateY(-1px); box-shadow: var(--sh-3); }
+.btn-accent { background: var(--ribbon-pill) border-box; color: #fff; box-shadow: 0 8px 22px rgba(174, 18, 167, .22); }
+.btn-accent:hover { color: #fff; transform: translateY(-1px); box-shadow: 0 12px 30px rgba(174, 18, 167, .32); }
 .btn-ghost { background: transparent; color: var(--heading); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
 @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
@@ -534,12 +687,12 @@ code { font-family: var(--font-mono); font-size: .88em; background: var(--surfac
   border-radius: 0 var(--r-md) var(--r-md) 0; padding: var(--s-4) var(--s-5); box-shadow: var(--sh-1);
 }
 .callout > * + * { margin-top: var(--s-2); }
-.callout-title { font-family: var(--font-display); font-weight: 700; color: var(--heading); }
+.callout-title { font-family: var(--font-serif); font-weight: 600; color: var(--heading); }
 .callout-note { border-left-color: var(--warn); background: var(--warn-wash); box-shadow: none; }
 .callout-note .callout-title { color: var(--warn); }
 
 .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s-4); }
-.stat-num { font-family: var(--font-display); font-size: 1.85rem; font-weight: 800; line-height: 1; background: var(--ribbon-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat-num { font-family: var(--font-serif); font-size: 2.3rem; font-weight: 600; line-height: 1; letter-spacing: -.02em; background: var(--bloom-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: var(--s-2); }
 
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--surface); }
@@ -572,14 +725,14 @@ td.col-week { font-family: var(--font-display); font-weight: 700; color: var(--h
   border-radius: 50%; background: var(--surface); border: 3px solid var(--grad-violet);
 }
 .tl-when { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
-.tl-title { font-family: var(--font-display); font-weight: 600; font-size: var(--t-lg); color: var(--heading); margin-top: 2px; }
+.tl-title { font-family: var(--font-serif); font-weight: 600; font-size: var(--t-lg); color: var(--heading); margin-top: 2px; }
 .tl-body { color: var(--ink-2); font-size: 0.9375rem; margin-top: var(--s-2); }
 .tl-time { display: inline-block; margin-top: var(--s-2); font-size: var(--t-xs); color: var(--ink-3); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-pill); padding: .2em .7em; }
 
 .event { display: flex; gap: var(--s-4); align-items: flex-start; }
 .event-date { flex: none; width: 76px; text-align: center; border-radius: var(--r-md); padding: var(--s-3) var(--s-2); background: var(--surface-2); border: 1px solid var(--line); }
 .event-mon { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
-.event-day { font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; color: var(--heading); line-height: 1.15; }
+.event-day { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--heading); line-height: 1.15; }
 .event-body h4 { color: var(--heading); }
 .event-meta { font-size: var(--t-sm); color: var(--ink-3); margin-top: 2px; }
 
@@ -659,12 +812,12 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 .seg-btn[aria-checked="true"] { background: var(--surface); color: var(--heading); box-shadow: var(--sh-1); }
 .seg-btn[aria-checked="true"][data-tier="1"] { background: var(--tier1); color: #fff; }
 .seg-btn[aria-checked="true"][data-tier="2"] { background: var(--tier2); color: #fff; }
-.seg-btn[aria-checked="true"][data-role]     { background: var(--win-navy); color: #fff; }
+.seg-btn[aria-checked="true"][data-role]     { background: var(--solid); color: #fff; }
 :root[data-theme="dark"] .seg-btn[aria-checked="true"][data-tier] { color: #0b1220; }
-:root[data-theme="dark"] .seg-btn[aria-checked="true"][data-role] { background: #1d4fa8; color: #fff; }
+:root[data-theme="dark"] .seg-btn[aria-checked="true"][data-role] { background: var(--solid); color: #fff; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .seg-btn[aria-checked="true"][data-tier] { color: #0b1220; }
-  :root:not([data-theme="light"]) .seg-btn[aria-checked="true"][data-role] { background: #1d4fa8; color: #fff; }
+  :root:not([data-theme="light"]) .seg-btn[aria-checked="true"][data-role] { background: var(--solid); color: #fff; }
 }
 
 /* --- Summary line ------------------------------------------------------ */
@@ -736,7 +889,7 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 .je-panel:focus-visible { outline-offset: -3px; }
 .je-count { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
 .je-when { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); margin-top: var(--s-3); }
-.je-title { font-family: var(--font-display); font-size: var(--t-xl); font-weight: 700; color: var(--heading); margin-top: var(--s-2); letter-spacing: -.015em; }
+.je-title { font-family: var(--font-serif); font-size: var(--t-xl); font-weight: 600; color: var(--heading); margin-top: var(--s-2); letter-spacing: -.015em; }
 .je-body { color: var(--ink-2); margin-top: var(--s-3); max-width: 68ch; }
 .je-body strong { color: var(--ink); }
 .je-tags { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-4); }
@@ -872,7 +1025,9 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
   width: 72px; height: 72px; border-radius: 50%; flex: none;
   display: grid; place-items: center; overflow: hidden;
   background: var(--ribbon-round); color: #fff;
-  font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; letter-spacing: .02em;
+  font-family: var(--font-serif); font-weight: 600; font-size: 1.45rem; letter-spacing: .01em;
+  /* A blush halo, so a photo reads as framed rather than cut out. */
+  box-shadow: 0 0 0 4px var(--blush), 0 0 0 5px var(--line);
 }
 img.person-avatar { object-fit: cover; }
 
@@ -898,7 +1053,7 @@ img.person-avatar { object-fit: cover; }
   .person-feature .person-links { grid-column: 2; }
   .person-feature .person-links { margin-top: var(--s-3); padding-top: 0; }
 }
-.person-name { font-family: var(--font-display); font-size: var(--t-lg); font-weight: 700; color: var(--heading); }
+.person-name { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; color: var(--heading); }
 .person-role {
   font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 2px;
@@ -931,10 +1086,10 @@ img.person-avatar { object-fit: cover; }
   transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
 }
 .chip:hover { color: var(--heading); border-color: var(--accent); }
-.chip[aria-pressed="true"] { background: var(--win-navy); color: #fff; border-color: transparent; }
-:root[data-theme="dark"] .chip[aria-pressed="true"] { background: #1d4fa8; }
+.chip[aria-pressed="true"] { background: var(--solid); color: #fff; border-color: transparent; }
+:root[data-theme="dark"] .chip[aria-pressed="true"] { background: var(--solid); }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .chip[aria-pressed="true"] { background: #1d4fa8; }
+  :root:not([data-theme="light"]) .chip[aria-pressed="true"] { background: var(--solid); }
 }
 
 .roster-count { width: 100%; font-size: var(--t-sm); color: var(--ink-3); margin: 0; }

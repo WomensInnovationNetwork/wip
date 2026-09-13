@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AMPLIFY, Cohort 2 — Women in Power Mentoring</title>
 <meta name="description" content="AMPLIFY, the Women in Power mentoring program. Cohort 2 runs Wednesday 23 September to Wednesday 9 December 2026: a weekly Power Hour for everyone, plus Circuits or Power Pairs.">
-<meta name="theme-color" content="#042559">
+<meta name="theme-color" content="#3b0b4e">
 <script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/wip.css">
 <style>
   /* Page-specific. Promote into wip.css only if a second page needs it. */
   .keydates { display: grid; gap: var(--s-3); }
   @media (min-width: 700px) { .keydates { grid-template-columns: repeat(3, 1fr); } }
   .keydate { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--joint); border-radius: var(--r-md); padding: var(--s-4); }
-  .keydate .d { font-family: var(--font-display); font-weight: 800; color: var(--heading); font-size: 1.05rem; }
+  .keydate .d { font-family: var(--font-serif); font-weight: 600; color: var(--heading); font-size: 1.2rem; }
   .keydate .l { font-size: var(--t-sm); color: var(--ink-3); margin-top: 2px; }
 
   /* The three pieces of AMPLIFY. The Power Hour spans the row because it
@@ -34,7 +34,7 @@
                  border-radius: var(--r-md); padding: var(--s-3) var(--s-4); }
   .runsheet .t { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
                  letter-spacing: .08em; color: var(--accent); }
-  .runsheet .n { font-family: var(--font-display); font-weight: 700; color: var(--heading); margin-top: 2px; }
+  .runsheet .n { font-family: var(--font-serif); font-weight: 600; color: var(--heading); margin-top: 2px; }
   .runsheet .d { font-size: var(--t-sm); color: var(--ink-3); margin-top: 2px; }
 
   .arcs { display: grid; gap: var(--s-4); }
@@ -49,14 +49,15 @@
 
   .spotlight {
     background:
-      radial-gradient(700px 300px at 85% -40%, rgba(215,32,208,.30), transparent 62%),
+      var(--bloom-rose) right -60px top -60px / 220px 220px no-repeat,
+      radial-gradient(700px 300px at 85% -40%, var(--mast-glow-1), transparent 62%),
       linear-gradient(150deg, var(--mast-a) 0%, var(--mast-b) 100%);
     color: #fff; border-radius: var(--r-xl); padding: var(--s-6);
     position: relative; overflow: hidden; border: 1px solid var(--line);
   }
   .spotlight h3, .spotlight h4 { color: #fff; }
   .spotlight p, .spotlight li { color: rgba(255,255,255,.82); }
-  .spotlight .eyebrow { color: var(--grad-cyan); }
+  .spotlight .eyebrow { color: #f7b3cf; }
   .spotlight::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--ribbon); }
   .spotlight .card { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.16); box-shadow: none; }
   .spotlight .card p { color: rgba(255,255,255,.75); }
