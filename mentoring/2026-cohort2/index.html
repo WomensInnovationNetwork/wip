@@ -43,7 +43,9 @@
              letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
   .arc h4 { margin-top: var(--s-2); }
 
-  td.topic strong { color: var(--heading); font-family: var(--font-display); font-weight: 600; }
+  /* Not ".topic": that name is the global topic-chip pill in wip.css, and on a
+     <td> it turns the cell into an inline-block pill and breaks the row. */
+  td.wk-topic strong { color: var(--heading); font-family: var(--font-display); font-weight: 600; }
   td.read { color: var(--ink-3); font-style: italic; }
   tr.moment td { background: var(--joint-wash); }
 
@@ -231,18 +233,18 @@
         <caption>Every Power Hour is on a Wednesday, in Central time (Eastern +1 hour, Pacific &minus;2). Suggested reads are optional.</caption>
         <thead><tr><th scope="col">Wk</th><th scope="col">Date</th><th scope="col">Time (CT)</th><th scope="col">Power Hour topic</th><th scope="col">Suggested read</th></tr></thead>
         <tbody>
-          <tr class="moment"><td class="col-week">1</td><td>23 Sep</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="topic"><strong>Kickoff: Plug In</strong></td><td class="read">Daring Greatly &mdash; Bren&eacute; Brown</td></tr>
-          <tr><td class="col-week">2</td><td>30 Sep</td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="topic"><strong>Claiming Your Power</strong></td><td class="read">Presence &mdash; Amy Cuddy</td></tr>
-          <tr><td class="col-week">3</td><td>7 Oct</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="topic"><strong>Power Platform 101: Your Superpower</strong></td><td class="read">Broad Band &mdash; Claire L. Evans</td></tr>
-          <tr><td class="col-week">4</td><td>14 Oct</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="topic"><strong>Your Story, Your Brand</strong></td><td class="read">Stand Out &mdash; Dorie Clark</td></tr>
-          <tr><td class="col-week">5</td><td>21 Oct</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="topic"><strong>Presentation Skills I</strong></td><td class="read">Resonate &mdash; Nancy Duarte</td></tr>
-          <tr><td class="col-week">6</td><td>28 Oct</td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="topic"><strong>Data Storytelling with Power BI</strong></td><td class="read">Storytelling with Data &mdash; Cole Nussbaumer Knaflic</td></tr>
-          <tr><td class="col-week">7</td><td>4 Nov</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="topic"><strong>The Art of Advocating for Yourself</strong></td><td class="read">Women Don&rsquo;t Ask &mdash; Linda Babcock &amp; Sara Laschever</td></tr>
-          <tr><td class="col-week">8</td><td>11 Nov</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="topic"><strong>Copilot as Your Career Co-Pilot</strong></td><td class="read">The Big Nine &mdash; Amy Webb</td></tr>
-          <tr class="moment"><td class="col-week">9</td><td>18 Nov</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="topic"><strong>Community Showcase Night</strong></td><td class="read">All These Wonders &mdash; ed. Catherine Burns</td></tr>
-          <tr><td class="col-week">10</td><td>25 Nov<sup>*</sup></td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="topic"><strong>Resumes That Read Like Leadership</strong></td><td class="read">Nice Girls Don&rsquo;t Get the Corner Office &mdash; Lois P. Frankel</td></tr>
-          <tr><td class="col-week">11</td><td>2 Dec</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="topic"><strong>Interviewing with Impact</strong></td><td class="read">Ask for More &mdash; Alexandra Carter</td></tr>
-          <tr class="moment"><td class="col-week">12</td><td>9 Dec</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="topic"><strong>Graduation: The Power Hour Live</strong></td><td class="read">Becoming &mdash; Michelle Obama</td></tr>
+          <tr class="moment"><td class="col-week">1</td><td>23 Sep</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="wk-topic"><strong>Kickoff: Plug In</strong></td><td class="read">Daring Greatly &mdash; Bren&eacute; Brown</td></tr>
+          <tr><td class="col-week">2</td><td>30 Sep</td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="wk-topic"><strong>Claiming Your Power</strong></td><td class="read">Presence &mdash; Amy Cuddy</td></tr>
+          <tr><td class="col-week">3</td><td>7 Oct</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="wk-topic"><strong>Power Platform 101: Your Superpower</strong></td><td class="read">Broad Band &mdash; Claire L. Evans</td></tr>
+          <tr><td class="col-week">4</td><td>14 Oct</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="wk-topic"><strong>Your Story, Your Brand</strong></td><td class="read">Stand Out &mdash; Dorie Clark</td></tr>
+          <tr><td class="col-week">5</td><td>21 Oct</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="wk-topic"><strong>Presentation Skills I</strong></td><td class="read">Resonate &mdash; Nancy Duarte</td></tr>
+          <tr><td class="col-week">6</td><td>28 Oct</td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="wk-topic"><strong>Data Storytelling with Power BI</strong></td><td class="read">Storytelling with Data &mdash; Cole Nussbaumer Knaflic</td></tr>
+          <tr><td class="col-week">7</td><td>4 Nov</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="wk-topic"><strong>The Art of Advocating for Yourself</strong></td><td class="read">Women Don&rsquo;t Ask &mdash; Linda Babcock &amp; Sara Laschever</td></tr>
+          <tr><td class="col-week">8</td><td>11 Nov</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="wk-topic"><strong>Copilot as Your Career Co-Pilot</strong></td><td class="read">The Big Nine &mdash; Amy Webb</td></tr>
+          <tr class="moment"><td class="col-week">9</td><td>18 Nov</td><td class="nowrap">8:00 &ndash; 9:00 AM</td><td class="wk-topic"><strong>Community Showcase Night</strong></td><td class="read">All These Wonders &mdash; ed. Catherine Burns</td></tr>
+          <tr><td class="col-week">10</td><td class="nowrap">25 Nov<sup>*</sup></td><td class="nowrap">11:30 AM &ndash; 12:30 PM</td><td class="wk-topic"><strong>Resumes That Read Like Leadership</strong></td><td class="read">Nice Girls Don&rsquo;t Get the Corner Office &mdash; Lois P. Frankel</td></tr>
+          <tr><td class="col-week">11</td><td>2 Dec</td><td class="nowrap">3:00 &ndash; 4:00 PM</td><td class="wk-topic"><strong>Interviewing with Impact</strong></td><td class="read">Ask for More &mdash; Alexandra Carter</td></tr>
+          <tr class="moment"><td class="col-week">12</td><td>9 Dec</td><td class="nowrap">5:00 &ndash; 6:00 PM</td><td class="wk-topic"><strong>Graduation: The Power Hour Live</strong></td><td class="read">Becoming &mdash; Michelle Obama</td></tr>
         </tbody>
       </table>
     </div>
