@@ -529,8 +529,71 @@
 
   /* ====================================================================== */
 
+
+  /* ======================================================================
+     Reveal on scroll, and arrows that nudge.
+     The styles live in wip.css section 5c. The head of every page adds
+     .rv-on to <html>; this marks each element .in as it comes into view.
+     ====================================================================== */
+
+  var REVEAL_SEL = '.section-head, .card, .stat, .person, .takeaway, .slot, .keydate';
+
+  function initReveal() {
+    var root = document.documentElement;
+    window.WIP_REVEAL = true;
+    if (!root.classList.contains('rv-on')) return;
+    if (!('IntersectionObserver' in window)) { root.classList.remove('rv-on'); return; }
+
+    var els = document.querySelectorAll(REVEAL_SEL);
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    Array.prototype.forEach.call(els, function (el) {
+      // Items in the same row arrive one after another, capped so the
+      // fifth card never waits long.
+      var i = 0, s = el.previousElementSibling;
+      while (s) { if (s.matches(REVEAL_SEL)) i++; s = s.previousElementSibling; }
+      if (i) el.style.setProperty('--rv-delay', Math.min(i, 5) * 80 + 'ms');
+      io.observe(el);
+    });
+
+    window.addEventListener('beforeprint', function () {
+      Array.prototype.forEach.call(els, function (el) { el.classList.add('in'); });
+    });
+  }
+
+  function initArrows() {
+    var cls = { '\u2192': 'arr-r', '\u2190': 'arr-l', '\u2193': 'arr-d' };
+    Array.prototype.forEach.call(document.querySelectorAll('.btn, .je-btn'), function (btn) {
+      Array.prototype.slice.call(btn.childNodes).forEach(function (node) {
+        if (node.nodeType !== 3 || !/[\u2190\u2192\u2193]/.test(node.nodeValue)) return;
+        var frag = document.createDocumentFragment();
+        node.nodeValue.split(/([\u2190\u2192\u2193])/).forEach(function (part) {
+          if (!part) return;
+          if (cls[part]) {
+            var span = document.createElement('span');
+            span.className = 'arr ' + cls[part];
+            span.setAttribute('aria-hidden', 'true');
+            span.textContent = part;
+            frag.appendChild(span);
+          } else {
+            frag.appendChild(document.createTextNode(part));
+          }
+        });
+        btn.replaceChild(frag, node);
+      });
+    });
+  }
+
   function init() {
     initTheme();
+    initReveal();
+    initArrows();
     initToTop();
     initPeoplePhotos();
     Array.prototype.forEach.call(

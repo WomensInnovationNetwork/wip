@@ -9,9 +9,10 @@
 <meta name="theme-color" content="#3b0b4e">
 <!-- Apply the reader's stored theme before first paint, so there is no flash. -->
 <script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>document.documentElement.classList.add('rv-on');setTimeout(function(){if(!window.WIP_REVEAL)document.documentElement.classList.remove('rv-on');},3000);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Inter:wght@400;500;600&family=Jost:wght@400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/wip.css">
 <style>
   /* Style-guide-only presentation. Nothing here belongs in wip.css. */
@@ -72,7 +73,7 @@
     <p class="kicker">Internal reference</p>
     <h1>The Women in Power style guide</h1>
     <p class="standfirst">One stylesheet, one voice. Everything a WiP member page needs to look like it belongs to us, and a set of rules loose enough to keep growing.</p>
-    <p class="meta"><span>Version <strong>2.2</strong></span><span>Updated <strong>15 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
+    <p class="meta"><span>Version <strong>3.0</strong></span><span>Updated <strong>16 September 2026</strong></span><span>Owner <strong>Sravani Seethi</strong></span></p>
   </div>
 </header>
 
@@ -352,6 +353,20 @@
         <li><strong><code>.card-bloom</code></strong>: a bloom in a card&rsquo;s top corner. For a row of equals, like the three pillars. Not on every card.</li>
         <li><strong>The warm word:</strong> wrap one word of a heading in <code>&lt;em&gt;</code> and it sets in rose italic. One per heading at most, and only where the word carries the feeling.</li>
         <li><strong>Champagne is 2.7:1</strong> on ivory. Hairlines and gradients only, never text.</li>
+        <li><strong>Every row of equals</strong> (stats, leadership cards, PPCC take-aways) gets the corner bloom automatically. Other card rows opt in with <code>.card-bloom</code>.</li>
+        <li><strong>The pen stroke</strong> under the rose italic word is automatic in page headlines (<code>h1</code>) and section headings (<code>.section-head h2</code>).</li>
+        <li><strong>Leadership portraits are arches</strong>, not circles. Event photos are never cropped to a shape.</li>
+      </ul>
+    </div>
+    <div class="callout" style="margin-top:var(--s-4)">
+      <p class="callout-title">Motion: quiet, once, and optional</p>
+      <ul class="small" style="margin-top:var(--s-2)">
+        <li><strong>Reveal:</strong> <code>.section-head</code>, <code>.card</code>, <code>.stat</code>, <code>.person</code>, <code>.takeaway</code>, <code>.slot</code> and <code>.keydate</code> rise and fade in once as they scroll into view, one after another in a row. Nothing to add to new markup.</li>
+        <li><strong>On arrival:</strong> the corner bloom unfurls, the section divider draws from its flower outward, and the headline pen stroke draws in.</li>
+        <li><strong>On hover:</strong> blooms turn, links draw a full underline from the left, button arrows nudge, and the accent button&rsquo;s bloom turns one petal.</li>
+        <li><strong>Between pages:</strong> a short cross-fade (Chrome, Edge, Safari).</li>
+        <li><strong>Reduced motion</strong> is always honored: reveals become a plain fade and nothing slides, turns or draws. Never add parallax, scroll-jacking or looping motion near text.</li>
+        <li><strong>Every page needs the two head scripts</strong> (theme, then <code>rv-on</code>) and <code>wip.js</code>. If the script never runs, content un-hides itself after three seconds.</li>
       </ul>
     </div>
 
@@ -436,12 +451,12 @@
       <p class="eyebrow">07</p>
       <h2>Type</h2>
     </div>
-    <p><strong>Fraunces</strong> for headings, names and big numerals: a soft, modern serif, and most of the site&rsquo;s warmth. <strong>Poppins</strong> for the small uppercase labels, buttons and UI, where its geometry matches the WIN wordmark. <strong>Inter</strong> for body. Each falls back to a system face (Georgia, Segoe UI), so a page still reads correctly if webfonts fail.</p>
+    <p><strong>Cormorant Garamond</strong> for headings, names and big numerals: an editorial serif with fine contrast, and most of the site&rsquo;s elegance. <strong>Jost</strong> for the small uppercase labels, buttons and UI. <strong>Inter</strong> for body text, for readability. Cormorant runs small, so every rule that sets it also sets <code>font-size-adjust: var(--serif-adjust)</code>; keep that pairing when you add one. Numbers use lining figures site-wide. Each face falls back to a system font (Georgia, Segoe UI), so a page still reads correctly if webfonts fail.</p>
 
     <div class="demo" style="margin-top:var(--s-4)">
-      <div class="type-row"><span class="lbl">--t-3xl &middot; h1</span><span style="font-family:var(--font-serif);font-weight:600;font-size:var(--t-3xl);color:var(--heading);line-height:1.08">Cohort 2 starts <em style="color:var(--rose);font-weight:500">24 September</em></span></div>
-      <div class="type-row"><span class="lbl">--t-2xl &middot; h2</span><span style="font-family:var(--font-serif);font-weight:600;font-size:var(--t-2xl);color:var(--heading)">Your mentee journey</span></div>
-      <div class="type-row"><span class="lbl">--t-xl &middot; h3</span><span style="font-family:var(--font-serif);font-weight:600;font-size:var(--t-xl);color:var(--heading)">What you walk away with</span></div>
+      <div class="type-row"><span class="lbl">--t-3xl &middot; h1</span><span style="font-family:var(--font-serif);font-size-adjust:var(--serif-adjust);font-weight:600;font-size:var(--t-3xl);color:var(--heading);line-height:1.08">Cohort 2 starts <em style="color:var(--rose);font-weight:500">24 September</em></span></div>
+      <div class="type-row"><span class="lbl">--t-2xl &middot; h2</span><span style="font-family:var(--font-serif);font-size-adjust:var(--serif-adjust);font-weight:600;font-size:var(--t-2xl);color:var(--heading)">Your mentee journey</span></div>
+      <div class="type-row"><span class="lbl">--t-xl &middot; h3</span><span style="font-family:var(--font-serif);font-size-adjust:var(--serif-adjust);font-weight:600;font-size:var(--t-xl);color:var(--heading)">What you walk away with</span></div>
       <div class="type-row"><span class="lbl">--t-lg &middot; lead</span><span class="lead">Twelve weeks, about an hour a week, and you leave having spoken in front of the group.</span></div>
       <div class="type-row"><span class="lbl">--t-base &middot; body</span><span>Each session opens with a short framing, then you pick a breakout room by topic.</span></div>
       <div class="type-row"><span class="lbl">--t-sm &middot; small</span><span class="small muted">Every session is recorded and posted within 24 hours.</span></div>
@@ -753,6 +768,7 @@
           <tr><td>2.0</td><td>12 Sep 2026</td><td><strong>Bloom.</strong> Warm neutrals (ivory, plum-black ink, aubergine headings), a warm dark theme, Fraunces serif headings with an optional rose-italic warm word, an original line-drawn bloom motif (masthead, section dividers, <code>.panel-bloom</code>, <code>.card-bloom</code>), plum masthead and solid buttons, plum-tinted shadows, softer radii. Also fixed bold text disappearing on dark bands in light mode.</td></tr>
           <tr><td>2.1</td><td>14 Sep 2026</td><td><strong>No em dashes.</strong> Plain-language guidance (Canada.ca) says to use a comma or simplify instead. Screen readers are inconsistent: JAWS reads it aloud as &ldquo;em dash&rdquo; and NVDA runs straight through it, so clauses blur together. Many readers now take heavy em-dash use as a sign of AI-written text. Replaced across all pages with commas, colons, parentheses or new sentences.</td></tr>
           <tr><td>2.2</td><td>15 Sep 2026</td><td>Community described as <strong>Power Platform and AI tools</strong>, not Power Platform alone. About leadership heading is now &ldquo;Meet the troublemakers&rdquo;. Pages no longer state that nobody is paid; they describe the work as volunteer-led instead.</td></tr>
+          <tr><td>3.0</td><td>16 Sep 2026</td><td><strong>Motion and type.</strong> Cormorant Garamond headings with Jost labels, lining figures. Arch portraits. Quiet motion: scroll reveals, the corner bloom on every row of equals (unfurls on arrival), self-drawing section dividers, a pen stroke under the headline warm word, drawn link underlines, nudging arrows, cross-page fades. All of it respects reduced motion.</td></tr>
           <tr><td>1.8</td><td>8 Sep 2026</td><td>PPCC 2026 event page. Announcement bar component. Two new ribbon tokens after finding the bright ribbon fails contrast behind and inside text: cyan 2.06:1 on white, violet 2.81:1 on dark.</td></tr>
           <tr><td>1.7</td><td>5 Sep 2026</td><td>Nav ordered so live pages lead and placeholders follow, with quieter "soon" styling. Heading and no-JS fixes on the cohort page.</td></tr>
           <tr><td>1.6</td><td>5 Sep 2026</td><td>About us page added, with the .person and .roster components. Roster is data-driven and tested at 1,000 names. Drop-in leadership photos.</td></tr>

@@ -145,10 +145,14 @@
   --danger:          #b0433a;  --danger-wash: #fdeeec; --danger-line: #f3d5d0;
 
   /* --- Type ------------------------------------------------------------ */
-  --font-display: "Poppins", "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  /* Headings. A soft, modern serif is where most of the warmth comes
-     from; Poppins stays for the small uppercase labels, buttons and UI. */
-  --font-serif:   "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-display: "Jost", "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  /* Headings, names and big numerals: Cormorant Garamond, an editorial
+     serif with fine contrast. Jost (above) carries labels, buttons and UI.
+     Cormorant has a small x-height (0.39 of its size, against Fraunces'
+     0.44), so every element set in it also gets font-size-adjust, which
+     scales it up to read at the size the layout was designed for. */
+  --font-serif:   "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --serif-adjust: 0.43;
   --font-body:    "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-mono:    ui-monospace, "Cascadia Code", Consolas, monospace;
 
@@ -289,6 +293,9 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Cormorant's default figures are old-style (a 5 dips below the line).
+     Numbers on this site are dates, times and stats, so keep them level. */
+  font-variant-numeric: lining-nums;
   transition: background-color .25s var(--ease), color .25s var(--ease);
 }
 
@@ -425,7 +432,7 @@ main { padding-bottom: var(--s-8); }
 .theme-toggle svg { width: 15px; height: 15px; flex: none; }
 
 .masthead h1, .masthead h2, .masthead h3, .masthead h4 { color: #fff; }
-.masthead h1 { font-family: var(--font-serif); font-size: calc(var(--t-3xl) * 1.08); font-weight: 600; line-height: 1.06; letter-spacing: -.02em; max-width: 20ch; }
+.masthead h1 { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-size: calc(var(--t-3xl) * 1.08); font-weight: 600; line-height: 1.06; letter-spacing: -.02em; max-width: 20ch; }
 .masthead h1 em { color: #f7b3cf; }
 .masthead .kicker {
   font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
@@ -455,7 +462,7 @@ main { padding-bottom: var(--s-8); }
   :root:not([data-theme="light"]) .logo-plate:not(.dark) img { background: #fff; padding: 6px 10px; border-radius: 4px; }
 }
 .site-footer nav { display: flex; flex-direction: column; gap: var(--s-2); }
-.site-footer .tagline { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: var(--t-lg); color: var(--heading); }
+.site-footer .tagline { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-style: italic; font-weight: 500; font-size: var(--t-lg); color: var(--heading); }
 
 /* --- Section sub-navigation ---------------------------------------------
    Sits directly under the masthead on pages inside a pillar. Deliberately
@@ -585,8 +592,12 @@ main { padding-bottom: var(--s-8); }
 .panel-bloom > * + * { margin-top: var(--s-4); }
 
 /* --- A small bloom in a card's top corner ------------------------------ */
-.card-bloom { position: relative; overflow: hidden; }
-.card-bloom::after {
+/* Also on every row of equals: stats, leadership cards, PPCC take-aways.
+   Cards in other rows opt in with .card-bloom. Content sits above the
+   watermark so a long number or name is never drawn over. */
+.card-bloom, .stat, .person, .takeaway { position: relative; overflow: hidden; }
+:is(.card-bloom, .stat, .person, .takeaway) > * { position: relative; z-index: 1; }
+:is(.card-bloom, .stat, .person, .takeaway)::after {
   content: ""; position: absolute; pointer-events: none;
   width: 120px; aspect-ratio: 1; right: -38px; top: -38px;
   background: var(--petal); opacity: .38;
@@ -594,7 +605,8 @@ main { padding-bottom: var(--s-8); }
           mask: var(--bloom-line) center / contain no-repeat;
   transition: transform .8s var(--ease), opacity .3s var(--ease);
 }
-.card-bloom:hover::after { transform: rotate(30deg); opacity: .55; }
+:is(.card-bloom, .stat, .person, .takeaway):hover::after { transform: rotate(30deg); opacity: .55; }
+.stat::after { width: 96px; right: -32px; top: -32px; }
 
 /* --- Inline bloom mark, e.g. before the footer tagline ------------------ */
 .bloom-mark {
@@ -612,22 +624,133 @@ main { padding-bottom: var(--s-8); }
 }
 
 @media print {
-  .masthead::before, .panel-bloom::after, .card-bloom::after { display: none; }
+  .masthead::before, .panel-bloom::after, :is(.card-bloom, .stat, .person, .takeaway)::after { display: none; }
   .panel-bloom { background: none; border: 0; padding: 0; }
+}
+
+/* ==========================================================================
+   5c. MOTION
+   Quiet and once-only. Everything here honors the reader's "reduce motion"
+   setting: reveals become a plain fade, nothing slides, turns or draws.
+
+   Reveal contract: an inline script in each page's <head> adds .rv-on to
+   <html> before first paint, and wip.js (initReveal) adds .in to each
+   element as it scrolls into view. If wip.js never runs, the head script
+   removes .rv-on after 3 seconds, so content can never stay hidden.
+   ========================================================================== */
+
+/* --- 1. Gentle reveal -------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .rv-on :is(.section-head, .card, .stat, .person, .takeaway, .slot, .keydate) {
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+    transition-delay: var(--rv-delay, 0ms);
+  }
+  .rv-on :is(.section-head, .card, .stat, .person, .takeaway, .slot, .keydate):not(.in) {
+    opacity: 0; transform: translateY(16px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv-on :is(.section-head, .card, .stat, .person, .takeaway, .slot, .keydate) { transition: opacity .5s linear; }
+  .rv-on :is(.section-head, .card, .stat, .person, .takeaway, .slot, .keydate):not(.in) { opacity: 0; }
+}
+
+/* --- 2. The corner bloom unfurls as its card appears -------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .rv-on :is(.card-bloom, .stat, .person, .takeaway):not(.in)::after { transform: rotate(-40deg) scale(.6); opacity: 0; }
+  .rv-on :is(.card-bloom, .stat, .person, .takeaway).in::after { transition: transform 1.1s var(--ease) .3s, opacity .6s var(--ease) .3s; }
+  .rv-on :is(.card-bloom, .stat, .person, .takeaway).in:hover::after { transition-delay: 0s; }
+}
+
+/* --- 3. The section divider draws itself: flower first, then the line --- */
+@media (prefers-reduced-motion: no-preference) {
+  .rv-on .section-head::after { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s var(--ease) .35s; }
+  .rv-on .section-head.in::after { clip-path: inset(0 0 0 0); }
+}
+
+/* --- 5. A hand-drawn stroke under the warm word ------------------------- */
+:is(.masthead h1, .section-head h2) em { position: relative; white-space: nowrap; }
+:is(.masthead h1, .section-head h2) em::after {
+  content: ""; position: absolute; left: -.04em; right: -.04em; bottom: -.06em; height: .28em;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--petal), var(--rose));
+  -webkit-mask: var(--brush-stroke) 0 0 / 100% 100% no-repeat;
+          mask: var(--brush-stroke) 0 0 / 100% 100% no-repeat;
+}
+.masthead h1 em::after { background: linear-gradient(90deg, #f7b3cf, #f1d09f); }
+:root {
+  --brush-stroke: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 10 C 45 3 92 4 122 7 S 178 11 197 5' fill='none' stroke='black' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+@keyframes stroke-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@media (prefers-reduced-motion: no-preference) {
+  .masthead h1 em::after { animation: stroke-draw .9s var(--ease) .6s both; }
+  .rv-on .section-head h2 em::after { clip-path: inset(0 100% 0 0); transition: clip-path .9s var(--ease) .6s; }
+  .rv-on .section-head.in h2 em::after { clip-path: inset(0 0 0 0); }
+}
+
+/* --- 6. Hover details ---------------------------------------------------
+   Links keep a faint underline at rest (a link must not rely on color
+   alone) and draw a full one from the left on hover. */
+main :is(p, li, td, dd, figcaption) a:not(.btn), .person-links a, .site-footer nav a {
+  text-decoration: none;
+  background-image:
+    linear-gradient(currentColor, currentColor),
+    linear-gradient(color-mix(in srgb, currentColor 35%, transparent), color-mix(in srgb, currentColor 35%, transparent));
+  background-size: 0% 1.5px, 100% 1px;
+  background-position: 0 100%, 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 1px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  transition: background-size .4s var(--ease), color .2s var(--ease);
+}
+main :is(p, li, td, dd, figcaption) a:not(.btn):hover, .person-links a:hover, .site-footer nav a:hover {
+  background-size: 100% 1.5px, 100% 1px;
+}
+/* Arrows in buttons are wrapped in .arr by wip.js and nudge on hover. */
+.arr { display: inline-block; transition: transform .3s var(--ease); }
+@media (prefers-reduced-motion: no-preference) {
+  :is(.btn, .je-btn):hover .arr-r { transform: translateX(4px); }
+  :is(.btn, .je-btn):hover .arr-l { transform: translateX(-4px); }
+  :is(.btn, .je-btn):hover .arr-d { transform: translateY(3px); }
+}
+/* The main call to action carries a small bloom that turns one petal. */
+.btn-accent::before {
+  content: ""; width: .95em; height: .95em; flex: none;
+  background: currentColor;
+  -webkit-mask: var(--bloom-filled) center / contain no-repeat;
+          mask: var(--bloom-filled) center / contain no-repeat;
+  transition: transform .7s var(--ease);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-accent:hover::before { transform: rotate(72deg); }
+}
+
+/* --- 7. Pages dissolve into each other ----------------------------------
+   Chrome, Edge and Safari. Other browsers simply navigate as before. */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
+@media print {
+  .rv-on :is(.section-head, .card, .stat, .person, .takeaway, .slot, .keydate) { opacity: 1 !important; transform: none !important; }
+  .rv-on .section-head::after, :is(.masthead h1, .section-head h2) em::after { clip-path: none !important; }
 }
 
 /* ==========================================================================
    6. TYPOGRAPHY
    ========================================================================== */
 
-h1, h2, h3, h4, h5 { font-family: var(--font-serif); font-weight: 600; line-height: 1.18; letter-spacing: -.01em; color: var(--heading); font-optical-sizing: auto; }
-h5 { font-family: var(--font-display); }
+h1, h2, h3, h4, h5 { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 600; line-height: 1.15; letter-spacing: 0; color: var(--heading); }
+h5 { font-family: var(--font-display); font-size-adjust: none; }
+/* font-size-adjust inherits: labels set inside a heading keep their own size. */
+.pill, .btn, .tier-num, .eyebrow, .kicker { font-size-adjust: none; }
 /* An <em> inside a heading is the one warm word: italic, in rose.
    Use it once per heading at most, on the word that carries the feeling. */
 h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; color: var(--rose); }
 h2 { font-size: var(--t-2xl); }
 h3 { font-size: var(--t-xl); }
-h4 { font-size: var(--t-lg); font-weight: 600; }
+h4 { font-size: var(--t-lg); font-weight: 700; }
 h5 { font-size: var(--t-base); font-weight: 600; }
 
 p, ul, ol { max-width: 72ch; }
@@ -687,12 +810,12 @@ code { font-family: var(--font-mono); font-size: .88em; background: var(--surfac
   border-radius: 0 var(--r-md) var(--r-md) 0; padding: var(--s-4) var(--s-5); box-shadow: var(--sh-1);
 }
 .callout > * + * { margin-top: var(--s-2); }
-.callout-title { font-family: var(--font-serif); font-weight: 600; color: var(--heading); }
+.callout-title { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 700; font-size: 1.08rem; color: var(--heading); }
 .callout-note { border-left-color: var(--warn); background: var(--warn-wash); box-shadow: none; }
 .callout-note .callout-title { color: var(--warn); }
 
 .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s-4); }
-.stat-num { font-family: var(--font-serif); font-size: 2.3rem; font-weight: 600; line-height: 1; letter-spacing: -.02em; background: var(--bloom-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat-num { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-size: 2.3rem; font-weight: 600; line-height: 1; letter-spacing: -.02em; background: var(--bloom-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: var(--s-2); }
 
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--surface); }
@@ -729,14 +852,14 @@ td.col-week { font-family: var(--font-display); font-weight: 700; color: var(--h
   border-radius: 50%; background: var(--surface); border: 3px solid var(--grad-violet);
 }
 .tl-when { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
-.tl-title { font-family: var(--font-serif); font-weight: 600; font-size: var(--t-lg); color: var(--heading); margin-top: 2px; }
+.tl-title { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 700; font-size: var(--t-lg); color: var(--heading); margin-top: 2px; }
 .tl-body { color: var(--ink-2); font-size: 0.9375rem; margin-top: var(--s-2); }
 .tl-time { display: inline-block; margin-top: var(--s-2); font-size: var(--t-xs); color: var(--ink-3); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-pill); padding: .2em .7em; }
 
 .event { display: flex; gap: var(--s-4); align-items: flex-start; }
 .event-date { flex: none; width: 76px; text-align: center; border-radius: var(--r-md); padding: var(--s-3) var(--s-2); background: var(--surface-2); border: 1px solid var(--line); }
 .event-mon { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
-.event-day { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 600; color: var(--heading); line-height: 1.15; }
+.event-day { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-size: 1.1rem; font-weight: 600; color: var(--heading); line-height: 1.15; }
 .event-body h4 { color: var(--heading); }
 .event-meta { font-size: var(--t-sm); color: var(--ink-3); margin-top: 2px; }
 
@@ -893,7 +1016,7 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
 .je-panel:focus-visible { outline-offset: -3px; }
 .je-count { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
 .je-when { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); margin-top: var(--s-3); }
-.je-title { font-family: var(--font-serif); font-size: var(--t-xl); font-weight: 600; color: var(--heading); margin-top: var(--s-2); letter-spacing: -.015em; }
+.je-title { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-size: var(--t-xl); font-weight: 600; color: var(--heading); margin-top: var(--s-2); letter-spacing: -.015em; }
 .je-body { color: var(--ink-2); margin-top: var(--s-3); max-width: 68ch; }
 .je-body strong { color: var(--ink); }
 .je-tags { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-4); }
@@ -1026,10 +1149,12 @@ details.faq p { color: var(--ink-2); font-size: 0.9375rem; }
   display: flex; flex-direction: column; gap: var(--s-3);
 }
 .person-avatar {
-  width: 72px; height: 72px; border-radius: 50%; flex: none;
+  /* A soft arch rather than a circle: the 999px top corners clamp to half
+     the width, so the top is a true semicircle at any size. */
+  width: 72px; height: 88px; border-radius: 999px 999px var(--r-md) var(--r-md); flex: none;
   display: grid; place-items: center; overflow: hidden;
   background: var(--ribbon-round); color: #fff;
-  font-family: var(--font-serif); font-weight: 600; font-size: 1.45rem; letter-spacing: .01em;
+  font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 600; font-size: 1.45rem; letter-spacing: .01em;
   /* A blush halo, so a photo reads as framed rather than cut out. */
   box-shadow: 0 0 0 4px var(--blush), 0 0 0 5px var(--line);
 }
@@ -1042,7 +1167,7 @@ img.person-avatar { object-fit: cover; }
 .person-avatar { position: relative; }
 .person-avatar > img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; border-radius: 50%;
+  object-fit: cover; border-radius: inherit;
 }
 
 /* A leader who sits alone in her group (the founder) would otherwise be a
@@ -1052,12 +1177,12 @@ img.person-avatar { object-fit: cover; }
   .person-feature {
     display: grid; grid-template-columns: auto 1fr; column-gap: var(--s-5); align-items: start;
   }
-  .person-feature .person-avatar { width: 92px; height: 92px; font-size: 1.6rem; grid-row: 1 / span 3; }
+  .person-feature .person-avatar { width: 92px; height: 112px; font-size: 1.6rem; grid-row: 1 / span 3; }
   .person-feature .person-bio,
   .person-feature .person-links { grid-column: 2; }
   .person-feature .person-links { margin-top: var(--s-3); padding-top: 0; }
 }
-.person-name { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; color: var(--heading); }
+.person-name { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-size: 1.25rem; font-weight: 700; color: var(--heading); }
 .person-role {
   font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 2px;
