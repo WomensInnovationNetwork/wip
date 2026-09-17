@@ -371,14 +371,22 @@
       if (reduce) hardJumpToTop();
       else window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Guarantee arrival. If nothing has moved shortly after, the smooth
-      // scroll never started — some engines decline it, and a stray handler
-      // can cancel it — so jump. Only fires when the position is completely
-      // unchanged, so it never cuts a real animation short.
-      window.setTimeout(function () {
-        var now = window.pageYOffset || document.documentElement.scrollTop;
-        if (now > 0 && now === start) hardJumpToTop();
-      }, 150);
+      // Guarantee arrival. Check every 150ms until the page is at the top.
+      // If the position has not moved since the last check, the smooth
+      // scroll either never started or stalled part-way (a background tab,
+      // an embedded browser that is not painting frames, a stray handler),
+      // so jump the rest of the way. A scroll that is still moving is left
+      // alone, so a real animation is never cut short. Gives up after 3s.
+      var last = start, checks = 0;
+      (function watch() {
+        window.setTimeout(function () {
+          var now = window.pageYOffset || document.documentElement.scrollTop;
+          if (now <= 0) return;
+          if (now === last || ++checks > 20) { hardJumpToTop(); return; }
+          last = now;
+          watch();
+        }, 150);
+      })();
     });
   }
 
