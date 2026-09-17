@@ -10,9 +10,10 @@
 <meta property="og:description" content="A luncheon, a night market meetup, a panel and a roundtable. Three days, four ways in. MGM Grand, Las Vegas, 27–29 October 2026.">
 <meta property="og:type" content="website">
 <script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>document.documentElement.classList.add('rv-on');setTimeout(function(){if(!window.WIP_REVEAL)document.documentElement.classList.remove('rv-on');},3000);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,400..600&family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Inter:wght@400;500;600&family=Jost:wght@400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/wip.css">
 <style>
   /* ======================================================================
@@ -121,9 +122,9 @@
     backdrop-filter: blur(6px);
   }
   .cd-num {
-    font-family: var(--font-serif); font-weight: 600; font-size: 1.9rem; line-height: 1;
+    font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 600; font-size: 1.9rem; line-height: 1;
     background: linear-gradient(90deg, #f7b3cf, #f1d09f); -webkit-background-clip: text; background-clip: text; color: transparent;
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: lining-nums tabular-nums;
   }
   .cd-lbl {
     font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
@@ -134,11 +135,11 @@
   .day { margin-top: var(--s-6); }
   .day-head { display: flex; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; margin-bottom: var(--s-4); }
   .day-num {
-    font-family: var(--font-serif); font-weight: 600; font-size: clamp(2.4rem, 1.7rem + 2.2vw, 3.8rem);
+    font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 600; font-size: clamp(2.4rem, 1.7rem + 2.2vw, 3.8rem);
     line-height: 1; letter-spacing: -.02em;
     background: var(--bloom-text); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .day-date { font-family: var(--font-serif); font-weight: 600; font-size: var(--t-xl); color: var(--heading); }
+  .day-date { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 600; font-size: var(--t-xl); color: var(--heading); }
   .day-tag {
     font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
     letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
@@ -233,7 +234,7 @@
   @media (min-width: 1000px) { .takeaways { grid-template-columns: repeat(4, 1fr); } }
   .takeaway { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); }
   .takeaway .n {
-    font-family: var(--font-serif); font-weight: 600; font-size: 1.9rem; line-height: 1;
+    font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-weight: 600; font-size: 1.9rem; line-height: 1;
     background: var(--bloom-text); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .takeaway h4 { margin-top: var(--s-3); }
@@ -487,16 +488,16 @@
       <h2>Find us between sessions</h2>
     </div>
     <div class="grid grid-3">
-      <div class="card">
+      <div class="card card-bloom">
         <h4>Swag worth queueing for</h4>
         <p class="small muted">Exclusive Women in Power swag at registration and every event, with <strong>more giveaways than last year</strong>. Come early.</p>
       </div>
-      <div class="card">
+      <div class="card card-bloom">
         <h4>Follow along live</h4>
         <p class="small muted">Updates, photos and shout-outs all week on LinkedIn and in the community group.</p>
         <p><a class="btn btn-ghost" href="https://www.linkedin.com/company/women-in-power-platform">Follow on LinkedIn &rarr;</a></p>
       </div>
-      <div class="card">
+      <div class="card card-bloom">
         <h4>Get involved</h4>
         <p class="small muted">Want to mentor, attend a skilling session, speak or volunteer? Sign up at any of our events, or start now.</p>
         <p><a class="btn btn-ghost" href="https://linktr.ee/womeninpower_platform">Our link tree &rarr;</a></p>
