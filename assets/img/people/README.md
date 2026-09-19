@@ -21,14 +21,17 @@ looking for:
 | Delia Zuniga | `delia-zuniga.jpg` |
 | Suparna Banerjee | `suparna-banerjee.jpg` |
 | Hanh Nguyen | `hanh-nguyen.jpg` |
+| Krystal Velez | `krystal-velez.jpg` |
+| Asad Fathima | `asad-fathima.jpg` |
 
 Adding someone new? Put `data-photo="her-name.jpg"` on her `.person-avatar` in
 `about/index.html` and drop the file here.
 
 ## Specs
 
-- **Square.** The avatar is a circle, so anything else gets cropped from the
-  center — heads end up off-frame.
+- **Portrait, 4:5.** The avatar is an arch (72×88), so a square or landscape
+  photo gets cropped from the center and heads can end up off-frame. Crop
+  to 600×750 around the face.
 - **400×400 minimum.** Displayed at 72px (92px for the featured card), but
   that's 2–3× on a retina screen. Larger than 800×800 is wasted bytes.
 - **JPEG, under ~150 KB.** Ten of these load on one page.
