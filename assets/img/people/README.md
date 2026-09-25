@@ -22,6 +22,9 @@ looking for:
 | Suparna Banerjee | `suparna-banerjee.jpg` |
 | Hanh Nguyen | `hanh-nguyen.jpg` |
 | Krystal Velez | `krystal-velez.jpg` |
+| Ragavendar Swaminatha Subramanian | `ragavendar-swaminatha.jpg` |
+| Kimberly Tiong | `kimberly-tiong.jpg` |
+| Veronica Fair | `veronica-fair.jpg` |
 | Asad Fathima | `asad-fathima.jpg` |
 
 Adding someone new? Put `data-photo="her-name.jpg"` on her `.person-avatar` in
