@@ -219,6 +219,23 @@
   .swag-feature h3 { letter-spacing: -.02em; }
   .swag-feature p { margin-top: var(--s-3); color: var(--ink-2); }
 
+  /* --- Stay in touch: the WhatsApp group ------------------------------- */
+  .join {
+    display: grid; gap: var(--s-5); align-items: center;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-xl); padding: clamp(var(--s-5), 3vw, var(--s-6));
+    box-shadow: var(--sh-2);
+  }
+  @media (min-width: 720px) { .join { grid-template-columns: 200px 1fr; } }
+  .join-qr {
+    width: 200px; height: 200px; border-radius: var(--r-lg);
+    border: 1px solid var(--line); justify-self: center;
+  }
+  .join h3 { font-size: var(--t-2xl); }
+  .join p { color: var(--ink-2); margin-top: var(--s-3); }
+  .join .row { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-4); }
+  .join .fine { font-size: var(--t-sm); color: var(--ink-3); }
+
   /* --- Allies band ----------------------------------------------------- */
   .allies {
     border-radius: var(--r-xl); padding: var(--s-6);
@@ -387,6 +404,7 @@
         <p class="slot-where">Expo Hall and Makers Hall &middot; meeting point announced closer to the event</p>
         <div class="slot-body">
           <p>Walking into a party alone is the worst. Meet us first and walk in together: drinks, the expo floor and the makers community.</p>
+          <p class="small muted" style="margin-top:var(--s-3)">The meeting point goes out in the <a href="#stay-in-touch">WhatsApp group</a> on the day.</p>
         </div>
       </article>
     </div>
@@ -444,6 +462,24 @@
           </ul>
         </div>
       </article>
+    </div>
+  </section>
+
+  <!-- ============================ STAY IN TOUCH ======================== -->
+  <section class="section" id="stay-in-touch">
+    <div class="join">
+      <img class="join-qr" src="../assets/img/ppcc/whatsapp-qr.png" width="800" height="800"
+           alt="QR code to the sign-up form for the Women in Power WhatsApp group at PPCC">
+      <div>
+        <p class="eyebrow">Before you go</p>
+        <h3>Join the PPCC WhatsApp group</h3>
+        <p>Room changes, meeting points and last-minute additions go out here first, along with volunteer
+           opportunities as the conference gets closer. Scan the code, or use the button.</p>
+        <p class="row">
+          <a class="btn btn-accent" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR6-PSepDuYBOh-k-rstrxMZUM0ZMMFU5TkgzU1ZWTFlIUlI5SlVWMkNYVC4u" target="_blank" rel="noopener">Join the group</a>
+        </p>
+        <p class="fine">A short Microsoft Form: we use your number only to add you to the group.</p>
+      </div>
     </div>
   </section>
 
