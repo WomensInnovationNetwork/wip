@@ -1,4 +1,8 @@
-# Leadership photos
+# People photos
+
+One photo per person, for every page. `/about/` uses most of them, and the PPCC
+page's Hype Squad uses five (two of them shared with `/about/`). Reuse a file
+rather than adding a second copy of the same person.
 
 Drop a photo in this folder and it appears on `/about/` automatically. There is
 **nothing to edit in the HTML** — the page looks for a file by name, and falls
@@ -26,6 +30,12 @@ looking for:
 | Kimberly Tiong | `kimberly-tiong.jpg` |
 | Veronica Fair | `veronica-fair.jpg` |
 | Asad Fathima | `asad-fathima.jpg` |
+| Brittany Bolden | `brittany-bolden.jpg` — PPCC Hype Squad only |
+| Michelle Johnston | `michelle-johnston.jpg` — PPCC Hype Squad only |
+
+`jessica-edwards.jpg` exists as of 14 Oct 2026, for the PPCC Hype Squad. The
+About page shows Jessica on the shared committee card, which has no photos,
+so it does not pick the file up. Put it on her own card only if she gets one.
 
 Adding someone new? Put `data-photo="her-name.jpg"` on her `.person-avatar` in
 `about/index.html` and drop the file here.

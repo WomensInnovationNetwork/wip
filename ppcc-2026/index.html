@@ -250,6 +250,35 @@
   .allies p { color: rgba(255,255,255,.82); }
   .allies .eyebrow { color: #f7b3cf; }
 
+  /* --- The Hype Squad -------------------------------------------------
+     Five people, all visible at once: a grid, not a carousel. The point is
+     that someone recognises these faces in the hall, and a carousel hides
+     four of them behind a click most people never make. Plain cards with
+     no corner bloom, on purpose: five small flowers in a row is the busy
+     look that was taken off the Networking page. */
+  .squad {
+    display: grid; gap: var(--s-4); margin-top: var(--s-5);
+    grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  }
+  .squad figure {
+    margin: 0; text-align: center; background: var(--surface);
+    border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: var(--s-5) var(--s-4); box-shadow: var(--sh-1);
+  }
+  .squad img {
+    width: 112px; height: 112px; border-radius: 50%; object-fit: cover;
+    margin: 0 auto; background: var(--surface-2);
+  }
+  .squad .nm {
+    font-family: var(--font-serif); font-size-adjust: var(--serif-adjust);
+    font-size: 1.15rem; font-weight: 700; color: var(--heading); margin-top: var(--s-3);
+  }
+  .squad .rl {
+    font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 4px;
+  }
+  .squad-close { margin-top: var(--s-5); font-weight: 600; color: var(--heading); }
+
   /* --- Take-aways ------------------------------------------------------ */
   .takeaways { display: grid; gap: var(--s-4); }
   @media (min-width: 700px) { .takeaways { grid-template-columns: repeat(2, 1fr); } }
@@ -521,6 +550,41 @@
         <p>Mentoring cohorts, the <a href="../skilling/">Skilling Series</a>, and a community that carries on long after Vegas.</p>
       </div>
     </div>
+  </section>
+
+  <!-- ============================ HYPE SQUAD =========================== -->
+  <!--
+    Five women Women in Power sponsored to attend PPCC 2026. Copy, names
+    and photos supplied by Sravani on 14 Oct 2026; the copy is trimmed for
+    length, and the closing line is the original's, word for word. Drew is
+    listed by her leadership role rather than as "Hype Squad", as the copy
+    asked, so people know she is on the team.
+
+    Photos live in assets/img/people/ with everyone else's, one file per
+    person. Krystal's and Drew's are the same files the About page uses;
+    Brittany's, Jessica's and Michelle's were added for this section.
+    Order: the four sponsored attendees by surname, then Drew.
+
+    Take this section down with the rest of the page's event content once
+    PPCC is over.
+  -->
+  <section class="section" id="hype-squad">
+    <div class="section-head">
+      <p class="eyebrow">Look for them at PPCC</p>
+      <h2>Meet the Women in Power <em>Hype Squad</em></h2>
+    </div>
+    <p class="lead">We believe in investing in the people who make this community stronger. This year that meant sponsoring five women to attend PPCC, chosen for their mentoring, their part in our skilling sessions, and the way they keep encouraging and lifting up other women.</p>
+    <p>All week they are the Women in Power Hype Squad. First PPCC or fifth, find one of them if you have a question about the conference, want advice on making the most of it, or would just like to know more about Women in Power. They&rsquo;re a friendly face in the crowd.</p>
+
+    <div class="squad">
+      <figure><img src="../assets/img/people/brittany-bolden.jpg" alt="" width="385" height="385" loading="lazy"><figcaption><p class="nm">Brittany Bolden</p><p class="rl">Hype Squad</p></figcaption></figure>
+      <figure><img src="../assets/img/people/jessica-edwards.jpg" alt="" width="600" height="600" loading="lazy"><figcaption><p class="nm">Jessica Edwards</p><p class="rl">Hype Squad</p></figcaption></figure>
+      <figure><img src="../assets/img/people/michelle-johnston.jpg" alt="" width="267" height="267" loading="lazy"><figcaption><p class="nm">Michelle Johnston</p><p class="rl">Hype Squad</p></figcaption></figure>
+      <figure><img src="../assets/img/people/krystal-velez.jpg" alt="" width="600" height="750" loading="lazy"><figcaption><p class="nm">Krystal Velez</p><p class="rl">Hype Squad</p></figcaption></figure>
+      <figure><img src="../assets/img/people/drew-tattam.jpg" alt="" width="600" height="750" loading="lazy"><figcaption><p class="nm">Drew Tattam</p><p class="rl">Women in Power Mentoring Lead</p></figcaption></figure>
+    </div>
+
+    <p class="squad-close">Because community is stronger when no one has to navigate it alone.</p>
   </section>
 
   <!-- ============================ ALL WEEK ============================= -->
