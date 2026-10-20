@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where's Moon? | Women in Power at PPCC 2026</title>
+<meta name="description" content="Where Danielle Moon, founder of Women in Power, is at PPCC 2026, live: right now, later this week, and the best times to catch her. MGM Grand, Las Vegas, 27–29 October 2026.">
+<meta name="theme-color" content="#3b0b4e">
+<script>(function(){try{var t=localStorage.getItem('wip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script>document.documentElement.classList.add('rv-on');setTimeout(function(){if(!window.WIP_REVEAL)document.documentElement.classList.remove('rv-on');},3000);</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Inter:wght@400;500;600&family=Jost:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/wip.css">
+<style>
+  /* ======================================================================
+     Where's Moon? Page-specific.
+     Danielle's interactive, rebuilt in the site's furniture. The working
+     parts are hers; the frame, type and colour are the site's.
+     ====================================================================== */
+
+  /* Status colours. Fixed rather than themed: every one carries white text,
+     and each holds 5:1 or better against white in both themes. */
+  :root { --m-find: #047857; --m-session: #b45309; --m-busy: #b91c1c; --m-off: #52525b; }
+
+  .crumb { margin-top: var(--s-6); font-family: var(--font-display); font-size: var(--t-sm); font-weight: 600; }
+  .crumb a { text-decoration: none; }
+  .page-head { display: flex; gap: var(--s-4) var(--s-6); align-items: flex-end; justify-content: space-between; flex-wrap: wrap; margin-top: var(--s-3); }
+  .page-head h1 { font-size: clamp(2.2rem, 1.5rem + 3vw, 3.6rem); letter-spacing: -.02em; line-height: 1.05; }
+  .page-head p { color: var(--ink-2); max-width: 58ch; margin-top: var(--s-3); }
+
+  /* --- Right now: the live band ---------------------------------------- */
+  .now {
+    position: relative; overflow: hidden; isolation: isolate; color: #fff;
+    border-radius: var(--r-xl); margin-top: var(--s-5); border: 1px solid var(--line);
+    background:
+      /* Bottom left, not the usual top right: the time controls live on the
+         right of this band, and a bloom behind them cut across the days. */
+      var(--bloom-rose) left -95px bottom -115px / 220px 220px no-repeat,
+      radial-gradient(700px 300px at 85% -40%, var(--mast-glow-1), transparent 62%),
+      linear-gradient(150deg, var(--mast-a) 0%, var(--mast-b) 100%);
+  }
+  .now::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--ribbon); }
+  .now .in { display: grid; gap: var(--s-5); padding: var(--s-6); grid-template-columns: auto 1fr minmax(240px, 320px); align-items: center; }
+  .orb { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 4px rgba(255,255,255,.16); }
+  .now .when { font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #f7b3cf; margin: 0; }
+  .now .headline { font-family: var(--font-serif); font-size-adjust: var(--serif-adjust); font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem); font-weight: 600; line-height: 1.12; margin-top: var(--s-2); color: #fff; }
+  .now .loc { font-family: var(--font-display); font-weight: 600; font-size: var(--t-sm); color: rgba(255,255,255,.86); margin-top: var(--s-2); }
+  .now .detail { font-size: .95rem; color: rgba(255,255,255,.78); margin-top: var(--s-2); }
+
+  .mbadge { display: inline-block; border-radius: var(--r-pill); padding: .15em .75em; font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .02em; text-transform: none; color: #fff; vertical-align: middle; margin-left: .4em; }
+  .b-find { background: var(--m-find); } .b-session { background: var(--m-session); }
+  .b-busy { background: var(--m-busy); } .b-off { background: var(--m-off); }
+
+  .peek { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); border-radius: var(--r-md); padding: var(--s-4); }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: var(--s-3); }
+  /* Not .chip: that is the community roll's filter chip in wip.css, and its
+     dark-mode rule outranks this one and turned the selected day dark on dark. */
+  .daychip { border: 0; border-radius: var(--r-pill); padding: .35em .85em; font-family: var(--font-display); font-weight: 700; font-size: var(--t-xs); background: rgba(255,255,255,.12); color: #fff; cursor: pointer; }
+  .daychip[aria-pressed="true"] { background: #f7b3cf; color: #2d164c; }
+  .peek label { font-size: var(--t-xs); color: rgba(255,255,255,.78); display: block; font-family: var(--font-display); font-weight: 600; letter-spacing: .03em; }
+  .peek input[type=range] { width: 100%; accent-color: #f7b3cf; margin-top: var(--s-2); }
+  .linkbtn { background: none; border: 0; color: #f7b3cf; font-family: var(--font-display); font-weight: 700; font-size: var(--t-xs); cursor: pointer; padding: 0; }
+  .linkbtn:disabled { opacity: .45; cursor: default; }
+  .liveline { margin-top: var(--s-2); font-size: var(--t-xs); color: rgba(255,255,255,.7); }
+
+  /* --- The working area ------------------------------------------------- */
+  .moon-grid { display: grid; gap: var(--s-4); grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); margin-top: var(--s-5); align-items: start; }
+  .moon-col { display: flex; flex-direction: column; gap: var(--s-4); min-width: 0; }
+  .moon-grid .card h2 { font-size: var(--t-xl); margin-top: var(--s-2); }
+
+  .map { position: relative; width: 100%; aspect-ratio: 800 / 452; margin-top: var(--s-4); }
+  .zone { position: absolute; border: 1.5px solid var(--line); background: var(--surface); border-radius: var(--r-md); padding: 8px 10px; text-align: left; color: var(--heading); font-family: var(--font-display); font-weight: 600; font-size: 13px; line-height: 1.2; cursor: pointer; overflow: hidden; transition: border-color .2s var(--ease), background-color .2s var(--ease); }
+  .zone:hover { background: var(--surface-2); border-color: var(--accent); }
+  .zone[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .zone.here { color: #fff; }
+  .zone small { display: block; font-weight: 400; font-size: 11px; margin-top: 3px; opacity: .85; font-family: var(--font-body); }
+  .pin { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  @media (prefers-reduced-motion: no-preference) {
+    .pin::before { content: ""; position: absolute; inset: -4px; border-radius: 50%; background: rgba(255,255,255,.5); animation: ping 1.6s infinite; }
+  }
+  @keyframes ping { 0% { transform: scale(.8); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+  .band { position: absolute; left: 2%; font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  .cap { font-size: var(--t-xs); color: var(--ink-3); margin-top: var(--s-2); }
+  .placeinfo { border-top: 1px solid var(--line-soft); margin-top: var(--s-4); padding-top: var(--s-3); font-size: var(--t-sm); }
+  .placeinfo ul { list-style: none; margin: var(--s-2) 0 0; padding: 0; max-width: none; }
+  .placeinfo li { margin: 0; }
+  .placeinfo button, .ev { width: 100%; text-align: left; background: none; border: 0; color: var(--ink); font: inherit; cursor: pointer; border-radius: var(--r-sm, 6px); padding: 6px 8px; }
+  .placeinfo button:hover, .ev:hover { background: var(--surface-2); }
+
+  .dtabs { display: flex; flex-wrap: wrap; gap: 4px; margin: var(--s-4) 0 var(--s-3); }
+  .dtab { border: 1px solid var(--line); background: var(--surface); color: var(--heading); border-radius: var(--r-pill); padding: .35em .95em; font-family: var(--font-display); font-weight: 700; font-size: var(--t-xs); cursor: pointer; }
+  .dtab[aria-selected="true"] { background: var(--solid); border-color: var(--solid); color: #fff; }
+  .daybar { background: var(--solid); color: #fff; border-radius: var(--r-md); padding: .5em 1em; font-family: var(--font-display); font-size: var(--t-xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: var(--s-3); max-width: none; }
+  ol.mtl { list-style: none; margin: 0; padding: 0 0 0 16px; border-left: 2px solid var(--line); max-width: none; }
+  ol.mtl li { position: relative; margin: 0 0 4px; }
+  ol.mtl .dot { position: absolute; left: -23px; top: 15px; width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 0 4px var(--surface); }
+  .ev { display: grid; grid-template-columns: 96px 1fr; gap: var(--s-3); padding: 8px 10px; }
+  .ev[aria-current="true"] { background: var(--surface-2); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .ev .t { font-family: var(--font-display); font-weight: 700; font-size: .98rem; color: var(--accent); font-variant-numeric: lining-nums; }
+  .ev .t small { display: block; font-family: var(--font-body); font-weight: 400; font-size: var(--t-xs); color: var(--ink-3); }
+  /* Both block: Danielle's version had a pin emoji between the name and the
+     room, and without it the two ran together on one line. */
+  .ev .n { display: block; font-weight: 600; color: var(--heading); }
+  .ev .w { display: block; font-size: var(--t-sm); color: var(--ink-3); margin-top: 2px; }
+  .ev.busy .n { color: var(--ink-3); font-style: italic; font-weight: 500; }
+
+  /* The bot: a card with a dark head, like the site's other bands. */
+  .bot { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .bothead { background: linear-gradient(150deg, var(--mast-a) 0%, var(--mast-b) 100%); color: #fff; padding: var(--s-4) var(--s-5); }
+  .bothead h2 { color: #fff; margin-top: var(--s-1, 4px); }
+  .bothead .eyebrow { color: #f7b3cf; }
+  .log { min-height: 220px; max-height: 380px; overflow-y: auto; padding: var(--s-4); display: flex; flex-direction: column; gap: var(--s-2); }
+  .msg { max-width: 88%; white-space: pre-line; border-radius: 14px; padding: 8px 12px; font-size: .92rem; margin: 0; }
+  .msg.bot { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line-soft); }
+  .msg.you { margin-left: auto; background: var(--solid); color: #fff; }
+  .sugg { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 var(--s-4) var(--s-3); }
+  .sugg button { border: 1px solid var(--line); background: var(--surface); color: var(--accent); border-radius: var(--r-pill); padding: .3em .85em; font-family: var(--font-display); font-size: var(--t-xs); font-weight: 600; cursor: pointer; }
+  .sugg button:hover { border-color: var(--accent); }
+  form.ask { display: flex; gap: var(--s-2); border-top: 1px solid var(--line); padding: var(--s-3) var(--s-4); }
+  form.ask input { flex: 1; min-width: 0; border: 1px solid var(--line); border-radius: var(--r-pill); padding: .6em 1em; font: inherit; font-size: .92rem; background: var(--surface); color: var(--ink); }
+  form.ask .btn { padding-inline: 1.2em; }
+
+  .catchlist { margin-top: var(--s-3); padding-left: 1.1rem; }
+  .catchlist li { font-size: .94rem; color: var(--ink-2); }
+  .catchlist b { color: var(--heading); font-family: var(--font-display); font-weight: 600; }
+
+  .noscript { margin-top: var(--s-5); }
+
+  @media (max-width: 980px) {
+    .moon-grid { grid-template-columns: 1fr; }
+    .now .in { grid-template-columns: auto 1fr; }
+    .peek { grid-column: 1 / -1; }
+    /* The time controls drop to the bottom of the band here, which is where
+       the bloom sits, so the bloom goes. */
+    .now {
+      background:
+        radial-gradient(700px 300px at 85% -40%, var(--mast-glow-1), transparent 62%),
+        linear-gradient(150deg, var(--mast-a) 0%, var(--mast-b) 100%);
+    }
+  }
+  @media (max-width: 560px) {
+    .now .in { padding: var(--s-5); }
+    .orb { width: 64px; height: 64px; }
+    .zone { font-size: 10px; padding: 4px 5px; }
+    /* The map shrinks with the screen but text does not: lift the floor
+       labels clear of the first row of boxes. */
+    .band { font-size: 9px; letter-spacing: .08em; transform: translateY(-6px); }
+    .zone small { display: none; }
+    .pin { width: 26px; height: 26px; right: 6px; }
+    .ev { grid-template-columns: 78px 1fr; }
+  }
+  @media (forced-colors: active) {
+    .mbadge, .zone.here, .daychip[aria-pressed="true"], .dtab[aria-selected="true"] { forced-color-adjust: none; border: 2px solid CanvasText; }
+  }
+  @media print {
+    .now { background: #fff; color: #000; border: 1px solid #ccc; }
+    .now .headline, .now .loc, .now .detail, .now .when { color: #000; }
+    .peek, .bot, .map, .cap, .placeinfo { display: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead" id="top" style="padding-block:var(--s-5) var(--s-5)">
+  <div class="wrap-wide">
+    <div class="masthead-top" style="margin-bottom:0">
+      <a class="lockup" href="../../">
+        <img class="lockup-img" src="../../assets/img/wip-wordmark-reverse.png" alt="Women in Power" width="1200" height="607">
+      </a>
+      <div class="masthead-right">
+        <nav class="masthead-nav" aria-label="Main">
+          <a href="../../mentoring/">Mentoring</a>
+          <a href="../../skilling/">Skilling</a>
+          <a href="../../networking/">Networking</a>
+          <a href="../../about/">About us</a>
+        </nav>
+        <button type="button" class="theme-toggle" data-theme-toggle>Theme</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap-wide">
+
+  <!--
+    ======================================================================
+    WHERE'S MOON?
+
+    Danielle Moon's own interactive, sent through Sravani on 20 Oct 2026,
+    rebuilt in the site's frame: masthead, fonts, colour tokens, light and
+    dark. What she built is kept: the live location in Pacific time, the
+    time slider, the venue map, the week, the bot and the booking link.
+
+    Changed from her version, deliberately:
+    * Her two illustrations are not used. The site is real photography and
+      the line-drawn bloom; the band carries the bloom instead.
+    * Emoji are out of buttons and labels, and kept in the bot's replies,
+      which is where they carry personality rather than chrome.
+    * Mid-sentence dashes reworded, per the style guide.
+    * Venue names follow the official PPCC schedule where it has one: the
+      keynotes are in the Grand Garden Arena, not "Keynote Hall", and
+      levels are "level 1" and "level 3", as the PPCC app will say.
+
+    The schedule lives in moon.js, in this folder, and nowhere else. The
+    PPCC page reads the same file for its live line.
+
+    Booking is open to the public by Danielle's choice (confirmed 20 Oct
+    2026). It is her Microsoft Bookings page.
+
+    This page is time-boxed. It comes down with the rest of the PPCC
+    event content.
+    ======================================================================
+  -->
+
+  <p class="crumb"><a href="../">&larr; Women in Power at PPCC 2026</a></p>
+
+  <div class="page-head">
+    <div>
+      <p class="eyebrow">Danielle Moon, founder of Women in Power</p>
+      <h1>Where&rsquo;s <em>Moon</em>?</h1>
+      <p>Where Danielle is at PPCC, live: right now, later this week, and the best times to catch her. All times are Pacific.</p>
+    </div>
+    <p class="row"><a class="btn btn-accent book" href="https://bookings.cloud.microsoft/bookwithme/user/e2dcc0fbbfcd430ebe51176c29130855@microsoft.com/meetingtype/9vDzocPOTU6zjD4y4mwwAQ2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener">Book time with Moon &rarr;</a></p>
+  </div>
+
+  <noscript>
+    <div class="callout noscript">
+      <p class="callout-title">This page needs JavaScript</p>
+      <p>It works out where Danielle is from the time of day. Without it, the <a href="../#programme">Women in Power program on the PPCC page</a> has every event, time and room.</p>
+    </div>
+  </noscript>
+
+  <section class="now" aria-labelledby="now-h">
+    <div class="in">
+      <div class="orb" id="orb" aria-hidden="true"></div>
+      <div>
+        <h2 class="when" id="now-h"><span id="when"></span><span id="badge" class="mbadge"></span></h2>
+        <p class="headline" id="headline"></p>
+        <p class="loc" id="where"></p>
+        <p class="detail" id="detail"></p>
+      </div>
+      <div class="peek" role="group" aria-label="Look at another time">
+        <div class="chips" id="chips"></div>
+        <label for="slider" id="slabel"></label>
+        <input type="range" id="slider" min="360" max="1410" step="15">
+        <p class="liveline" id="liveline"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="moon-grid" id="work">
+    <div class="moon-col">
+      <section class="card" aria-labelledby="map-h">
+        <p class="eyebrow">MGM Grand Conference Center</p>
+        <h2 id="map-h">Find Moon at PPCC</h2>
+        <div class="map" id="map" role="group" aria-label="PPCC venue areas"></div>
+        <p class="cap">A sketch of the PPCC spaces, not to scale. Pick a space to see when Moon is there.</p>
+        <div class="placeinfo" id="placeinfo" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="card" aria-labelledby="week-h">
+        <p class="eyebrow">The week at a glance, Pacific time</p>
+        <h2 id="week-h">Moon&rsquo;s week</h2>
+        <div class="dtabs" role="tablist" aria-label="Day" id="tabs"></div>
+        <p class="daybar" id="daybar"></p>
+        <ol class="mtl" id="timeline"></ol>
+      </section>
+    </div>
+
+    <div class="moon-col">
+      <section class="card bot" aria-labelledby="bot-h">
+        <div class="bothead"><p class="eyebrow">Where&rsquo;s Moon?</p><h2 id="bot-h">Ask the Moon bot</h2></div>
+        <div class="log" id="log" role="log" aria-live="polite" aria-label="Conversation"></div>
+        <div class="sugg" id="sugg"></div>
+        <form class="ask" id="askform"><label class="visually-hidden" for="q">Ask about Moon</label><input id="q" autocomplete="off" placeholder="Where&rsquo;s Moon at 2pm Wednesday?"><button class="btn btn-primary" type="submit">Ask</button></form>
+      </section>
+
+      <section class="card card-bloom" aria-labelledby="catch-h">
+        <p class="eyebrow">Meet up</p>
+        <h2 id="catch-h">Best times to catch Moon</h2>
+        <ul class="catchlist" id="catchlist"></ul>
+        <p class="small muted">Want dedicated time? Pick an open slot on her calendar.</p>
+        <p class="row"><a class="btn btn-accent book" href="https://bookings.cloud.microsoft/bookwithme/user/e2dcc0fbbfcd430ebe51176c29130855@microsoft.com/meetingtype/9vDzocPOTU6zjD4y4mwwAQ2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener">Book time with Moon &rarr;</a></p>
+      </section>
+    </div>
+  </div>
+
+  <p class="small muted center" style="margin-top:var(--s-6)">Schedule subject to change. The PPCC app has the final word on rooms and times.</p>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap-wide foot-row">
+    <div>
+      <img class="win-logo" src="../../assets/img/win-logo.png" alt="Women's Innovation Network (WIN)">
+      <p class="tagline">When women innovate, the future follows.</p>
+      <p class="small" style="margin-top:var(--s-2)">Women in Power is a program of the Women&rsquo;s Innovation Network.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="../../">Women in Power</a>
+      <a href="../../about/">About us</a>
+      <a href="../../mentoring/">Mentoring</a>
+      <a href="../../skilling/">Skilling Series</a>
+      <a href="../../networking/">Networking</a>
+      <a href="../">PPCC 2026</a>
+      <a href="https://www.linkedin.com/company/women-in-power-platform" target="_blank" rel="noopener">Women in Power on LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="to-top" href="#top" title="Back to top">
+  <span class="visually-hidden">Back to top</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</a>
+
+<script src="../../assets/js/wip.js" defer></script>
+<script src="moon.js"></script>
+<script>
+/* Where's Moon? The interface. Danielle's, ported onto the site's markup.
+   The schedule and the "where is she" logic are in moon.js. */
+(function () {
+  'use strict';
+  var M = window.WIP_MOON;
+  if (!M) return;
+  var DAYS = M.DAYS, EV = M.EV, MOOD = M.MOOD, fmt = M.fmt, day = M.day, pl = M.pl, ord = M.ord, di = M.di, locate = M.locate, moonSvg = M.moonSvg, title = M.title;
+  var MOODC = { find: 'var(--m-find)', session: 'var(--m-session)', busy: 'var(--m-busy)', off: 'var(--m-off)' };
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function $(id) { return document.getElementById(id); }
+
+  var now = M.ptNow(), peek = null, sel = null, viewDay = now ? now.d : 'tue';
+  function at() { return peek || now || { d: 'tue', m: 765 }; }
+
+  function render() {
+    var a = at(), live = !peek && !!now, w = locate(a), P = pl(w.place);
+    $('orb').style.background = MOODC[w.mood]; $('orb').innerHTML = moonSvg(w.mood, 58);
+    $('when').textContent = live ? 'Live, ' + day(a.d).s + ' ' + fmt(a.m) + ' PT' : 'Looking at ' + day(a.d).s + ' ' + day(a.d).l.split(', ')[1] + ', ' + fmt(a.m) + ' PT';
+    var b = $('badge'); b.className = 'mbadge ' + MOOD[w.mood].b; b.textContent = MOOD[w.mood].l;
+    $('headline').textContent = w.head;
+    $('where').textContent = (P ? P[1] + ', ' + P[2] : '') + (w.until && w.mood !== 'busy' ? (P ? ' · ' : '') + 'until ' + fmt(w.until) : '');
+    $('detail').textContent = w.detail || '';
+
+    var ch = $('chips'); ch.innerHTML = '';
+    DAYS.forEach(function (d) {
+      var bt = document.createElement('button'); bt.type = 'button'; bt.className = 'daychip'; bt.textContent = d.s;
+      bt.setAttribute('aria-pressed', String(!live && a.d === d.k));
+      bt.addEventListener('click', function () { jump({ d: d.k, m: a.m }); });
+      ch.appendChild(bt);
+    });
+    $('slider').value = Math.min(Math.max(a.m, 360), 1410);
+    $('slabel').textContent = 'Time: ' + fmt(a.m) + ' PT';
+
+    var ll = $('liveline'); ll.innerHTML = '';
+    if (now) {
+      var lb = document.createElement('button'); lb.className = 'linkbtn'; lb.type = 'button'; lb.textContent = 'Back to live';
+      lb.disabled = live; lb.addEventListener('click', function () { peek = null; render(); });
+      ll.appendChild(lb);
+    } else {
+      ll.textContent = 'Live tracking starts Sunday 25 October. Until then, slide or pick a day to look ahead.';
+    }
+    renderMap(w); renderWeek(w);
+  }
+
+  function renderMap(w) {
+    var m = $('map'); m.innerHTML = '';
+    [[44, 'Level 1'], [268, 'Level 3'], [382, 'Around the MGM']].forEach(function (x) {
+      var s = document.createElement('span'); s.className = 'band'; s.style.top = ((x[0] - 18) / 452 * 100) + '%'; s.textContent = x[1]; m.appendChild(s);
+    });
+    M.PLACES.forEach(function (p) {
+      var z = M.ZONES[p[0]], here = p[0] === w.place, n = EV.filter(function (e) { return e.pl === p[0]; }).length;
+      var bt = document.createElement('button'); bt.type = 'button'; bt.className = 'zone' + (here ? ' here' : '');
+      bt.setAttribute('aria-pressed', String(sel === p[0]));
+      bt.setAttribute('aria-label', p[1] + (here ? ', Moon is here' : '') + (n ? ', ' + n + (n === 1 ? ' event' : ' events') : ''));
+      bt.style.left = z[0] / 8 + '%'; bt.style.top = z[1] / 452 * 100 + '%'; bt.style.width = z[2] / 8 + '%'; bt.style.height = z[3] / 452 * 100 + '%';
+      if (here) { bt.style.background = MOODC[w.mood]; bt.style.borderColor = MOODC[w.mood]; }
+      bt.innerHTML = '<span style="display:block;padding-right:' + (here ? '44px' : '0') + '">' + esc(p[1]) + '</span>' +
+        (n ? '<small>' + n + (n === 1 ? ' event' : ' events') + '</small>' : '') +
+        (here ? '<span class="pin">' + moonSvg(w.mood, 30) + '</span>' : '');
+      bt.addEventListener('click', function () { sel = sel === p[0] ? null : p[0]; renderPlace(); render(); });
+      m.appendChild(bt);
+    });
+  }
+
+  function renderPlace() {
+    var box = $('placeinfo'); if (!sel) { box.hidden = true; return; } box.hidden = false;
+    var P = pl(sel);
+    var list = EV.filter(function (e) { return e.pl === sel; }).sort(function (a, b) { return ord({ d: a.d, m: a.s }) - ord({ d: b.d, m: b.s }); });
+    box.innerHTML = '<p><strong>' + esc(P[1]) + '</strong> <span class="muted">· ' + esc(P[2]) + '. ' + esc(M.HINT[sel]) + '.</span></p>';
+    if (!list.length) { box.insertAdjacentHTML('beforeend', '<p class="muted" style="margin-top:4px">No Moon sightings scheduled here.</p>'); return; }
+    var ul = document.createElement('ul');
+    list.forEach(function (e) {
+      var li = document.createElement('li'), bt = document.createElement('button'); bt.type = 'button';
+      bt.innerHTML = '<strong>' + day(e.d).s + ' ' + fmt(e.s) + '</strong> · ' + esc(e.t);
+      bt.addEventListener('click', function () { jump({ d: e.d, m: e.s }); });
+      li.appendChild(bt); ul.appendChild(li);
+    });
+    box.appendChild(ul);
+  }
+
+  function renderWeek(w) {
+    var tabs = $('tabs'); tabs.innerHTML = '';
+    DAYS.forEach(function (d) {
+      var t = document.createElement('button'); t.type = 'button'; t.className = 'dtab'; t.setAttribute('role', 'tab');
+      t.setAttribute('aria-selected', String(d.k === viewDay)); t.textContent = d.s;
+      t.addEventListener('click', function () { viewDay = d.k; render(); });
+      tabs.appendChild(t);
+    });
+    var D = day(viewDay);
+    $('daybar').textContent = D.l + (D.h ? ' · PPCC ' + fmt(D.h[0]) + '–' + fmt(D.h[1]) : '');
+    var ol = $('timeline'); ol.innerHTML = '';
+    var list = EV.filter(function (e) { return e.d === viewDay; }).sort(function (a, b) { return a.s - b.s; });
+    if (!list.length) { ol.innerHTML = '<li class="muted">Nothing scheduled.</li>'; return; }
+    list.forEach(function (e) {
+      var li = document.createElement('li'), dot = document.createElement('span');
+      dot.className = 'dot'; dot.style.background = MOODC[e.p]; li.appendChild(dot);
+      var bt = document.createElement('button'); bt.type = 'button'; bt.className = 'ev' + (e.p === 'busy' ? ' busy' : '');
+      if (w.ev === e) bt.setAttribute('aria-current', 'true');
+      var P = pl(e.pl);
+      bt.innerHTML = '<span class="t">' + fmt(e.s) + '<small>to ' + fmt(e.e) + '</small></span><span><span class="n">' + esc(title(e)) +
+        '</span><span class="w">' + (P ? esc(P[1]) + ' ' : '') + '<span class="mbadge ' + MOOD[e.p].b + '">' + MOOD[e.p].l + '</span></span></span>';
+      bt.addEventListener('click', function () { jump({ d: e.d, m: e.s }); if (e.pl) { sel = e.pl; renderPlace(); } });
+      li.appendChild(bt); ol.appendChild(li);
+    });
+  }
+
+  function jump(m) { peek = m; viewDay = m.d; render(); }
+
+  /* --- The bot. Danielle's, word for word apart from the dashes. Runs
+     entirely in the page: nothing typed here is sent anywhere. -------- */
+  var DW = [[/\bsun(day)?\b/, 'sun'], [/\bmon(day)?\b/, 'mon'], [/\btue(s|sday)?\b/, 'tue'], [/\bwed(nesday)?\b/, 'wed'], [/\bthu(r|rs|rsday)?\b/, 'thu'], [/\bfri(day)?\b/, 'fri']];
+  function parseWhen(q, ref) {
+    var d, m, i;
+    for (i = 0; i < DW.length; i++) if (DW[i][0].test(q)) d = DW[i][1];
+    if (/\btoday\b|\btonight\b/.test(q)) d = ref.d;
+    if (/\btomorrow\b/.test(q)) d = DAYS[Math.min(di(ref.d) + 1, 5)].k;
+    var x = q.match(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm|a\.m\.|p\.m\.)\b/) || q.match(/\bat\s+(\d{1,2})(?::(\d{2}))?\b/) || q.match(/\b(\d{1,2}):(\d{2})\b/);
+    if (x) {
+      var h = +x[1], mm = +(x[2] || 0), ap = x[3] ? x[3][0] : '';
+      if (ap === 'p' && h < 12) h += 12; if (ap === 'a' && h === 12) h = 0; if (!ap && h >= 1 && h <= 6) h += 12;
+      if (h < 24) m = h * 60 + mm;
+    } else if (/\bnoon\b/.test(q)) m = 720; else if (/\bmorning\b/.test(q)) m = 540; else if (/\bafternoon\b/.test(q)) m = 840; else if (/\bevening\b|\btonight\b/.test(q)) m = 1080;
+    return { d: d, m: m };
+  }
+  function say(w, a, live) {
+    var P = pl(w.place), emo = { find: '🌕', session: '🌗', busy: '🌑', off: '🌘' }[w.mood];
+    return emo + ' ' + (live ? 'Right now' : day(a.d).s + ' at ' + fmt(a.m)) + ': ' + w.head + '.' + (P ? ' 📍 ' + P[1] + '.' : '') +
+      (w.until ? (w.mood === 'busy' ? ' Free again after ' + fmt(w.until) + '.' : ' Until ' + fmt(w.until) + '.') : '');
+  }
+  function answer(raw) {
+    var q = raw.toLowerCase().trim(), ref = at(), pub = EV.filter(function (e) { return e.p !== 'busy'; });
+    if (/^(hi|hello|hey)\b/.test(q)) return { t: 'Hey there! 👋 Ask me “Where’s Moon right now?”, “Where will she be at 2pm Wednesday?” or “When’s the panel?”' };
+    if (/\bbook|schedule|appointment|1:1|one on one/.test(q)) return { t: '📅 Grab a time on Moon’s calendar with the “Book time with Moon” button. It only shows slots she’s actually free.' };
+    if (/catch|meet|free|available|say hi/.test(q)) {
+      var win = pub.filter(function (e) { return e.p === 'find' && ord({ d: e.d, m: e.e }) > ord(ref); }).slice(0, 4);
+      return { t: win.length ? '🌕 Best times to catch Moon:\n' + win.map(function (e) { return '• ' + day(e.d).s + ' ' + fmt(e.s) + '–' + fmt(e.e) + ': ' + e.t + ' @ ' + pl(e.pl)[1]; }).join('\n') + '\nBetween sessions, try the Women in Power desk in the Community Lounge.' : 'Moon’s open windows have passed. Find her on LinkedIn! 🌙' };
+    }
+    if (/\bnext\b/.test(q)) {
+      var nx = pub.filter(function (e) { return ord({ d: e.d, m: e.s }) > ord(ref); }).sort(function (a, b) { return ord({ d: a.d, m: a.s }) - ord({ d: b.d, m: b.s }); })[0];
+      return nx ? { t: '⏭️ Next up: ' + nx.t + ', ' + day(nx.d).s + ' ' + fmt(nx.s) + '–' + fmt(nx.e) + ' @ ' + pl(nx.pl)[1] + '.', f: { d: nx.d, m: nx.s } } : { t: 'That’s a wrap. See you next year! 🎉' };
+    }
+    var pw = parseWhen(q, ref);
+    if (pw.m !== undefined) { var a = { d: pw.d || ref.d, m: pw.m }; return { t: say(locate(a), a, false), f: a }; }
+    var stop = ['where', 'wheres', 'moon', 'when', 'what', 'the', 'will', 'she', 'her', 'does', 'danielle', 'is', 'be'];
+    var words = q.replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (x) { return x.length > 2 && stop.indexOf(x) < 0; });
+    var sc = pub.map(function (e) { var hay = (e.t + ' ' + e.g + ' ' + pl(e.pl)[1]).toLowerCase(); return { e: e, s: words.filter(function (x) { return hay.indexOf(x) >= 0; }).length }; })
+      .filter(function (x) { return x.s > 0 && (!pw.d || x.e.d === pw.d); })
+      .sort(function (a, b) { return b.s - a.s || ord({ d: a.e.d, m: a.e.s }) - ord({ d: b.e.d, m: b.e.s }); });
+    if (sc.length) {
+      var top = sc.filter(function (x) { return x.s === sc[0].s; }).slice(0, 3).map(function (x) { return x.e; });
+      return { t: top.map(function (e) { return '📅 ' + e.t + ': ' + day(e.d).s + ' ' + fmt(e.s) + '–' + fmt(e.e) + ' @ ' + pl(e.pl)[1]; }).join('\n'), f: { d: top[0].d, m: top[0].s } };
+    }
+    if (pw.d) {
+      var l = EV.filter(function (e) { return e.d === pw.d; }).sort(function (a, b) { return a.s - b.s; });
+      return { t: l.length ? '🗓️ ' + day(pw.d).l + ':\n' + l.map(function (e) { return '• ' + fmt(e.s) + ' ' + title(e) + (e.pl ? ' @ ' + pl(e.pl)[1] : ''); }).join('\n') : 'Nothing scheduled that day 🌙', f: { d: pw.d, m: l.length ? l[0].s : 720 } };
+    }
+    var w = locate(ref); return { t: say(w, ref, !peek && !!now) };
+  }
+  function post(who, t) { var d = document.createElement('p'); d.className = 'msg ' + who; d.textContent = t; $('log').appendChild(d); $('log').scrollTop = $('log').scrollHeight; }
+  function ask(t) { if (!t.trim()) return; post('you', t); var r = answer(t); post('bot', r.t); if (r.f) jump(r.f); $('q').value = ''; }
+
+  post('bot', 'Hi! I’m the Where’s Moon bot 🌙 Ask me where Danielle will be at PPCC: now, later, or at any Women in Power event.');
+  ['Where’s Moon right now?', 'When’s the panel?', 'Where’s Moon at 1pm Tuesday?', 'When can I catch Moon?', 'What’s next?'].forEach(function (s) {
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = s;
+    b.addEventListener('click', function () { ask(s); }); $('sugg').appendChild(b);
+  });
+  $('askform').addEventListener('submit', function (ev) { ev.preventDefault(); ask($('q').value); });
+  $('slider').addEventListener('input', function () { var a = at(); jump({ d: a.d, m: +this.value }); });
+
+  var cl = $('catchlist');
+  EV.filter(function (e) { return e.p === 'find'; }).forEach(function (e) {
+    var li = document.createElement('li');
+    li.innerHTML = '<b>' + day(e.d).s + ' ' + fmt(e.s) + '–' + fmt(e.e) + '</b> · ' + esc(e.t) + ', ' + esc(pl(e.pl)[1]);
+    cl.appendChild(li);
+  });
+  cl.insertAdjacentHTML('beforeend', '<li>Between sessions, Tuesday to Thursday: the Women in Power check-in desk in the Community Lounge, level 3</li>');
+
+  setInterval(function () { now = M.ptNow(); if (!peek) render(); }, 30000);
+  render();
+})();
+</script>
+</body>
+</html>

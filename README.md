@@ -241,6 +241,28 @@ stub at `ppcc-2026/index.html` — the old URL will be on printed material that
 cannot be recalled. Delete the `.announce` block from each page at the same
 time.
 
+### Where's Moon?
+
+`ppcc-2026/wheres-moon/` is Danielle Moon's live tracker for the week: where
+she is right now (Pacific time), a venue sketch, her week, a small bot and her
+booking link. It is her own interactive, rebuilt in the site's frame. The PPCC
+page shows a one-line live summary of it under the Hype Squad.
+
+**The schedule lives in `ppcc-2026/wheres-moon/moon.js` and nowhere else.**
+Both pages read that file, so a changed time is changed once. Rules it keeps,
+which any edit has to keep too:
+
+- A `busy` block publishes only that she is unavailable, and until when. No
+  title, no place, no detail.
+- Off-hours name no location.
+- Venue names follow the official PPCC schedule where it has one, so they match
+  what attendees see in the conference app.
+
+The bot runs entirely in the page. Nothing typed into it goes anywhere.
+
+Booking is open to the public by Danielle's choice (20 Oct 2026). Both the
+tracker and the teaser come down with the rest of the event content.
+
 The hero photo is a drop-in: put `ppcc-2025-group.jpg` in `assets/img/ppcc/`
 and it appears behind the headline and un-hides the "Last year" section. The
 hero is designed to look finished without it. See that folder's README for
