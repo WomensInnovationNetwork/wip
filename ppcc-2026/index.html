@@ -279,6 +279,23 @@
   }
   .squad-close { margin-top: var(--s-5); font-weight: 600; color: var(--heading); }
 
+  /* --- Where's Moon? teaser --------------------------------------------- */
+  .moon-strip {
+    display: grid; gap: var(--s-4) var(--s-5); align-items: center;
+    grid-template-columns: auto 1fr auto;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--r-xl); padding: var(--s-5) var(--s-6); box-shadow: var(--sh-1);
+  }
+  .moon-orb { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--solid); box-shadow: 0 0 0 4px var(--blush); }
+  .moon-strip h3 { margin-top: var(--s-1, 4px); font-size: var(--t-xl); }
+  .moon-strip .ms-live { color: var(--ink-2); margin-top: var(--s-2); }
+  .moon-strip .ms-live strong { color: var(--heading); }
+  .moon-strip .ms-actions { justify-content: flex-end; }
+  @media (max-width: 860px) {
+    .moon-strip { grid-template-columns: auto 1fr; }
+    .moon-strip .ms-actions { grid-column: 1 / -1; justify-content: flex-start; }
+  }
+
   /* --- Take-aways ------------------------------------------------------ */
   .takeaways { display: grid; gap: var(--s-4); }
   @media (min-width: 700px) { .takeaways { grid-template-columns: repeat(2, 1fr); } }
@@ -405,9 +422,9 @@
 
       <article class="slot slot-split">
         <div class="slot-main">
-        <p class="slot-when">12:30 &ndash; 2:00 PM</p>
+        <p class="slot-when">12:30 &ndash; 2:00 PM PT</p>
         <h3>Women in Power Networking Luncheon</h3>
-        <p class="slot-where">Dedicated Women in Power lunch hall &middot; seats 600</p>
+        <p class="slot-where">Studio Ballroom, level 1 &middot; our own lunch hall, seats 600</p>
         <div class="slot-body">
           <p>No stage program this year. It&rsquo;s all about meeting the women you&rsquo;ll spend the week with.</p>
           <ul>
@@ -428,9 +445,9 @@
       </article>
 
       <article class="slot">
-        <p class="slot-when">Evening &middot; during the Night Market, 5:00 &ndash; 8:00 PM</p>
+        <p class="slot-when">Evening &middot; during the Night Market, 5:00 &ndash; 7:30 PM PT</p>
         <h3>Night Market Meetup</h3>
-        <p class="slot-where">Expo Hall and Makers Hall &middot; meeting point announced closer to the event</p>
+        <p class="slot-where">Expo Hall and Makers Market, Marquee Ballroom, level 1 &middot; meeting point on the day</p>
         <div class="slot-body">
           <p>Walking into a party alone is the worst. Meet us first and walk in together: drinks, the expo floor and the makers community.</p>
           <p class="small muted" style="margin-top:var(--s-3)">The meeting point goes out in the <a href="#stay-in-touch">WhatsApp group</a> on the day.</p>
@@ -448,14 +465,15 @@
 
       <article class="slot slot-split">
         <div class="slot-main">
-        <p class="slot-when">2:00 PM PT &middot; 60 minutes</p>
+        <p class="slot-when">2:00 &ndash; 3:00 PM PT</p>
         <h3><a href="https://powerplatformconf.com/sessions/Women-in-Power-Panel%3A-Owning-Your-Power%2C-Claiming-Your-Seat" target="_blank" rel="noopener">Women in Power Panel: Owning Your Power, Claiming Your Seat</a></h3>
-        <p class="slot-where">Featured session &middot; ballroom, full AV</p>
+        <p class="slot-where">Boulevard Ballroom 162, level 1 &middot; featured session, full AV</p>
         <div class="slot-body">
           <p>A moderated conversation with women leading across product, engineering and the community: how the platform is changing, and what it takes to lead while it does.</p>
           <ul>
             <li><a href="https://powerplatformconf.com/sessions/Women-in-Power-Panel%3A-Owning-Your-Power%2C-Claiming-Your-Seat" target="_blank" rel="noopener"><strong>Add it to your schedule</strong></a> in the PPCC catalog, early</li>
             <li>Last year we hit fire-code capacity, with women sitting on the floor. This year we have a much bigger room</li>
+            <li>Opens with a fireside chat between Danielle Moon and Laura Martelli, then the panel takes the stage</li>
             <li>Full panelist lineup announced soon</li>
           </ul>
         </div>
@@ -479,12 +497,13 @@
       </div>
 
       <article class="slot">
-        <p class="slot-when">60 minutes &middot; time announced soon</p>
+        <p class="slot-when">10:45 &ndash; 11:45 AM PT</p>
         <h3><a href="https://powerplatformconf.com/sessions/Make-Your-Network-Your-Net-Worth%3A-A-Women-in-Power-Roundtable" target="_blank" rel="noopener">Make Your Network Your Net Worth: A Women in Power Roundtable</a></h3>
-        <p class="slot-where">Small group roundtable &middot; listed in the content catalog</p>
+        <p class="slot-where">Room 351, level 3 &middot; small group roundtable</p>
         <div class="slot-body">
           <p>No slides. A small room, real talk, and practical steps before you fly home: growing your network, showing up on LinkedIn, and building a brand that opens doors.</p>
           <ul>
+            <li>Hosted by Danielle Moon, Delia Zuniga and Sravani Seethi</li>
             <li>Built for questions, not presenting</li>
             <li>Come with the thing you have been putting off</li>
             <li><a href="https://powerplatformconf.com/sessions/Make-Your-Network-Your-Net-Worth%3A-A-Women-in-Power-Roundtable" target="_blank" rel="noopener"><strong>Add it to your schedule</strong></a> in the PPCC catalog</li>
@@ -587,12 +606,35 @@
     <p class="squad-close">Because community is stronger when no one has to navigate it alone.</p>
   </section>
 
+  <!-- ============================ WHERE'S MOON ========================= -->
+  <!--
+    A pointer to Danielle's live tracker at wheres-moon/. The live line is
+    filled in from wheres-moon/moon.js, the one copy of her schedule, so it
+    can never disagree with the full page. Outside the conference week, and
+    with JavaScript off, it shows the static sentence that is in the markup.
+  -->
+  <section class="section" id="wheres-moon">
+    <div class="moon-strip">
+      <div class="moon-orb" id="ms-orb" aria-hidden="true"></div>
+      <div>
+        <p class="eyebrow">Where&rsquo;s Moon?</p>
+        <h3>Find Danielle Moon, our founder, all week</h3>
+        <p class="ms-live" id="ms-live">Her week at PPCC, live: where she is right now, where she&rsquo;ll be next, and the best times to catch her.</p>
+      </div>
+      <p class="row ms-actions">
+        <a class="btn btn-accent" href="wheres-moon/">Where&rsquo;s Moon? &rarr;</a>
+        <a class="btn btn-ghost" href="https://bookings.cloud.microsoft/bookwithme/user/e2dcc0fbbfcd430ebe51176c29130855@microsoft.com/meetingtype/9vDzocPOTU6zjD4y4mwwAQ2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener">Book time with Moon</a>
+      </p>
+    </div>
+  </section>
+
   <!-- ============================ ALL WEEK ============================= -->
   <section class="section">
     <div class="section-head">
       <p class="eyebrow">All week long</p>
       <h2>Find us between sessions</h2>
     </div>
+    <p class="lead">Tuesday to Thursday, the <strong>Women in Power check-in desk</strong> is in the Community Lounge, Premier Pre-function on level 3. Start there if you are not sure where to go.</p>
     <div class="grid grid-3">
       <div class="card card-bloom">
         <h4>Swag worth queueing for</h4>
@@ -661,6 +703,29 @@
 </a>
 
 <script src="../assets/js/wip.js" defer></script>
+<script src="wheres-moon/moon.js"></script>
+<script>
+// Where's Moon? live line. Same data and logic as the full page.
+(function () {
+  var M = window.WIP_MOON, orb = document.getElementById('ms-orb'), line = document.getElementById('ms-live');
+  if (!M || !orb || !line) return;
+  var COL = { find: '#047857', session: '#b45309', busy: '#b91c1c', off: '#52525b' };
+  function paint() {
+    var now = M.ptNow();
+    if (!now) { orb.innerHTML = M.moonSvg('find', 44); return; }   // before or after the week
+    var w = M.locate(now), P = M.pl(w.place);
+    orb.style.background = COL[w.mood]; orb.innerHTML = M.moonSvg(w.mood, 44);
+    line.textContent = '';
+    var b = document.createElement('strong'); b.textContent = 'Right now: ';
+    line.appendChild(b);
+    // Busy says only that she is booked, and until when: nothing about what.
+    line.appendChild(document.createTextNode(w.mood === 'busy'
+      ? 'booked until ' + M.fmt(w.until) + ' PT.'
+      : w.head + (P ? ', ' + P[1] : '') + (w.until ? ', until ' + M.fmt(w.until) + ' PT.' : '.')));
+  }
+  paint(); setInterval(paint, 60000);
+})();
+</script>
 <script>
 /* ==========================================================================
    Page-specific behaviour: the countdown, and the hero photo.
